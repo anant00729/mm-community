@@ -24,7 +24,7 @@ export const Members = () => {
 
 
   return (
-    <div className="relative md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
+    <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
       <div className="bg-gray-200 h-6 w-full sticky top-0"></div>
       <div className="md:flex-row -mx-2 flex flex-col-reverse">
         <div className="md:w-1/4 px-2 w-full mt-6 md:mt-0">

@@ -3,7 +3,7 @@ import appLogo from '../../app_images/network.png'
 import {connect} from 'react-redux'
 import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/appBarActions'
 
- const AppBar = (props) => {
+ const AppBar = () => {
   const [dropDownVisible , isDropDownVisible] =  useState(false)
   return (
     <nav className="bg-white border-b border-gray-300 md:text-base text-sm">
@@ -39,7 +39,7 @@ import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/
               />
             </div>
             
-            <button className="ml-auto text-gray-700 my-auto font-bold py-2 hover:bg-gray-100 cursor-pointer md:px-8 px-4 focus:outline-none">
+            <button className="ml-auto text-gray-700 my-auto font-bold py-2 cursor-pointer md:px-8 px-4 focus:outline-none">
               Login
             </button>
             <button className="app-color px-4 my-auto text-white rounded flex flex-wrap content-center py-2 font-bold cursor-pointer focus:outline-none">
@@ -52,32 +52,32 @@ import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/
           </div>
           <div className="mt-4 flex flex-wrap">
             <div className="flex flex-wrap">
-              <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">Home</button>
-              <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">Stories</button>
+              <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Home</button>
+              <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Stories</button>
               <div 
               onMouseEnter={() => isDropDownVisible(true)}
               onMouseLeave={() => isDropDownVisible(false)}
               className="visible md:hidden d-block relative">
                 <button 
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">
+                className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
                    <span>More</span> 
                    <i className="fa fa-chevron-down text-xs ml-2"></i>
                 </button>
                 <div 
                 className={`absolute appbar-drop-down rounded shadow-lg z-10 bg-white ${dropDownVisible ? '' : 'hidden'}`}>
-                  <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">Search</button>
-                  <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">Discussion</button>
-                  <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">Members</button>
-                  <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">About</button>
+                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button>
+                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button>
+                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
+                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
               </div>
               </div>
               <div className="hidden md:visible md:flex md:flex-wrap">
-                <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">Discussion</button>
-                <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">Members</button>
-                <button className="px-4 py-2 hover:bg-gray-100 cursor-pointer tracking-wide">About</button>
+                <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Discussion</button>
+                <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Members</button>
+                <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">About</button>
               </div>
             </div>
-            <button className="ml-auto text-gray-700 px-4 my-auto font-bold py-2 hover:bg-gray-100 cursor-pointer app-font-color flex">
+            <button className="ml-auto text-gray-700 px-4 my-auto font-bold py-2 hover:bg-gray-200 cursor-pointer app-font-color flex">
               <i className="fa fa-plus-circle self-center text-xl"></i>
               <span className="ml-2">New Post</span>  
             </button>

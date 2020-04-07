@@ -1,6 +1,7 @@
 const nodeMailer = require('nodemailer')
 const express = require('express')
 const ejs = require('ejs')
+const moment = require('moment')
 
 const app = express()
 let transporter = nodeMailer.createTransport({
@@ -21,8 +22,11 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get('/sendMail', (req,res)=> {
-
-  ejs.renderFile('./public/test.ejs', (error , result) => {
+  const _path = `${__dirname}/public/test.ejs`
+  const userTemplate = {
+    name : 'Sumit'
+  }
+  ejs.renderFile(_path, {userTemplate} , (error , result) => {
     if(error){
       console.log('error', error)
       res.json(error)
