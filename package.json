@@ -1,0 +1,27 @@
+{
+  "name": "mm-community-app",
+  "version": "1.0.0",
+  "description": "app that connect students with other students and teachers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "debugg": "nodemon --inspect server.js",
+    "b_debugg": "nodemon --inspect-brk server.js"
+  },
+  "author": "anant",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "form-data": "^3.0.0",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.4.6",
+    "pg": "^8.0.0",
+    "sequelize": "^5.21.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

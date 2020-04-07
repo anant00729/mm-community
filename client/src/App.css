@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+
+.btn-fb{
+  background-color: #3b5998;
+}
+
+.h-72{
+  height: 18rem;
+}
+
+.h-80{
+  height: 20rem;
+}
+
+.h-88{
+  height: 22rem;
+}
+
+.h-96{
+  height: 24rem;
+}
+
+.w-14{
+  width: 3.5rem;
+}
+
+.h-14{
+  height: 3.5rem;
+}
+
+.h-36	{
+  height: 9rem;
+}
+
+.w-36	{
+  width: 9rem;
+}
+
+
+.top-6{
+  top: 1.5rem;
+}
+
+
+button:focus {
+  outline:0;
+}
+
+.app-color{
+  background-color : #2962ff;
+}
+
+.app-color:hover{
+  background-color :#265bed;
+}
+
+.app-font-color{
+  color : #2962ff;
+}
+
+.app-border-bottom{
+  border-color:  #2962ff;
+}
+
+.app-logo{
+  font-size: 1.6rem;
+}
+/* XS */
+@media (min-width: 0px) {
+  .app-logo{
+    font-size: 1.2rem;
+  }
+
+  /* .app-color{
+    background-color : brown;
+  } */
+
+  
+  .register-sm-txt{
+    display: block; 
+  }
+  
+  .register-lg-txt{
+    display: none;
+  }
+  
+  .app-banner-container{
+    flex-direction: column;
+  }
+}
+/* SMALL */
+@media (min-width: 640px) {
+  .app-logo{
+    font-size: 1.6rem;
+  }
+
+  /* .app-color{
+    background-color : green;
+  } */
+
+  .register-sm-txt{
+    display: block; 
+  }
+
+  .register-lg-txt{
+    display: none;
+  }
+
+  
+
+}
+/* MEDIUM */
+@media (min-width: 768px) {
+  .app-logo{
+    font-size: 1.6rem;
+  }
+  
+  /* .app-color{
+    background-color : yellow;
+  } */
+  
+  .register-sm-txt{
+    display: block; 
+  }
+
+  .register-lg-txt{
+    display: none;
+  }
+
+  .app-banner-container{
+    flex-direction: column-reverse;
+  }
+}
+/* LARGE */
+@media (min-width: 900px) {
+  .app-logo{
+    font-size: 1.6rem;
+  }
+
+  /* .app-color{
+    background-color : teal;
+  } */
+
+  .register-sm-txt{
+    display: block; 
+  }
+
+  .register-lg-txt{
+    display: none;
+  }
+}
+/* LARGE */
+@media (min-width: 1024px) {
+  .app-logo{
+    font-size: 1.6rem;
+  }
+
+  /* .app-color{
+    background-color : purple;
+  } */
+
+  .register-sm-txt{
+    display: none; 
+  }
+
+  .register-lg-txt{
+    display: block;
+  }
+}
+
+/* XLARGE */
+@media (min-width: 1280px) {
+  .app-logo{
+    font-size: 1.6rem;
+  }
+
+  /* .app-color{
+    background-color : #2962ff;
+  } */
+
+  .register-sm-txt{
+    display: none; 
+  }
+
+  .register-lg-txt{
+    display: block;
+  }
+  
+}
+
+
+.font-sen{
+  font-family: 'Lato', sans-serif;
+}
+
+.text-app-banner{
+  font-size: 3rem;
+}
