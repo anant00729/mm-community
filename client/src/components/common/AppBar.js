@@ -6,7 +6,7 @@ import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/
  const AppBar = () => {
   const [dropDownVisible , isDropDownVisible] =  useState(false)
   return (
-    <nav className="bg-white border-b border-gray-300 md:text-base text-sm">
+    <nav className="bg-white border-b border-gray-300 md:text-base text-sm fixed w-full z-10">
         <div className="pt-5 md:px-16 px-6">
           <div className="flex">
             <div className="flex">
@@ -65,10 +65,18 @@ import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/
                 </button>
                 <div 
                 className={`absolute appbar-drop-down rounded shadow-lg z-10 bg-white ${dropDownVisible ? '' : 'hidden'}`}>
-                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button>
-                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button>
-                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
-                  <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
+                  <button 
+                  onClick={() => isDropDownVisible(false)}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button>
+                  <button 
+                  onClick={() => isDropDownVisible(false)}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button>
+                  <button 
+                  onClick={() => isDropDownVisible(false)}
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
+                  <button 
+                  onClick={() => isDropDownVisible(false)}  
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
               </div>
               </div>
               <div className="hidden md:visible md:flex md:flex-wrap">

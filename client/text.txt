@@ -9,11 +9,128 @@
 
 https://tatadigital-performance.peoplestrong.com/#/myMilestone
 
+https://rapidapi.com/imgur/api/imgur-9/endpoints
+
 URL: https://tdl.peoplestrong.com
 Your Login credentials are :
 User Name: TDL077
 Password: a290993
 
+
+
+I have finished the Offer Details Page. Please find the screen in the attachment. The build will be availble to the QA Team
+
+
+have delivered all my story points before the time. I also made sure to write test cases. I tried not to have bugs related to the stories. For nondependent stories, I made sure to cover all the bugs raised by the QA teams.
+
+
+When we started the project development process for the mobile frontend, I took it up and created dummy APIs to make minimum dependency on the backend.
+With the help of meetings with the product owners, I got to know about the business logic. Due to this, the development process smooth.
+In the recent sprints, I got the opportunity to work on QR code scanner functionality. I build a system where we can scan the qr code use it.
+As android developer we as a team made sure to keep the code systemtic and cover all the use cases to minimize bugs.
+
+In offers team, we have got pages that will be playing a crucial role in displaying information to the end user 
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the 
+standardized way to code in the project. I adapted the eco-system of project where all the modules are inidependent to each other but at the same time loosely couped with each other.
+This helped me to scale up the application module at the same time get me opportunity to work with my other fellow members.
+
+As a full stack develper I contributed on both the platforms i.e frontend (Android) or backend. I took up all the given task and tried to finish it in the given period of time.
+
+My communication with my teams members, product owners, crum master have been very lucid. I as a person beleives in more of a lisnetening than talking.
+Whenever I felt I have the points to be discussed. 
+I tried to convey it to all the members. The changes in the API are frequent, whenever there was a change in the API, I tried to convey it to my other fellow team members (iOS and PWA).
+
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the 
+standardized way to code in the project. I adapted the eco-system of project where all the modules are inidependent to each other but at the same time loosely couped with each other.
+This helped me to scale up the application module at the same time get me opportunity to work with my other fellow members.
+
+
+
+
+
+When we started the project development process for the mobile frontend, I took it up and created dummy APIs to make minimum dependency on the backend.
+With the help of meeting with the product owner, I got to know about the business logic. I tried to make the development process smooth by finishing my set of work before time.
+In recent sprints, I got the opportunity to work on QR code scanner functionality. I build a system where we can scan the QR code use it.
+As an android developer, we as a team made sure to keep the code systematic and cover all the use cases to minimize bugs.
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the standardized way to code in the project. I adapted the eco-system of the project where all the modules are independent of each other but at the same time loosely coupled with each other.
+This helped me to scale up the application module at the same time get me the opportunity to work with my other fellow members.
+
+As a full-stack developer, I contributed to both the platforms i.e frontend (Android) or backend. I took up all the given tasks and tried to finish it in a given period of time.
+
+My communication with my team's members, product owners, scrum master has been very lucid. I am a person believes in more of a listening than talking.
+Whenever I felt I have the points to be discussed. 
+I tried to convey it to all the members. The changes in the API are frequent, whenever there was a change in the API, I tried to convey it to my other fellow team members (iOS and PWA).
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the standardized way to code in the project. I adapted the eco-system of the project where all the modules are independent of each other but at the same time loosely coupled with each other.
+This helped me to scale up the application module at the same time get me the opportunity to work with my other fellow members.
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the standardized way to code in the project. I adapted the eco-system of the project where all the modules are independent of each other but at the same time loosely coupled with each other.
+This helped me to scale up the application module at the same time get me the opportunity to work with my other fellow members.
+
+
+Collaboration:
+I made sure to collaborate with the app team(other team) at the same time with the offers team. It helped me to keep things simple at the same time synced.
+Agility:
+n the Agile process, I got to learn about how to make the development process smooth. Working on Story points, making significant improvement, helped to get to know more about the business logic.
+Learnability / Willingness To Coach Others:
+Apart from Android, I have been learning other platforms. For the initial sprints, I got the opportunity to work on the backend. I had created mock APIs as well as built a dashboard using react to generate QR codes for testing the QR Code Stories.
+Problem Solving:
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the standardized way to code in the project. I adapted the eco-system of the project where all the modules are independent of each other but at the same time loosely coupled with each other.
+This helped me to scale up the application module at the same time get me the opportunity to work with my other fellow members.
+Living The TATA Values:
+Considering current scenario,
+
+
+ 
+
+
+I have jotted down the points to be added to the Performance Appraisal System. Please let me know when it will be fixed.
+The goals that I still pending to be approved are listed below: 
+
+Process improvements and adherence to guidelines - Driving the issue/delivery to closure as per committed effort and schedule. 100%, <2% issues should come back once reassigned
+Process improvements and adherence to guidelines - Effective and accurate status and work activity reporting (including documentation) as per need time to time 100%
+
+Let me know when it's fixed.
+
+1112121111
+
+
+When we started the project development process for the mobile frontend, I took it up and created dummy APIs to make minimum dependency on the backend.
+With the help of meetings with the product owners, I got to know about the business logic. Due to this, the development process smooth.
+In recent sprints, I got the opportunity to work on QR code scanner functionality. I build a system where we can scan the QR code use it.
+As an android developer, we as a team made sure to keep the code systematic and cover all the use cases to minimize bugs.
+
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the standardized way to code in the project. I adapted the eco-system of the project where all the modules are independent of each other but at the same time loosely coupled with each other.
+This helped me to scale up the application module at the same time get me the opportunity to work with my other fellow members.
+
+As a full-stack developer, I contributed to both the platforms i.e frontend (Android) or backend. I took up all the given tasks and tried to finish it in a given period of time.
+
+
+My communication with my team's members, product owners, scrum master has been very lucid. I believe in more listening than talking.
+Whenever I felt I have the points to be discussed. 
+I tried to convey it to all the members. The changes in the API are frequent, whenever there was a change in the API, I tried to convey it to my other fellow team members (iOS and PWA).
+
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the standardized way to code in the project. I adapted the eco-system of the project where all the modules are independent of each other but at the same time loosely coupled with each other.
+This helped me to scale up the application module at the same time get me the opportunity to work with my other fellow members.
+
+I made sure to collaborate with the app team(other teams) at the same time in the offers team. It helped me to keep things simple at the same time synced.
+
+
+In the Agile process, I got to learn about how to make the development process smooth. Working on Story points, making significant improvement, helped to get to know more about the business logic.
+
+
+Apart from Android, I have been learning other platforms. For the initial sprints, I got the opportunity to work on the backend. I had created mock APIs as well as built a dashboard using react to generate QR codes for testing the QR Code Stories.
+
+Adapting to newer concepts is the most challenging but at the same time exciting way to self-learn. Android architects helped in the process to get used to the standardized way to code in the project. I adapted the eco-system of the project where all the modules are independent of each other but at the same time loosely coupled with each other.
+This helped me to scale up the application module at the same time get me the opportunity to work with my other fellow members.
+
+
+During all the development processes, I made sure to be clear and transparent with my teammate. It's more like a family environment where I get to learn from others as well as I also come up with my set of ideas to solutions problems.
 
 
 

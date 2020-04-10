@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 
 * {
   margin: 0;
@@ -46,8 +46,12 @@
 }
 
 
-.top-6{
-  top: 1.5rem;
+.top-app-bar-md{
+  top: 8.5rem;
+}
+
+.top-app-bar-sm{
+  top: 6.9rem;
 }
 
 
@@ -70,6 +74,11 @@ button:focus {
 .app-border-bottom{
   border-color:  #2962ff;
 }
+
+.bg-accent-blue-500{
+  background-color: #bbdefb;
+}
+
 
 .app-logo{
   font-size: 1.6rem;
@@ -204,4 +213,17 @@ button:focus {
 
 .text-app-banner{
   font-size: 3rem;
+}
+
+.input-add-title{
+  font-family: 'Roboto', sans-serif;
+  resize: none;
+}
+
+.input-add-p{
+  resize: none;
+}
+
+.border-radius-card {
+  border-radius: 1.4rem;
 }

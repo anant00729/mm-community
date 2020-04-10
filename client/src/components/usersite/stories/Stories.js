@@ -37,10 +37,10 @@ export const Stories = () => {
 
   return (
     <div class="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
-      <div className="bg-gray-200 h-6 w-full sticky top-0"></div>
+      <div className="bg-gray-200 h-8 w-full sticky top-app-bar-sm"></div>
       <div class="md:flex-row -mx-2 flex flex-col">
         <div class="md:w-1/4 px-2 w-full">
-          <div class="bg-white rounded p-4 sticky top-6">
+          <div class="bg-white rounded p-4 sticky top-app-bar-md">
             <p className="font-sen text-black text-xl md:text-2xl font-bold">Popular Stories</p> 
             <p className="text-gray-700">Learnt something new recently? Write about it on Hashnode and showcase your knowledge. People get hired by sharing knowledge actively on Hashnode.</p>
             <button class="app-color hover:text-white rounded text-white py-2 px-4 mt-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out">
@@ -50,7 +50,7 @@ export const Stories = () => {
         </div>
         <div class="md:w-3/4 px-2 w-full">
           {/* Tab Section */}
-          <div class="bg-white rounded mt-4 md:mt-0 flex flex-wrap text-sm text-gray-700 sticky top-6">
+          <div class="bg-white rounded mt-4 md:mt-0 flex flex-wrap text-sm text-gray-700 sticky top-app-bar-md">
             <button
             className="px-4 h-10 app-font-color border-b-2 app-border-bottom font-extrabold">
               <span className="font-semibold">POPULAR</span>

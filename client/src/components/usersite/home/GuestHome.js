@@ -70,9 +70,9 @@ const GuestHome = () => {
         
         {/* Trending Section */}
         <div className="mt-2">
-          <p className="text-gray-600 font-sen text-sm md:text-lg font-medium tracking-wide mt-4">DEVELOPER STORIES</p>
+          <p className="text-gray-600 font-sen text-sm md:text-lg font-medium tracking-wide mt-16">DEVELOPER STORIES</p>
           <p className="font-sen text-black text-3xl md:text-4xl">Trending developer stories on StudyNode</p>
-          <div className="md:flex md:flex-wrap md:justify-between mt-4">
+          <div className="md:flex md:flex-wrap md:justify-between mt-8">
           <div className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
             <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
                 <div 
