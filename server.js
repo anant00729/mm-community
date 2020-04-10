@@ -138,7 +138,7 @@ app.get('*', (req,res)=> {
 
 
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 80
 app.listen(PORT, ()=>console.log(`The App is running on PORT ${PORT}`))
 
 
