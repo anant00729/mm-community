@@ -115,7 +115,31 @@ app.get('/sendMail', (req,res)=> {
   })
   
 })
-app.listen(5000)
+
+
+app.use(express.static('public/build'));
+app.use(express.static('public'));
+
+
+app.get('/test', (req,res)=> {
+  res.json({statsU : true})
+})
+
+
+
+
+app.get('*', (req,res)=> {
+    ///app.use(express.static('public/build'))
+    //res.sendFile(path.join(__dirname+'/public/build/index.html'));
+    
+    res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))
+    //res.sendFile(path.resolve(__dirname, 'public/build', 'index.html'))
+})
+
+
+
+const PORT = process.env.PORT || 5000
+app.listen(PORT, ()=>console.log(`The App is running on PORT ${PORT}`))
 
 
 

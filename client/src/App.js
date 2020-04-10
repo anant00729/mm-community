@@ -22,7 +22,7 @@ function App() {
     <Provider store={store}>
       <div className="w-full h-screen">
         
-        {/* <AppBar/>
+        <AppBar/>
         <div className="absolute">
           <About/>
           <Stories/>
@@ -30,8 +30,9 @@ function App() {
           <GuestHome/>
           <Login/>
           <PageNotFound/>
-        </div> */}
-        <PublishStory/>
+          <PublishStory/>
+        </div>
+        
         {/* <AdminHome/> */}
         {/* <Test/> */}
       </div>
