@@ -137,7 +137,7 @@ const GuestHome = () => {
             <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
                 <div 
                   className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
-                  style={{backgroundImage : `url(${"https://www.apple.com/v/iphone/home/af/images/overview/hero/hero_iphone11_pro_alt__f7h0mlyexoya_large_2x.jpg"})`}}
+                  style={{backgroundImage : `url(${"https://mm-blog-community.s3.ap-south-1.amazonaws.com/2020-04-11T17%3A00%3A24.533ZScreenshot%202020-03-29%20at%208.06.50%20AM.png"})`}}
                   alt=""/>
                   <div className="py-2 px-4">
                     <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>

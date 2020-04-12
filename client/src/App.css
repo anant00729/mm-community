@@ -227,3 +227,11 @@ button:focus {
 .border-radius-card {
   border-radius: 1.4rem;
 }
+
+.progress-trans{
+  transition : width 5s ease;
+  -webkit-transition : width 5s ease;
+  -moz-transition : width 5s ease;
+  -o-transition : width 5s ease;
+  transition : width 5s ease;
+}

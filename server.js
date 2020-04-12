@@ -7,58 +7,72 @@ const bodyParser = require('body-parser')
 const fetch = require('node-fetch')
 const FormData = require('form-data');
 
+/**
+ * S3 bucket storage
+ */
+//const express = require('express')
+const aws = require('aws-sdk')
+const multerS3 = require('multer-s3')
+const multer = require('multer')
+const path = require('path')
+//const url = require('url')
+const s3 = new aws.S3({
+  secretAccessKey: '+ODosrvsS4IPVH4MIOeo2Eoy6bpL0OmiMLHrVsv0',
+  accessKeyId: 'AKIAZBNIUTCYJ5PNW25W',
+  region: 'ap-south-1',
+  ACL: 'public-read'
+})
+
+//aws.config.update()
 
 
-
-const uploadImageToImgUr = async (base64) => {
-
-  let uploadRes = {}
-
-  const form = new FormData()
-  form.append('image' , base64)
-  try {
-
-    const res_d = await fetch('https://api.imgur.com/3/upload', 
-    { 
-      method: 'POST', 
-      body: form,
-      headers : { 'Authorization': 'Client-Id 20317a5496712ab' } 
-    })
-
-    const resData = await res_d.json()
-
-    if(resData.status === 200){
-      if(resData.data.link){
-        uploadRes = {status : true , imgUrl : resData.data.link}
-      }else {
-        uploadRes = {status : false , message : `Image URL not found`}
-      }
-    }else {
-      uploadRes = {status : false , message : `Image not uploaded to imgur ${resData.status}`}
+const fileFilter  = (req,file ,cb) => {
+  if (file.mimetype === "image/jpeg" || 
+    file.mimetype === "image/jpg" || 
+    file.mimetype === "image/png" || 
+    file.mimetype === "video/mp4" || 
+    file.mimetype === 'application/octet-stream') {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid Mime Type, only JPEG or JPG or PNG'), false);
     }
-  } catch (error) {
-    uploadRes = {status : false , message : error.message}
-  }
-  return uploadRes
 }
+// const storage = multer.diskStorage({
+//   // destination : (req,file, cb) => {
+//   //   cb(null, './public/uploads/')
+//   // },
+//   // filename : (req, file , cb) => {
+//   //   cb(null, new Date ().toISOString() + file.originalname)
+//   // }
+// })
 
-
-function makeid(length) {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var charactersLength = characters.length;
-  for ( var i = 0; i < length; i++ ) {
-     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-
-
-
+let uploadS3 = multer({
+  fileFilter , storage : multerS3({s3 , 
+  bucket : 'mm-blog-community' , 
+  size : 1024 * 1024 * 10, 
+  metadata : (req,file,cb) => {
+    cb(null, {fieldName : file.fieldname })
+  },
+  key : (req , file , cb ) => {
+    cb(null, new Date ().toISOString() + file.originalname)
+  },
+  contentType : multerS3.AUTO_CONTENT_TYPE
+})
+})
 
 const app = express() 
+
+app.post('/uploadImage' , uploadS3.single('image'), async (req,res)=> {
+  console.log('req.file', req.file)
+  //const image = req.body.imageUrl 
+  res.json({status : true , filePath : req.file.location, fileName : req.file.key})
+})
+
+
+//const upload = multer({storage})
+
+
 let transporter = nodeMailer.createTransport({
-  //host : 'smpt.ethereal.email',
   host : 'smtp.gmail.com',
   transportMethod : 'SMTP',
   port: 465,
@@ -74,17 +88,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 
-
-
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 
-app.post('/uploadImage' , async (req,res)=> {
-  const image = req.body.imageUrl 
-  const data = await uploadImageToImgUr(image)
-  res.json(data)
-})
 
 app.get('/sendMail', (req,res)=> {
   const _path = `${__dirname}/public/test.ejs`
@@ -115,19 +122,8 @@ app.get('/sendMail', (req,res)=> {
   })
   
 })
-
-
 app.use(express.static('public/build'));
 app.use(express.static('public'));
-
-
-app.get('/test', (req,res)=> {
-  res.json({statsU : true})
-})
-
-
-
-
 app.get('*', (req,res)=> {
     ///app.use(express.static('public/build'))
     //res.sendFile(path.join(__dirname+'/public/build/index.html'));
@@ -135,12 +131,17 @@ app.get('*', (req,res)=> {
     res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))
     //res.sendFile(path.resolve(__dirname, 'public/build', 'index.html'))
 })
-
-
-
-const PORT = process.env.PORT || 80
+const PORT = process.env.PORT || 8081
 app.listen(PORT, ()=>console.log(`The App is running on PORT ${PORT}`))
 
 
 
-  
+  // function makeid(length) {
+//   var result           = '';
+//   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//   var charactersLength = characters.length;
+//   for ( var i = 0; i < length; i++ ) {
+//      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//   }
+//   return result;
+// }

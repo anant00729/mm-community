@@ -133,6 +133,10 @@ This helped me to scale up the application module at the same time get me the op
 During all the development processes, I made sure to be clear and transparent with my teammate. It's more like a family environment where I get to learn from others as well as I also come up with my set of ideas to solutions problems.
 
 
+AKIAZBNIUTCYJ5PNW25W
++ODosrvsS4IPVH4MIOeo2Eoy6bpL0OmiMLHrVsv0
+arn:aws:iam::621513316528:user/anant
+
 
 <div class="px-2">
   <div class="flex -mx-2">
@@ -147,3 +151,89 @@ During all the development processes, I made sure to be clear and transparent wi
     </div>
   </div>
 </div>
+
+
+{
+  "Id": "Policy1586621474906",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1586621471288",
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::mmcommunity-bucket",
+        "arn:aws:s3:::mmcommunity-bucket/*"
+      ],
+      "Principal": "*"
+    }
+  ]
+}
+
+
+{
+  "Id": "Policy1586621749692",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1586621747047",
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::mm-blog-community",
+      "Principal": "*"
+    }
+  ]
+}
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AddCannedAcl",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::621513316528:user/anant"
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": "arn:aws:s3:::mmcommunity-bucket/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "public-read"
+                }
+            }
+        }
+    ]
+}
+
+
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1586621749692",
+    "Statement": [
+        {
+            "Sid": "Stmt1586621747047",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::mm-blog-community",
+                "arn:aws:s3:::mm-blog-community/*"
+            ]
+        }
+    ]
+}
+
+
+
+12th April, 2020 Today's Plan
+* [x] Image Upload in react. - 1
+* [] Lucid Chart DB design. - 2
+* [] All auth API. - 2
+* [] Basic Error Handling. - 2
+* [] Pages of Loadiing. - 1/2
+* [] Pages of No Data Found. - 1/2
+* [] Home Page Of All Feeds After Login. - 2

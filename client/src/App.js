@@ -8,6 +8,7 @@ import {PageNotFound} from '../src/components/common/PageNotFound'
 import {About} from '../src/components/usersite/about/About'
 import {PublishStory} from '../src/components/usersite/publishstory/PublishStory'
 import {AdminHome} from '../src/components/usersite/adminsumit/AdminHome'
+import {ImageDialog} from '../src/components/dailogs/ImageDialog'
 
 
 
@@ -22,7 +23,7 @@ function App() {
     <Provider store={store}>
       <div className="w-full h-screen">
         
-        <AppBar/>
+        {/* <AppBar/>
         <div className="absolute">
           <About/>
           <Stories/>
@@ -31,10 +32,11 @@ function App() {
           <Login/>
           <PageNotFound/>
           <PublishStory/>
-        </div>
+        </div> */}
         
-        {/* <AdminHome/> */}
+        <AdminHome/>
         {/* <Test/> */}
+        {/* <ImageDialog/> */}
       </div>
     </Provider>
   );
