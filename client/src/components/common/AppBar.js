@@ -3,7 +3,7 @@ import appLogo from '../../app_images/network.png'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom';
 import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/appBarActions'
-import {REGISTER_ROUTE , LOGIN_ROUTE} from '../utils/constants';
+import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, ALL_DISCUSSIONS, ALL_MEMBERS_ROUTE, ABOUT_ROUTE} from '../utils/constants';
 
  const AppBar = () => {
   const [dropDownVisible , isDropDownVisible] =  useState(false)
@@ -56,11 +56,16 @@ import {REGISTER_ROUTE , LOGIN_ROUTE} from '../utils/constants';
           </div>
           <div className="mt-4 flex flex-wrap">
             <div className="flex flex-wrap">
-              <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Home</button>
-              <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Stories</button>
-              <div 
-              onMouseEnter={() => isDropDownVisible(true)}
-              onMouseLeave={() => isDropDownVisible(false)}
+              <Link to={HOME_ROUTE} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
+                Home
+              </Link>
+              <Link to={ALL_STORIES_ROUTE} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
+                Stories
+              </Link>
+              <div
+              onClick={() => isDropDownVisible(downVisible => !downVisible)} 
+              // onMouseEnter={() => isDropDownVisible(true)}
+              // onMouseLeave={() => isDropDownVisible(false)}
               className="visible md:hidden d-block relative">
                 <button 
                 className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
@@ -70,23 +75,23 @@ import {REGISTER_ROUTE , LOGIN_ROUTE} from '../utils/constants';
                 <div 
                 className={`absolute appbar-drop-down rounded shadow-lg z-10 bg-white ${dropDownVisible ? '' : 'hidden'}`}>
                   <button 
-                  onClick={() => isDropDownVisible(false)}
+                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button>
                   <button 
-                  onClick={() => isDropDownVisible(false)}
+                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button>
                   <button 
-                  onClick={() => isDropDownVisible(false)}
+                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
                   <button 
-                  onClick={() => isDropDownVisible(false)}  
+                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
               </div>
               </div>
               <div className="hidden md:visible md:flex md:flex-wrap">
-                <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Discussion</button>
-                <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Members</button>
-                <button className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">About</button>
+                <Link to={ALL_DISCUSSIONS} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Discussion</Link>
+                <Link to={ALL_MEMBERS_ROUTE} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Members</Link>
+                <Link to={ABOUT_ROUTE}className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">About</Link>
               </div>
             </div>
             <button className="ml-auto text-gray-700 px-4 my-auto font-bold py-2 hover:bg-gray-200 cursor-pointer app-font-color flex">

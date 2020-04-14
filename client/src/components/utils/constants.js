@@ -11,4 +11,5 @@ export const REGISTER_ROUTE = '/register'
 export const CREATE_STORY_ROUTE = '/create-story'
 export const ABOUT_ROUTE = '/about'
 export const ALL_STORIES_ROUTE = '/stories'
+export const ALL_DISCUSSIONS = '/discussions'
 

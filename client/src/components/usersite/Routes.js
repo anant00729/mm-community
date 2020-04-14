@@ -7,6 +7,8 @@ import { Stories } from '../usersite/stories/Stories';
 import { PublishStory } from '../usersite/publishstory/PublishStory';
 import { Members } from '../usersite/members/Members';
 import {PageNotFound} from '../../../src/components/common/PageNotFound';
+import Discussion from '../../../src/components/usersite/discusssion/Discussion';
+
 import PrivateRoute from '../usersite/PrivateRoute';
 import AppBar from '../common/AppBar'
 import GuestHome from '../usersite/home/GuestHome'
@@ -18,7 +20,8 @@ import {
   REGISTER_ROUTE,
   CREATE_STORY_ROUTE,
   ABOUT_ROUTE,
-  ALL_STORIES_ROUTE
+  ALL_STORIES_ROUTE,
+  ALL_DISCUSSIONS
 } from '../../../src/components/utils/constants'
 
 
@@ -29,6 +32,7 @@ const Routes = props => {
     case ABOUT_ROUTE:
     case ALL_MEMBERS_ROUTE:
     case ALL_STORIES_ROUTE:  
+    case ALL_DISCUSSIONS:   
       isVisible = true
   }
   return (
@@ -41,6 +45,7 @@ const Routes = props => {
           <Route exact path={ABOUT_ROUTE} component={About} />
           <Route exact path={ALL_MEMBERS_ROUTE} component={Members} />
           <Route exact path={ALL_STORIES_ROUTE} component={Stories} />
+          <Route exact path={ALL_DISCUSSIONS} component={Discussion} />
           <Route exact path={CREATE_STORY_ROUTE} component={PublishStory} />
           <Route component={PageNotFound} />
       </Switch>
