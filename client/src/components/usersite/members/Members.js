@@ -8,7 +8,7 @@ export const Members = () => {
 
   for(let i = 0 ; i < 20 ; ++ i){
       memeberList.push(
-        <div className="md:w-1/3 w-1/2 px-2 mt-4">
+        <div key= {i} className="md:w-1/3 w-1/2 px-2 mt-4">
           <div className="rounded bg-white text-center py-6">
             <img 
                 className="w-20 h-20 rounded-full mx-auto"
@@ -25,7 +25,7 @@ export const Members = () => {
 
   return (
     <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
-      <div className="bg-gray-200 h-8 w-full sticky top-app-bar-sm"></div>
+      <div className="bg-gray-200 h-6 w-full sticky top-app-bar-sm"></div>
       <div className="md:flex-row -mx-2 flex flex-col-reverse">
         <div className="md:w-1/4 px-2 w-full mt-6 md:mt-0">
           <div className="bg-white rounded p-4 sticky top-app-bar-md">

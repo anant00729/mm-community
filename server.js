@@ -1,20 +1,29 @@
 const nodeMailer = require('nodemailer')
 const express = require('express')
+const db = require('./config/database')
 const ejs = require('ejs')
-const moment = require('moment')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const fetch = require('node-fetch')
-const FormData = require('form-data');
+const aws = require('aws-sdk')
+const multerS3 = require('multer-s3')
+const multer = require('multer')
+const path = require('path')
+
+
+
+
+
+// Authenticate DB 
+db.authenticate()
+.then(() => {
+  console.log('^^%&%^&^%^$%^&$%%^$%^$^ Wolla Connected to DB ^^%&%^&^%^$%^&$%%^$%^$^')})
+.catch(err=> {
+  console.log(`DB Connection failed ${err.message}`)})
 
 /**
  * S3 bucket storage
  */
 //const express = require('express')
-const aws = require('aws-sdk')
-const multerS3 = require('multer-s3')
-const multer = require('multer')
-const path = require('path')
 //const url = require('url')
 const s3 = new aws.S3({
   secretAccessKey: '+ODosrvsS4IPVH4MIOeo2Eoy6bpL0OmiMLHrVsv0',
@@ -62,6 +71,8 @@ let uploadS3 = multer({
 
 const app = express() 
 
+
+
 app.post('/uploadImage' , uploadS3.single('image'), async (req,res)=> {
   console.log('req.file', req.file)
   //const image = req.body.imageUrl 
@@ -91,37 +102,50 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
+//app.use(database)
+
+app.use('/v1/auth', require('./v1/auth/routes/authRoute'))
 
 
-app.get('/sendMail', (req,res)=> {
-  const _path = `${__dirname}/public/test.ejs`
-  const userTemplate = {
-    name : 'Sumit'
-  }
-  ejs.renderFile(_path, {userTemplate} , (error , result) => {
-    if(error){
-      console.log('error', error)
-      res.json(error)
-    }
-    const mailOptions = {
-      from : 'anantarnav007@gmail.com',
-      to : 'anant.awasthy29@gmail.com',
-      subject : 'Test Subject',
-      html : result
-    }
-    transporter.sendMail(mailOptions, (error, info) => {
-      if(error){
-        res.json(error)
-        console.log('error', error)
-      }
-      if(info){
-        console.log('info', info)
-        res.json(info)
-      }
-    })
-  })
+// app.get('/testDatabase', async (req, res, next) => {
+//   try {
+//     const result = await db.query('SELECT * FROM public."Article"' )  
+//     res.json({status : true, data : result[0]})
+//   } catch (error) {
+//     res.json({status : false, message : error.message})
+//   }
+// })
+
+
+// app.get('/sendMail', (req,res)=> {
+//   const _path = `${__dirname}/public/test.ejs`
+//   const userTemplate = {
+//     name : 'Sumit'
+//   }
+//   ejs.renderFile(_path, {userTemplate} , (error , result) => {
+//     if(error){
+//       console.log('error', error)
+//       res.json(error)
+//     }
+//     const mailOptions = {
+//       from : 'anantarnav007@gmail.com',
+//       to : 'anant.awasthy29@gmail.com',
+//       subject : 'Test Subject',
+//       html : result
+//     }
+//     transporter.sendMail(mailOptions, (error, info) => {
+//       if(error){
+//         res.json(error)
+//         console.log('error', error)
+//       }
+//       if(info){
+//         console.log('info', info)
+//         res.json(info)
+//       }
+//     })
+//   })
   
-})
+// })
 app.use(express.static('public/build'));
 app.use(express.static('public'));
 app.get('*', (req,res)=> {
@@ -136,12 +160,4 @@ app.listen(PORT, ()=>console.log(`The App is running on PORT ${PORT}`))
 
 
 
-  // function makeid(length) {
-//   var result           = '';
-//   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-//   var charactersLength = characters.length;
-//   for ( var i = 0; i < length; i++ ) {
-//      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-//   }
-//   return result;
-// }
+  

@@ -37,7 +37,7 @@ export const Stories = () => {
 
   return (
     <div class="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
-      <div className="bg-gray-200 h-8 w-full sticky top-app-bar-sm"></div>
+      <div className="bg-gray-200 h-6 w-full sticky top-app-bar-sm"></div>
       <div class="md:flex-row -mx-2 flex flex-col">
         <div class="md:w-1/4 px-2 w-full">
           <div class="bg-white rounded p-4 sticky top-app-bar-md">

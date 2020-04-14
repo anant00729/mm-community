@@ -231,9 +231,18 @@ arn:aws:iam::621513316528:user/anant
 
 12th April, 2020 Today's Plan
 * [x] Image Upload in react. - 1
-* [] Lucid Chart DB design. - 2
+* [x] Lucid Chart DB design. - 2
 * [] All auth API. - 2
 * [] Basic Error Handling. - 2
 * [] Pages of Loadiing. - 1/2
 * [] Pages of No Data Found. - 1/2
 * [] Home Page Of All Feeds After Login. - 2
+
+
+
+Hi Lohit,
+
+I had been facing issue while singing in to the sandbox of resultex. 
+I would like to have a meeting on "Resultex Sandbox Pannel" for the QR code generation. We would like to use it to generate QR code for all the stories as well as the edge cases.
+Please let me know your availbility on the same.
+

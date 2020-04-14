@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import appLogo from '../../app_images/network.png'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom';
 import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/appBarActions'
+import {REGISTER_ROUTE , LOGIN_ROUTE} from '../utils/constants';
 
  const AppBar = () => {
   const [dropDownVisible , isDropDownVisible] =  useState(false)
   return (
-    <nav className="bg-white border-b border-gray-300 md:text-base text-sm fixed w-full z-10">
+    <nav className="bg-white border-b border-gray-300 md:text-base text-sm fixed w-full z-10 sticky top-0">
         <div className="pt-5 md:px-16 px-6">
           <div className="flex">
             <div className="flex">
@@ -39,15 +41,17 @@ import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/
               />
             </div>
             
-            <button className="ml-auto text-gray-700 my-auto font-bold py-2 cursor-pointer md:px-8 px-4 focus:outline-none">
+            <Link to={LOGIN_ROUTE} className="ml-auto text-gray-700 my-auto font-bold py-2 cursor-pointer md:px-8 px-4 focus:outline-none">
               Login
-            </button>
+            </Link>
             <button className="app-color px-4 my-auto text-white rounded flex flex-wrap content-center py-2 font-bold cursor-pointer focus:outline-none">
               <i className="fa fa-user self-center"></i>
               <p className="ml-2 self-center">
+              <Link to={REGISTER_ROUTE}>
                 <span className="register-lg-txt">Create an account</span>
                 <span className="register-sm-txt">Sign Up</span>
-                </p> 
+              </Link>
+              </p> 
             </button>
           </div>
           <div className="mt-4 flex flex-wrap">

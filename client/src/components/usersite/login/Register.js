@@ -1,15 +1,16 @@
 import React, {useState} from 'react'
-import mainLoginImg from '../../../app_images/main-login-img.png'
+import { Link, Redirect } from 'react-router-dom';
+import memberImage from '../../../app_images/members-img-1.png'
 import appLogo from '../../../app_images/network.png'
 import googleLogo from '../../../app_images/google.svg'
 import facebookLogo from '../../../app_images/facebook.svg'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../../actions/alert';
-import { login } from '../../../actions/auth'
+import { register } from '../../../actions/auth'
 
 
-export const Login = () => {
+export const Register = ({ register, isAuthenticated , setAlert}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -20,8 +21,14 @@ export const Login = () => {
     else if(password.length == 0)
       setAlert(`Please enter password` , 'red')
     else 
-      login(email,password)
+    register(email,password)
   }
+
+
+  // if (isAuthenticated) {
+  //   return <Redirect to="/dashboard" />;
+  // }
+
 
   return (
     <div className="md:flex md:flex-wrap bg-gray-300">
@@ -32,8 +39,8 @@ export const Login = () => {
           alt="appLogo"/>
           <p className="ml-2 tracking-wide text-3xl font-extrabold my-auto">StudyNode</p> 
         </div>
-        <p className="mt-1 font-sen text-gray-700 text-xl w-full font-semibold">Log in via email</p>
-        <p className="mt-1 text-gray-500 text italic">(Securely login through email and password)</p>
+        <p className="mt-1 font-sen text-gray-700 text-xl w-full font-semibold">Sign up in via email</p>
+        <p className="mt-1 text-gray-500 text italic">(Just one step process to sign up)</p>
         <form 
         onSubmit={onSubmit}
         className="mt-4 w-full">
@@ -78,7 +85,7 @@ export const Login = () => {
       <div className="flex-1 p-10 self-center flex content-center flex-wrap md:h-screen md:p-20">
         <img 
         className="mx-auto w-2/3 object-fit h-96"
-        src={mainLoginImg} alt="main-login-image"/>
+        src={memberImage} alt="main-login-image"/>
         <p className="font-sen text-black text-xl md:text-2xl font-medium mt-8">Personalize your Hashnode experience, log in to your account.</p>
         <p className="text-gray-700">Hashnode is the easiest way to connect with the best developers from around the world and grow your career!</p>
         
@@ -89,8 +96,8 @@ export const Login = () => {
 }
 
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
 
@@ -98,4 +105,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { login, setAlert })(Login);
+export default connect(mapStateToProps, { register, setAlert })(Register);

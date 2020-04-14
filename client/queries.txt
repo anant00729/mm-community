@@ -1,0 +1,128 @@
+INSERT INTO public."user"(
+	name)
+	VALUES ('bb');
+	
+INSERT INTO public."story"(
+title)
+VALUES ('bbstory');
+
+INSERT INTO discusssion(
+title, user_id)
+VALUES ('aadiscussion', 5);
+
+
+SELECT * FROM discusssion
+
+
+SELECT * FROM story
+SELECT * FROM public."user"
+
+
+INSERT INTO public."story"(
+title, user_id)
+VALUES ('aastory', 5);
+
+INSERT INTO discusssion(
+title, user_id)
+VALUES ('aadiscussion', 5);
+
+INSERT INTO discusssion(
+title, user_id)
+VALUES ('aadiscussion', 5);
+
+
+INSERT INTO bookmark(
+discussion_id , user_id)
+VALUES (2, 7);
+
+
+
+SELECT * FROM discusssion
+
+DELETE FROM public."user" WHERE id = 5
+
+
+INSERT INTO public."story"(
+title, user_id)
+VALUES ('aastory', 7);
+
+INSERT INTO discusssion(
+title, user_id)
+VALUES ('aadiscussion', 7);
+
+INSERT INTO bookmark(
+story_id , user_id)
+VALUES (17, 7);
+
+INSERT INTO comment(
+story_id , user_id, discussion_id)
+VALUES (14, 7, 0);
+
+DELETE FROM story WHERE id = 17
+DELETE FROM public."user" WHERE id = 7
+
+SELECT * FROM public."user"
+SELECT * FROM discusssion
+SELECT * FROM story
+SELECT * FROM bookmark
+SELECT * FROM comment
+
+
+
+INSERT INTO public."user"(
+      "email",
+      "password",
+		"created_at"
+      )
+      VALUES (
+      'aa@g.com',
+      '123123123',
+		'2020-04-13 1:32:11 pm'	  
+      ) RETURNING id;
+	  
+SELECT * from public."user"	WHERE email = 'aa@g.com'  
+SELECT * from public."user_session"	
+
+
+
+
+SELECT * from public."user" WHERE email = ''
+
+
+
+INSERT INTO public."user"(
+      "email",
+      "password"
+      )
+      VALUES (
+      'email',
+      (:offerImages),
+      (:offerTitle),
+      (:description),
+      (:tAndC),
+      (:availSteps),
+      (:expiryDate),
+      (:createdOn),
+      (:updatedOn),
+      (:offerQrCodePath)
+      );
+
+      INSERT INTO public."user"(
+      "email",
+      "password"
+      )
+      VALUES (
+      'email',
+      '123123123'
+      );
+
+
+Please find below my observations on the VDs.
+ 
+1. In the VD the currency is mensioned ie "". We need saving type in the same saving key or it can also come in a seperate key "saving_points_type" : 
+"TCP points" or "Rupees"
+
+
+ 
+@Anant Awasthy, @Prasanta Kumar Sahu, @Pramod Patil, @mayanks Please comment if you need any additional clarifications other than these.
+ 

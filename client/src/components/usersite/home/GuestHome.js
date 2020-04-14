@@ -3,6 +3,8 @@ import mainHomeImg from '../../../app_images/main-home-img.png'
 import imageOne from '../../../app_images/main-home-i1.png'
 import imageTwo from '../../../app_images/main-home-i2.png'
 import imageThree from '../../../app_images/main-home-i3.png'
+import { Link } from 'react-router-dom';
+import {REGISTER_ROUTE, LOGIN_ROUTE} from '../../utils/constants';
 
 const GuestHome = () => {
   return (
@@ -20,14 +22,16 @@ const GuestHome = () => {
           <p className="text-base md:text-lg">A place to share your life as a developer and connect with 
             <br/>
             the best developers from across the world.</p>
-          <div>
-            <button class="app-color hover:text-white rounded text-white py-2 px-4 mt-4 focus:outline-none hover:shadow-xl shadow transition duration-500 ease-in-out">
+          <div className="mt-4">
+            <Link to={REGISTER_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4  focus:outline-none hover:shadow-xl shadow transition duration-500 ease-in-out">
               Create an account
-            </button>
+            </Link>
           </div>
-          <button className="text-gray-700 mt-1 hover:text-black px-2 py-4 focus:outline-none">Already have an account?</button>
+          <div className="mt-4">
+            <Link to={LOGIN_ROUTE} className="text-gray-700  hover:text-black px-2 py-4 focus:outline-none">Already have an account?</Link>
+          </div>
         </div>
-        <div className="w-full mt-4 md:mt-0">
+        <div className="w-full mt-6 md:mt-0">
           <img 
           className="lg:w-1/2 mx-auto w-full px-16 mt-4 md:w-3/4 object-cover"
           src={mainHomeImg} alt="mainHomeImg" />
