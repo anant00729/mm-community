@@ -1,16 +1,81 @@
 import React, {useState} from 'react'
 import appLogo from '../../app_images/network.png'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom';
 import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/appBarActions'
-import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, ALL_DISCUSSIONS, ALL_MEMBERS_ROUTE, ABOUT_ROUTE} from '../utils/constants';
+import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, 
+  ALL_DISCUSSIONS, ALL_MEMBERS_ROUTE, ABOUT_ROUTE, HOME_FEED_ROUTE} from '../utils/constants';
+import { Link, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {logout} from '../../actions/auth'
+import { withRouter } from "react-router-dom";
 
- const AppBar = () => {
+
+ const AppBar = (props) => {
+  let {isAuthenticated, currentRoute} = props
+  console.log('props :', props.history);
   const [dropDownVisible , isDropDownVisible] =  useState(false)
+  const [profileVisible , isProfileVisible] =  useState(false)
+
+  let sideLoginPanel = (
+    <div className="ml-auto flex">
+    <Link to={LOGIN_ROUTE} className="ml-auto text-gray-700 my-auto font-bold py-2 cursor-pointer md:px-8 px-4 focus:outline-none">
+      Login
+    </Link>
+    <Link 
+    to={REGISTER_ROUTE}
+    className="app-color px-4 my-auto text-white rounded flex flex-wrap content-center py-2 font-bold cursor-pointer focus:outline-none">
+      <i className="fa fa-user self-center"></i>
+      <p className="ml-2 self-center">
+        <span className="register-lg-txt">Create an account</span>
+        <span className="register-sm-txt">Sign Up</span>
+      </p> 
+    </Link>
+  </div>
+  )
+
+  if(isAuthenticated){
+    sideLoginPanel = (   
+    <div className="ml-auto flex">
+      <div className="self-center pl-4 pr-6 hover:bg-gray-200 cursor-pointer py-2 ml-2">
+        <i className="fa fa-bell text-xl ml-2 app-font-color"></i>  
+      </div>
+
+      <div 
+      //onMouseEnter={() => isProfileVisible(true)}
+      //onMouseLeave={() => isProfileVisible(false)}
+      onBlurCapture={() => isProfileVisible(profileVisible => !profileVisible)}       
+      onClick={() => isProfileVisible(profileVisible => !profileVisible)} 
+      className="md:w-12 md:h-12 w-12 h-12 self-center relative ml-2">
+        <img 
+        className="w-full h-full rounded-full border-white border-2 shadow-lg cursor-pointer"
+        src="https://hashnode.imgix.net/res/hashnode/image/upload/v1584181566095/yFdLG8gjE.png?w=200&h=200&fit=crop&crop=faces&auto=format&q=60" 
+        alt="profile_image"/>
+        <div 
+          className={`w-48 absolute appbar-drop-down border border-gray-400 rounded shadow-lg z-10 bg-white app-bar-dropdown-right ${profileVisible ? '' : 'hidden'}`}>
+            <div 
+            onClick={() => {}} 
+            className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
+              <i className="fa fa-user-circle text-xl self-center"></i>
+              <span className="ml-2 text-base font-sen">Profile</span>
+            </div>
+            <div 
+            onClick={() => {
+              props.history.push(HOME_ROUTE);
+              props.logout()}} 
+            className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
+              <i className="fa fa-sign-out text-xl self-center"></i>
+              <span className="ml-2 text-base font-sen">Log Out</span>
+            </div>
+        </div>
+      </div>
+      
+  </div>)
+  }
+  
   return (
     <nav className="bg-white border-b border-gray-300 md:text-base text-sm fixed w-full z-10 sticky top-0">
         <div className="pt-5 md:px-16 px-6">
-          <div className="flex">
+          <div className="flex px-4">
             <div className="flex">
               <img src={appLogo} 
               className="h-8 w-8 mt-1"
@@ -40,32 +105,23 @@ import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, ALL_DISCUSS
               placeholder="Search Study Node"
               />
             </div>
-            
-            <Link to={LOGIN_ROUTE} className="ml-auto text-gray-700 my-auto font-bold py-2 cursor-pointer md:px-8 px-4 focus:outline-none">
-              Login
-            </Link>
-            <button className="app-color px-4 my-auto text-white rounded flex flex-wrap content-center py-2 font-bold cursor-pointer focus:outline-none">
-              <i className="fa fa-user self-center"></i>
-              <p className="ml-2 self-center">
-              <Link to={REGISTER_ROUTE}>
-                <span className="register-lg-txt">Create an account</span>
-                <span className="register-sm-txt">Sign Up</span>
-              </Link>
-              </p> 
-            </button>
+            {sideLoginPanel}
           </div>
           <div className="mt-4 flex flex-wrap">
             <div className="flex flex-wrap">
-              <Link to={HOME_ROUTE} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
+              <Link to={HOME_ROUTE} 
+              className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+                ${(currentRoute == HOME_ROUTE || currentRoute == HOME_FEED_ROUTE) ? 'app-font-color border-b-2 app-border-bottom' : ''}`}>
                 Home
               </Link>
-              <Link to={ALL_STORIES_ROUTE} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
+              <Link 
+              className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+              ${currentRoute == ALL_STORIES_ROUTE ? ' app-font-color border-b-2 app-border-bottom' : ''}`}
+              to={ALL_STORIES_ROUTE}>
                 Stories
               </Link>
               <div
               onClick={() => isDropDownVisible(downVisible => !downVisible)} 
-              // onMouseEnter={() => isDropDownVisible(true)}
-              // onMouseLeave={() => isDropDownVisible(false)}
               className="visible md:hidden d-block relative">
                 <button 
                 className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
@@ -75,23 +131,40 @@ import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, ALL_DISCUSS
                 <div 
                 className={`absolute appbar-drop-down rounded shadow-lg z-10 bg-white ${dropDownVisible ? '' : 'hidden'}`}>
                   <button 
-                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
+                  onClick={() => {
+                    console.log('Search')
+                  }} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button>
                   <button 
-                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
+                  onClick={() => {
+                    console.log('Discussion')
+                  }} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button>
                   <button 
-                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
+                  onClick={() => {
+                    console.log('Members')
+                  }} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
                   <button 
-                  onClick={() => isDropDownVisible(downVisible => !downVisible)} 
+                  onClick={() => {
+                    console.log('About')
+                  }} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
               </div>
               </div>
               <div className="hidden md:visible md:flex md:flex-wrap">
-                <Link to={ALL_DISCUSSIONS} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Discussion</Link>
-                <Link to={ALL_MEMBERS_ROUTE} className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">Members</Link>
-                <Link to={ABOUT_ROUTE}className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">About</Link>
+                <Link 
+                className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+                ${currentRoute == ALL_DISCUSSIONS ? 'app-font-color border-b-2 app-border-bottom' : ''}`}
+                to={ALL_DISCUSSIONS}>Discussion</Link>
+                <Link 
+                className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+                ${currentRoute == ALL_MEMBERS_ROUTE ? 'app-font-color border-b-2 app-border-bottom' : ''}`}
+                to={ALL_MEMBERS_ROUTE}>Members</Link>
+                <Link 
+                className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+                ${currentRoute == ABOUT_ROUTE ? 'app-font-color border-b-2 app-border-bottom' : ''}`}
+                to={ABOUT_ROUTE}>About</Link>
               </div>
             </div>
             <button className="ml-auto text-gray-700 px-4 my-auto font-bold py-2 hover:bg-gray-200 cursor-pointer app-font-color flex">
@@ -104,5 +177,17 @@ import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, ALL_DISCUSS
   )
 }
 
+AppBar.propTypes = {
+  isAuthenticated: PropTypes.bool
+};
 
-export default connect(null , {openAppBarDropdown , closeAppBarDropdown})(AppBar)
+const mapStateToProps = state => ({
+  logout: PropTypes.func.isRequired,
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {logout})(withRouter(AppBar));
+
+
+
+

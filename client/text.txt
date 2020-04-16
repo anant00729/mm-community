@@ -246,3 +246,61 @@ I had been facing issue while singing in to the sandbox of resultex.
 I would like to have a meeting on "Resultex Sandbox Pannel" for the QR code generation. We would like to use it to generate QR code for all the stories as well as the edge cases.
 Please let me know your availbility on the same.
 
+
+
+name 
+profile_image
+year,
+class
+dob
+gender
+social_user_type
+
+INSERT INTO public."user"(
+	id, 
+  name, 
+  email, 
+  type, 
+  profile_image, 
+  year, 
+  class, 
+  dob, 
+  gender, 
+  password, 
+  created_at, 
+  updated_at, 
+  social_user_type, 
+  user_active
+  )
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+
+  Executing (default): INSERT INTO public."user"(
+        name,
+        email,
+        type,
+        profile_image,
+        year,
+        class_student,
+        dob,
+        gender,
+        password,
+        created_at,
+        updated_at,
+        social_user_type,
+        user_active)
+        VALUES (
+          ('qq'),
+          ('qq@g.com'),
+          ('student'),
+          (''),
+          ('2020'),
+          ('11'),
+          ('12/12/2020'),
+          ('Female'),
+          ('123123123'),
+          ('16/04/2020'),
+          ('16/04/2020'),
+          ('WEB'),
+          (1)
+        );

@@ -6,8 +6,9 @@ import { About } from '../usersite/about/About';
 import { Stories } from '../usersite/stories/Stories';
 import { PublishStory } from '../usersite/publishstory/PublishStory';
 import { Members } from '../usersite/members/Members';
-import {PageNotFound} from '../../../src/components/common/PageNotFound';
+import PageNotFound from '../../../src/components/common/PageNotFound';
 import Discussion from '../../../src/components/usersite/discusssion/Discussion';
+import HomeFeed from '../../components/usersite/home_feed/HomeFeed'
 
 import PrivateRoute from '../usersite/PrivateRoute';
 import AppBar from '../common/AppBar'
@@ -21,7 +22,8 @@ import {
   CREATE_STORY_ROUTE,
   ABOUT_ROUTE,
   ALL_STORIES_ROUTE,
-  ALL_DISCUSSIONS
+  ALL_DISCUSSIONS,
+  HOME_FEED_ROUTE
 } from '../../../src/components/utils/constants'
 
 
@@ -32,12 +34,13 @@ const Routes = props => {
     case ABOUT_ROUTE:
     case ALL_MEMBERS_ROUTE:
     case ALL_STORIES_ROUTE:  
-    case ALL_DISCUSSIONS:   
+    case ALL_DISCUSSIONS:
+    case HOME_FEED_ROUTE:   
       isVisible = true
   }
   return (
     <div>
-    {isVisible && <AppBar/>}
+    {isVisible && <AppBar currentRoute={props.location.pathname}/>}
       <Switch>
           <Route exact path={HOME_ROUTE} component={GuestHome} />
           <Route exact path={LOGIN_ROUTE} component={Login} />
@@ -47,6 +50,7 @@ const Routes = props => {
           <Route exact path={ALL_STORIES_ROUTE} component={Stories} />
           <Route exact path={ALL_DISCUSSIONS} component={Discussion} />
           <Route exact path={CREATE_STORY_ROUTE} component={PublishStory} />
+          <Route exact path={HOME_FEED_ROUTE} component={HomeFeed} />
           <Route component={PageNotFound} />
       </Switch>
       <Alert />

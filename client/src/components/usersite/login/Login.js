@@ -7,21 +7,34 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../../actions/alert';
 import { login } from '../../../actions/auth'
+import {HOME_FEED_ROUTE} from '../../utils/constants'
+import { Redirect } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 
-export const Login = () => {
+export const Login = ({login, isAuthenticated}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if(email.length == 0)
+    if(email.length == 0){
       setAlert(`Please enter email` , 'red')  
-    else if(password.length == 0)
+    }
+    else if(password.length == 0){
       setAlert(`Please enter password` , 'red')
-    else 
+    }
+    else {
       login(email,password)
+    }
+      
   }
+
+
+  if (isAuthenticated) {
+    return <Redirect to={HOME_FEED_ROUTE}/>;
+  }
+  
 
   return (
     <div className="md:flex md:flex-wrap bg-gray-300">
@@ -98,4 +111,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { login, setAlert })(Login);
+export default connect(mapStateToProps, { login, setAlert })(withRouter(Login));

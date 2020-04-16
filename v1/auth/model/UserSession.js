@@ -26,7 +26,7 @@ class UserSession {
             created_at : currentDate , 
             updated_at : currentDate, 
             user_id, device_type } })
-        return { status : true , message : '' , data : token }
+        return { status : true , message : '' , token }
       } catch (error) {
         return { status : false , message : error.message }
       }
@@ -41,6 +41,20 @@ class UserSession {
     }
     return result;
   } 
+
+
+  async disposeUserSession(token = ''){
+    let q1 = `DELETE FROM public.user_session WHERE refresh_token= (:token);`    
+    try {
+        let res_d = await db.query(q1,{ 
+          replacements : { 
+            token
+            }})
+        return { status : true , message : 'Token Deleted'}
+      } catch (error) {
+        return { status : false , message : error.message }
+      }
+  }
 
  
 }

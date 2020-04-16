@@ -3,14 +3,20 @@ import mainHomeImg from '../../../app_images/main-home-img.png'
 import imageOne from '../../../app_images/main-home-i1.png'
 import imageTwo from '../../../app_images/main-home-i2.png'
 import imageThree from '../../../app_images/main-home-i3.png'
-import { Link } from 'react-router-dom';
-import {REGISTER_ROUTE, LOGIN_ROUTE} from '../../utils/constants';
+import { Link, Redirect } from 'react-router-dom';
+import {REGISTER_ROUTE, LOGIN_ROUTE, HOME_FEED_ROUTE} from '../../utils/constants';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const GuestHome = () => {
+
+const GuestHome = ({isAuthenticated}) => {
+ 
+  if (isAuthenticated) {
+    return <Redirect to={HOME_FEED_ROUTE}/>;
+  }
+
   return (
-
     <div>
-
       <div className="flex flex-col-reverse md:flex-col">
         <div className="text-center mt-10 px-4">
           <p className="text-gray-600 font-sen text-xs md:text-sm">
@@ -156,5 +162,14 @@ const GuestHome = () => {
   )
 }
 
+GuestHome.propTypes = {
+  isAuthenticated: PropTypes.bool
+};
 
-export default GuestHome
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(GuestHome);
+
+

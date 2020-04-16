@@ -5,6 +5,7 @@ export const CLOSE_APPBAR_DROPDOWN = 'CLOSE_APPBAR_DROPDOWN'
 // All routes
 export const SEARCH_ROUTE = '/search'
 export const HOME_ROUTE = '/'
+export const HOME_FEED_ROUTE = '/home-feeds'
 export const ALL_MEMBERS_ROUTE = '/all-members'
 export const LOGIN_ROUTE = '/login'
 export const REGISTER_ROUTE = '/register'

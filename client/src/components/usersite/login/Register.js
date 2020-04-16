@@ -8,20 +8,46 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../../actions/alert';
 import { register } from '../../../actions/auth'
+import {HOME_FEED_ROUTE} from '../../utils/constants'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 
 export const Register = ({ register, isAuthenticated , setAlert}) => {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [year, setYear] = useState('2017')
+  const [std, setStd] = useState('11')
+  const [startDate, setStartDate] = useState(new Date());
+  const [gender , setGender] = useState('Select Gender')
+
+
+  if (isAuthenticated) {
+    return <Redirect to={HOME_FEED_ROUTE}/>;
+  }
+  
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if(email.length == 0)
-      setAlert(`Please enter email` , 'red')  
-    else if(password.length == 0)
+    console.log('startDate', startDate)
+    console.log('gender', gender)
+    if(name.length == 0){
+      setAlert(`Please your name` , 'red')  
+    }
+    else if(gender == 'Select Gender'){
+      setAlert(`Please select your gender` , 'red')
+    }
+    else if(email.length == 0){
+      setAlert(`Please enter your email id` , 'red')
+    }
+    else if(password.length == 0){
       setAlert(`Please enter password` , 'red')
-    else 
-    register(email,password)
+    }else {
+      const req = {name , email , type : 'student' , profile_image : '' , year , class_student : std , dob : startDate, gender , password }
+      register(req)
+    }
   }
 
 
@@ -44,14 +70,72 @@ export const Register = ({ register, isAuthenticated , setAlert}) => {
         <form 
         onSubmit={onSubmit}
         className="mt-4 w-full">
+          
+          
+          <div className="flex mt-4">
+            <div className="flex-1 mr-2">
+              <p className="text-gray-600">Full Name</p>
+              <input 
+                onChange={(e) => setName(e.target.value)}
+                className="w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
+                type="name"/>
+            </div>
+            <div className="flex-1">
+              <p className="text-gray-600">Year of join</p>
+              <input 
+                onChange={(e) => setYear(e.target.value)}
+                maxLength={4}
+                value={year}
+                type="number"
+                min="2017" max="2030"
+                className="w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
+                />  
+            </div>
+          </div>  
+
+          <div className="flex w-full mt-2">
+            <div className="flex-1 mr-2">
+              <p className="text-gray-600">Standard</p>
+              <input 
+              onChange={(e) => setStd(e.target.value)}
+              className="w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
+              placeholder="Enter your standard"
+              maxLength={4}
+              type="number"
+              value={std}
+              min="10" 
+              max="12"
+              type="number"/>
+            </div>
+            
+            <div className="flex-1">
+              <p className="text-gray-600">Date of birth</p>
+              <DatePicker 
+              showYearDropdown={true}
+              shouldCloseOnSelect={true}
+              showMonthDropdown={true}
+              className="w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
+              selected={startDate} onChange={date => setStartDate(date)} />
+            </div>
+          </div>  
+          <select 
+                name="gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className="mt-2 block appearance-none w-full bg-white border py-3 px-4 pr-8 rounded leading-tight outline-none  hover:border-blue-500" id="grid-state">
+                  <option>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+
           <input 
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
-          placeholder="Enter your email address"
-          type="email"/>
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-4 w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600 mr-2"
+            placeholder="Enter your email address"
+            type="email"/>
           <input 
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-2 w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
+            className="mt-4 w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
             placeholder="Enter your password"
             type="password"/>
           <input 

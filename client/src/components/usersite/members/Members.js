@@ -25,10 +25,10 @@ export const Members = () => {
 
   return (
     <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
-      <div className="bg-gray-200 h-6 w-full sticky top-app-bar-sm"></div>
+      <div className="bg-gray-200 h-6 w-full sticky z-10 top-app-bar-sm"></div>
       <div className="md:flex-row -mx-2 flex flex-col-reverse">
         <div className="md:w-1/4 px-2 w-full mt-6 md:mt-0">
-          <div className="bg-white rounded p-4 sticky top-app-bar-md">
+          <div className="bg-white rounded p-4 sticky z-10 top-app-bar-md">
             <p className="font-sen text-black text-xl md:text-2xl font-bold">Community Members</p> 
             <p className="text-gray-700">Browser Hashnode community members and follow them to see their posts on your feed.</p>
             <img 
@@ -39,7 +39,7 @@ export const Members = () => {
         </div>
         <div className="md:w-3/4 px-2 w-full">
           {/* Tab Section */}
-          <div className="bg-white rounded md:mt-0 flex flex-wrap text-sm text-gray-700 sticky top-app-bar-md">
+          <div className="bg-white rounded md:mt-0 flex flex-wrap text-sm text-gray-700 sticky z-10 top-app-bar-md">
             <button
             className="px-4 h-10 app-font-color border-b-2 app-border-bottom font-extrabold">
               <span className="font-semibold">STUDENTS</span>
@@ -56,7 +56,7 @@ export const Members = () => {
           </div>
 
           {/* Story List Section */}
-          <div className="">
+          <div className="animate-bottom">
             <div className="flex -mx-2 flex-wrap">
               {memeberList}
             </div>
