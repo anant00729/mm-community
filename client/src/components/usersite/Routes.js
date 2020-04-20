@@ -23,8 +23,10 @@ import {
   ABOUT_ROUTE,
   ALL_STORIES_ROUTE,
   ALL_DISCUSSIONS,
-  HOME_FEED_ROUTE
+  HOME_FEED_ROUTE,
+  SHOW_STORY
 } from '../../../src/components/utils/constants'
+import ShowStory from './stories/ShowStory';
 
 
 const Routes = props => {
@@ -36,6 +38,7 @@ const Routes = props => {
     case ALL_STORIES_ROUTE:  
     case ALL_DISCUSSIONS:
     case HOME_FEED_ROUTE:   
+    case SHOW_STORY:   
       isVisible = true
   }
   return (
@@ -51,6 +54,7 @@ const Routes = props => {
           <Route exact path={ALL_DISCUSSIONS} component={Discussion} />
           <Route exact path={CREATE_STORY_ROUTE} component={PublishStory} />
           <Route exact path={HOME_FEED_ROUTE} component={HomeFeed} />
+          <Route exact path={SHOW_STORY} component={ShowStory}/>
           <Route component={PageNotFound} />
       </Switch>
       <Alert />

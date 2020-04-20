@@ -40,8 +40,6 @@ import { withRouter } from "react-router-dom";
       </div>
 
       <div 
-      //onMouseEnter={() => isProfileVisible(true)}
-      //onMouseLeave={() => isProfileVisible(false)}
       onClick={() => isProfileVisible(profileVisible => !profileVisible)} 
       className="md:w-12 md:h-12 w-12 h-12 self-center relative ml-2">
         <img 
@@ -57,9 +55,7 @@ import { withRouter } from "react-router-dom";
               <span className="ml-2 text-base font-sen">Profile</span>
             </div>
             <div 
-            onClick={() => {
-              props.history.push(HOME_ROUTE);
-              props.logout()}} 
+            onClick={() => {props.history.push(HOME_ROUTE);props.logout();}} 
             className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
               <i className="fa fa-sign-out text-xl self-center"></i>
               <span className="ml-2 text-base font-sen">Log Out</span>

@@ -6,8 +6,47 @@ import {
   INPUT_CHANGE_CELL,
 } from '../actions/types';
 
+
+
+
 const initialState = {
-  singleStory: [],
+  singleStory: [
+    {
+      id: '10',
+      selectType : 'Image',
+      input : 'https://cdn.hashnode.com/res/hashnode/image/upload/v1587368646362/imngKh2-Q.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=format&q=60'
+    },
+    {
+      id: '1',
+      selectType : 'Paragraph',
+      input : 'asdasddadas'
+    },
+    {
+      id: '2',
+      selectType : 'Quote',
+      input : 'asdasddadas'
+    },
+    {
+      id: '3',
+      selectType : 'Image',
+      input : 'https://2.bp.blogspot.com/-iNIWqYfZGVM/TxWQVXH-tQI/AAAAAAAALoM/f00JzI3GRWA/s1600/Hanuman-Powerful+wallpapers+%25285%2529.jpg'
+    },
+    {
+      id: '4',
+      selectType : 'Point',
+      input : 'asdasddadas'
+    },
+    {
+      id: '5',
+      selectType : 'Subtitle',
+      input : 'asdasddadas'
+    },
+    {
+      id: '6',
+      selectType : 'Subtitle',
+      input : 'asdasddadas'
+    }
+  ],
   loading: true,
   error: {}
 };
