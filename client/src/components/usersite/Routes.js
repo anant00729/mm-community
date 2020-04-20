@@ -4,7 +4,7 @@ import Login from '../usersite/login/Login';
 import Alert from '../../components/common/Alert';
 import { About } from '../usersite/about/About';
 import { Stories } from '../usersite/stories/Stories';
-import { PublishStory } from '../usersite/publishstory/PublishStory';
+import PublishStory from '../usersite/publishstory/PublishStory';
 import { Members } from '../usersite/members/Members';
 import PageNotFound from '../../../src/components/common/PageNotFound';
 import Discussion from '../../../src/components/usersite/discusssion/Discussion';

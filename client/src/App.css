@@ -54,6 +54,14 @@
   top: 6.9rem;
 }
 
+.top-app-bar-mdd{
+  top: 8.0rem;
+}
+
+.top-story{
+  top: 8.9rem;
+}
+
 
 button:focus {
   outline:0;
@@ -105,6 +113,10 @@ button:focus {
   .app-banner-container{
     flex-direction: column;
   }
+  .top-story-data{
+    top: 6.9rem;
+  }
+  
 }
 /* SMALL */
 @media (min-width: 640px) {
@@ -147,6 +159,10 @@ button:focus {
 
   .app-banner-container{
     flex-direction: column-reverse;
+  }
+
+  .top-story-data{
+    top: 7.9rem;
   }
 
   /* #snackbar{
@@ -322,4 +338,21 @@ button:focus {
 @keyframes animatebottom { 
   from{ bottom:-100px; opacity:0 } 
   to{ bottom:0; opacity:1 }
+}
+
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.upload-btn-wrapper input[type=file] {
+  cursor: pointer;
+  font-size: 32px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }

@@ -31,8 +31,6 @@ export const Register = ({ register, isAuthenticated , setAlert}) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log('startDate', startDate)
-    console.log('gender', gender)
     if(name.length == 0){
       setAlert(`Please your name` , 'red')  
     }

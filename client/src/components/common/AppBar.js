@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import appLogo from '../../app_images/network.png'
 import {connect} from 'react-redux'
-import {openAppBarDropdown , closeAppBarDropdown} from '../globalstates/actions/appBarActions'
-import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, 
+import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, CREATE_STORY_ROUTE,
   ALL_DISCUSSIONS, ALL_MEMBERS_ROUTE, ABOUT_ROUTE, HOME_FEED_ROUTE} from '../utils/constants';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -43,7 +42,6 @@ import { withRouter } from "react-router-dom";
       <div 
       //onMouseEnter={() => isProfileVisible(true)}
       //onMouseLeave={() => isProfileVisible(false)}
-      onBlurCapture={() => isProfileVisible(profileVisible => !profileVisible)}       
       onClick={() => isProfileVisible(profileVisible => !profileVisible)} 
       className="md:w-12 md:h-12 w-12 h-12 self-center relative ml-2">
         <img 
@@ -167,10 +165,11 @@ import { withRouter } from "react-router-dom";
                 to={ABOUT_ROUTE}>About</Link>
               </div>
             </div>
-            <button className="ml-auto text-gray-700 px-4 my-auto font-bold py-2 hover:bg-gray-200 cursor-pointer app-font-color flex">
+            <Link to={CREATE_STORY_ROUTE}
+             className="ml-auto text-gray-700 px-4 my-auto font-bold py-2 hover:bg-gray-200 cursor-pointer app-font-color flex">
               <i className="fa fa-plus-circle self-center text-xl"></i>
               <span className="ml-2">New Post</span>  
-            </button>
+            </Link>
           </div>
         </div>
       </nav>

@@ -28,7 +28,14 @@ export const SET_ALERT = "SET_ALERT"
 export const REMOVE_ALERT = "REMOVE_ALERT"
 
 
+/**
+ * Story
+ */
 
+export const ADD_STORY_CELL = "ADD_STORY_CELL"
+export const REMOVE_IMAGE_CONTENT = "REMOVE_IMAGE_CONTENT"
+export const REMOVE_STORY_CELL = "REMOVE_STORY_CELL"
+export const UPDATE_DROPDOWN_CELL = "UPDATE_DROPDOWN_CELL"
+export const INPUT_CHANGE_CELL = "INPUT_CHANGE_CELL"
 
-  
 

@@ -12,7 +12,7 @@ import { Redirect } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 
 
-export const Login = ({login, isAuthenticated}) => {
+export const Login = ({login, isAuthenticated, setAlert}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -27,7 +27,6 @@ export const Login = ({login, isAuthenticated}) => {
     else {
       login(email,password)
     }
-      
   }
 
 

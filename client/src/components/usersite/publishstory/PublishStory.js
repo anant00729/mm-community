@@ -1,13 +1,23 @@
-import React , { useState, useEffect } from 'react'
+import React , { useState, useEffect, useReducer } from 'react'
 import appLogo from '../../../app_images/network.png'
+import { Link , Redirect} from 'react-router-dom'
+import {HOME_ROUTE} from '../../utils/constants';
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
+import {logout} from '../../../actions/auth'
+import { withRouter } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+import { setAlert } from '../../../actions/alert';
+import {addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell} from '../../../actions/story'
 
-
-export const PublishStory = () => {
+const PublishStory = ({
+  setAlert, isAuthenticated , history , logout,
+  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, singleStory
+}) => {
   const [title, setTitle] = useState('')
   const [titleHeight, setTitleHeight] = useState(1)
-  const [dropDownVisible , isDropDownVisible] =  useState(false)
-  const [alist , setAlist] =  useState([])
-  const dummyList = []
+  const [profileVisible , isProfileVisible] =  useState(false)
+  const [inBetween , setInBetween] =  useState(1)
   
   
   useEffect(() => {
@@ -15,72 +25,222 @@ export const PublishStory = () => {
     setTitleHeight(rows)
   }, [title])
 
+  const onFileUpdate = (e, index) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.addEventListener('load', () => {
+        //setStoryList({type: "inputChange", value : {iValue : reader.result, itemIndex : index}})
+        inputChannelCell({iValue : reader.result, itemIndex : index})
+      });
+    }
+  }
 
-  const onAddOrRemoveClick = (isToAdd) => {
-    const aTemplate = (
-    <li key={alist.length + 1}
-    className="border-b border-gray-300">
-    <div 
-    onMouseEnter={() => isDropDownVisible(true)}
-    onMouseLeave={() => isDropDownVisible(false)}
-    className="mt-4">
-      <div className="flex w-full">
-        <p className="self-center">Select Type</p>
-        <div className="relative">
+  const [storyList , setStoryList] = useReducer((storyList, { type , value}) => {
+    console.log('storyList :', storyList);
+    switch(type){
+      case "add" : 
+        let { defaultValue , defaultIndex } = value
+        let updateList = [...storyList]
+        updateList.splice(defaultIndex, 0, defaultValue);
+        return updateList
+      case "removeImage":
+        let { r_index } = value
+        storyList[r_index].input = ''
+        return [...storyList]
+      case "remove":
+        return storyList.filter((story, index) => index !== value)  
+      case "dropdown":
+        let { dValue , index } = value
+        storyList[index].input = ''
+        storyList[index].selectType = dValue
+        return [...storyList]
+      case "inputChange":
+        let { iValue , itemIndex } = value
+        storyList[itemIndex].input = iValue
+        return [...storyList]                
+      default: 
+        return storyList
+    }
+  }, [])
+
+
+  let storyListJSX = singleStory.map((story, index) => {
+    let bottomWidget = ''
+    switch (story.selectType) {
+      case "Image":
+        bottomWidget = (
+          <div className="text-center">
+            {story.input.length == 0 ? (
+              <div className="p-20">
+                <p>Please select an Image</p>
+                <div className="upload-btn-wrapper mt-4 cursor-pointer">
+                  <button
+                  className="border border-gray-300 bg-white rounded-lg p-2 focus:outline-none hover:shadow-md transition duration-500 ease-in-out flex text-gray-700 cursor-pointer">
+                    Upload a file
+                    <input type="file" accept="image/*" 
+                    onChange={(e) => onFileUpdate(e, index)}/>
+                  </button>
+                </div>
+              </div>
+            )
+             :
+            (
+              <div className="p-6">
+                <img 
+                accept="image/x-png,image/gif,image/jpeg"
+                multiple={false}
+                className="h-64 mx-auto mt-4 object-contain"
+                src={story.input} alt="image_logo"/>
+              </div>
+            )}
+          </div>
+        )
+        break;
+      case "Quote":
+      case "Point":
+      case "Paragraph":
+      case "Subtitle":
+        bottomWidget = (
+          <textarea
+          value={story.input}
+          onChange={(e) => 
+            inputChannelCell({iValue : e.target.value, itemIndex : index})
+            //setStoryList({type: "inputChange", value : {iValue : e.target.value, itemIndex : index}})
+          }
+          rows="5"
+          className="d-block w-full mt-2 md:text-xl text-md focus:outline-none input-add-p"
+          placeholder={`Enter ${story.selectType}...`}
+          type="text"/>  
+        )
+          break;
+      default:
+        bottomWidget = (
+          <div className="text-center p-20">
+            <p>Please select type</p>
+          </div>
+        )  
+        break;
+
+    }
+    return (<li key={index + 1}
+      className="border-b border-gray-300">
+      <div 
+      className="mt-4">
+        <div className="flex w-full">
+          <select 
+              name="selectType"
+              value={story.selectType}
+              //value={story.type}
+              onChange={(e) => 
+                updateDropDownCell({dValue : e.target.value, dIndex : index})
+                //setStoryList({type: "dropdown", value : })
+            }
+              className="self-center w-1/2
+              mt-2 block appearance-none bg-white 
+              border py-3 px-4 pr-8 rounded leading-tight 
+              outline-none  hover:border-blue-500">
+                    <option>Select type</option>
+                    <option value="Paragraph">Paragraph</option>
+                    <option value="Image">Image</option>
+                    <option value="Quote">Quote</option>
+                    <option value="Subtitle">Subtitle</option>
+                    <option value="Point">Point</option>
+          </select>
+        <div className="ml-auto self-center h-full">
           <button 
-          className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide app-font-color">
-            <span className="text-xl">Paragraph</span> 
-            <i className="fa fa-chevron-down text-sm ml-1"></i>
+          onClick={() => {
+            if(story.selectType === "Image"){
+              if(story.input.length !== 0){
+                removeImageContent({r_index :index})
+                //setStoryList({type: "removeImage", value : })
+              }else {
+                removeStoryCell(index)
+                //setStoryList({type: "remove", value : index})
+              }
+            }else {
+              removeStoryCell(index)
+              //setStoryList({type: "remove", value : index})
+            }
+          }}
+          className="flex hover:bg-gray-200 text-gray-700 py-3 px-4">
+            <i className="fa fa-trash text-sm ml-1 text-lg self-center "></i>
+            <p className="self-center ml-2 text-sm font-semibold">Delete</p>
           </button>
-          <div 
-          className={`absolute appbar-drop-down rounded shadow-lg z-10 bg-white ${dropDownVisible ? '' : 'hidden'}`}>
-            <button 
-            onClick={() => isDropDownVisible(false)}
-            className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Paragraph</button>
-            <button 
-            onClick={() => isDropDownVisible(false)}
-            className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Quote</button>
-            <button 
-            onClick={() => isDropDownVisible(false)}
-            className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Image</button>
-            <button 
-            onClick={() => isDropDownVisible(false)}  
-            className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
         </div>
       </div>
-      <div className="ml-auto self-center h-full">
-        <button className="flex hover:bg-gray-200 text-gray-700 py-3 px-4">
-          <i className="fa fa-trash text-sm ml-1 text-lg self-center "></i>
-          <p className="self-center ml-2 text-sm font-semibold">Delete</p>
-        </button>
-        
       </div>
+      {bottomWidget}
+        
+    </li>)
+  })
+
+  
+
+  const onAddOrRemoveAt = (isForAdd) => {
+    let value = inBetween - 1
+    if(inBetween > 0 && value <= singleStory.length) {
+      setAlert(`${isForAdd ? 'Added' : 'Removed' } at ${inBetween}` , 'green')
+      if(isForAdd){
+        addStoryCell({defaultValue : {id : uuidv4() , selectType : 'default', input: '' }, defaultIndex : value})
+        //setStoryList()
+      }else {
+        removeStoryCell(value)
+        //setStoryList({type : "remove" , value : value})
+      }
       
-    </div>
-    </div>
-      <textarea
-      rows="5"
-      className="d-block w-full mt-2 md:text-xl text-md focus:outline-none input-add-p"
-      placeholder="Tell your story..."
-      type="text"/>  
-  </li>)
-    setAlist(isToAdd ? alist.concat(aTemplate) : [...alist.filter(item => item.key !== alist[alist.length - 1].key)]) 
+    }else {
+      setAlert(`Invalid value provided` , 'red')
+    }
   }
+
+ 
+
+  if(!isAuthenticated){
+    return <Redirect to={HOME_ROUTE}/>;
+  }
+
   
 
   return (
     <div>
       <div className="flex md:px-20 px-8 py-4 bg-gray-100 border boder-b-1">
-        <img src={appLogo} 
-            className="md:h-10 md:w-10 w-8 h-8 self-center"
-            alt="appLogo"/>
+        <img
+          src={appLogo} 
+          className="md:h-10 md:w-10 w-8 h-8 self-center"
+          alt="appLogo"/>
         <h1 className="self-center ml-2 md:text-xl text-lg text-gray-700">New Story</h1>     
-        <button className="self-center ml-auto text-md text-gray-700 px-8 py-2 hover:bg-gray-300 hover:rounded-lg">Home</button>
+        <Link to={HOME_ROUTE} className="self-center ml-auto text-md text-gray-700 px-8 py-2 hover:bg-gray-300 hover:rounded-lg">
+          Home
+        </Link>
         <div className="md:w-12 md:h-12 w-10 h-10 self-center">
-          <img 
-            className="w-full h-full rounded-full border-white border-2 shadow-lg ml-2 cursor-pointer"
-            src="https://hashnode.imgix.net/res/hashnode/image/upload/v1584181566095/yFdLG8gjE.png?w=200&h=200&fit=crop&crop=faces&auto=format&q=60" 
-            alt="profile_image"/>
+          
+          <div 
+          onClick={() => isProfileVisible(profileVisible => !profileVisible)} 
+          className="relative">
+            <img 
+              className="w-full h-full rounded-full border-white border-2 shadow-lg ml-2 cursor-pointer"
+              src="https://hashnode.imgix.net/res/hashnode/image/upload/v1584181566095/yFdLG8gjE.png?w=200&h=200&fit=crop&crop=faces&auto=format&q=60" 
+              alt="profile_image"/>
+            <div 
+              className={`w-48 absolute appbar-drop-down border border-gray-400 rounded shadow-lg z-10 bg-white app-bar-dropdown-right ${profileVisible ? '' : 'hidden'}`}>
+              <div 
+              onClick={() => {}} 
+              className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
+                <i className="fa fa-user-circle text-xl self-center"></i>
+                <span className="ml-2 text-base font-sen">Profile</span>
+              </div>
+              <div 
+              onClick={() => {
+                history.push(HOME_ROUTE);
+                logout()}} 
+              className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
+                <i className="fa fa-sign-out text-xl self-center"></i>
+                <span className="ml-2 text-base font-sen">Log Out</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -114,20 +274,24 @@ export const PublishStory = () => {
               </button>
  
               <button 
-              onClick={() => onAddOrRemoveClick(true)}
+              onClick={() => 
+                addStoryCell({defaultValue : {id : uuidv4() , selectType : 'default', input: '' }, defaultIndex : storyList.length})}
               className="ml-auto px-4 h-10 hover:bg-gray-200">
                 <i className="fa fa-plus self-center"></i>
                 <span className="ml-2 font-semibold">Add</span>
               </button>
               <button
-              onClick={() => onAddOrRemoveClick(false)}
+              onClick={() => 
+                removeStoryCell(singleStory.length-1)
+                //setStoryList({type : "remove" , value : storyList.length-1})
+              }
               className="px-4 h-10 hover:bg-gray-200">
                 <i className="fa fa-minus self-center"></i>
                 <span className="ml-2 font-semibold">Remove</span>
               </button>
             </div>
             <ul>
-              {alist}
+              {storyListJSX}
             </ul>
             {/*  */}
           </div>
@@ -143,6 +307,37 @@ export const PublishStory = () => {
                   Publish Story
                 </button>
               </div>
+
+              {/* Add/Remove In between  */}
+              <div className="border-b border-gray-300 p-8">
+                <div className="flex flex-wrap">
+                  <i className="fa fa-image self-center"></i>
+                  <p className="ml-1 text-black">Add/Remove At</p>
+                </div>
+                <div className="flex justify-between mt-2" >
+                  <button 
+                  onClick={() => onAddOrRemoveAt(true)}
+                  className="border border-gray-300 bg-white rounded-lg p-2 focus:outline-none hover:shadow-md transition duration-500 ease-in-out flex text-gray-700 cursor-pointer">
+                    <i className="fa fa-plus self-center"></i>
+                    <span className="ml-1 text-sm">Add</span>
+                  </button>
+                  <input 
+                    onChange={(e) => setInBetween(e.target.value)}
+                    maxLength={4}
+                    value={inBetween}
+                    type="number"
+                    min="1" max="100"
+                    className="w-16 h-10 border-gray-300 focus:outline-none rounded border focus:border-blue-600 self-center px-2 text-center"
+                  />  
+                  <button 
+                  onClick={() => onAddOrRemoveAt(false)}
+                  className="border border-gray-300 bg-white rounded-lg p-2 focus:outline-none hover:shadow-md transition duration-500 ease-in-out flex text-gray-700 cursor-pointer">
+                    <i className="fa fa-minus self-center"></i>
+                    <span className="ml-1 text-sm">Remove</span>
+                  </button>
+                </div>
+              </div>
+
               {/* Tags Section */}
               <div className="border-b border-gray-300 p-8">
                 <div className="flex">
@@ -185,3 +380,27 @@ export const PublishStory = () => {
     </div>
   )
 }
+
+
+
+PublishStory.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  singleStory : PropTypes.array
+};
+
+const mapStateToProps = state => ({
+  logout: PropTypes.func.isRequired,
+  isAuthenticated: state.auth.isAuthenticated,
+  singleStory : state.story.singleStory
+});
+
+const allActions = {
+  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, logout, setAlert
+}
+
+export default connect(mapStateToProps, allActions)(withRouter(PublishStory));
+
+
+
+
+//https://stackoverflow.com/questions/54770234/updating-an-array-in-react-using-hooks
