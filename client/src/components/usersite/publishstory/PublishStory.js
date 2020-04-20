@@ -36,35 +36,7 @@ const PublishStory = ({
     }
   }
 
-  const [storyList , setStoryList] = useReducer((storyList, { type , value}) => {
-    console.log('storyList :', storyList);
-    switch(type){
-      case "add" : 
-        let { defaultValue , defaultIndex } = value
-        let updateList = [...storyList]
-        updateList.splice(defaultIndex, 0, defaultValue);
-        return updateList
-      case "removeImage":
-        let { r_index } = value
-        storyList[r_index].input = ''
-        return [...storyList]
-      case "remove":
-        return storyList.filter((story, index) => index !== value)  
-      case "dropdown":
-        let { dValue , index } = value
-        storyList[index].input = ''
-        storyList[index].selectType = dValue
-        return [...storyList]
-      case "inputChange":
-        let { iValue , itemIndex } = value
-        storyList[itemIndex].input = iValue
-        return [...storyList]                
-      default: 
-        return storyList
-    }
-  }, [])
-
-
+  
   let storyListJSX = singleStory.map((story, index) => {
     let bottomWidget = ''
     switch (story.selectType) {
@@ -134,7 +106,6 @@ const PublishStory = ({
               //value={story.type}
               onChange={(e) => 
                 updateDropDownCell({dValue : e.target.value, dIndex : index})
-                //setStoryList({type: "dropdown", value : })
             }
               className="self-center w-1/2
               mt-2 block appearance-none bg-white 
@@ -153,14 +124,11 @@ const PublishStory = ({
             if(story.selectType === "Image"){
               if(story.input.length !== 0){
                 removeImageContent({r_index :index})
-                //setStoryList({type: "removeImage", value : })
               }else {
                 removeStoryCell(index)
-                //setStoryList({type: "remove", value : index})
               }
             }else {
               removeStoryCell(index)
-              //setStoryList({type: "remove", value : index})
             }
           }}
           className="flex hover:bg-gray-200 text-gray-700 py-3 px-4">
@@ -183,12 +151,9 @@ const PublishStory = ({
       setAlert(`${isForAdd ? 'Added' : 'Removed' } at ${inBetween}` , 'green')
       if(isForAdd){
         addStoryCell({defaultValue : {id : uuidv4() , selectType : 'default', input: '' }, defaultIndex : value})
-        //setStoryList()
       }else {
         removeStoryCell(value)
-        //setStoryList({type : "remove" , value : value})
       }
-      
     }else {
       setAlert(`Invalid value provided` , 'red')
     }
@@ -231,9 +196,7 @@ const PublishStory = ({
                 <span className="ml-2 text-base font-sen">Profile</span>
               </div>
               <div 
-              onClick={() => {
-                history.push(HOME_ROUTE);
-                logout()}} 
+              onClick={() => {history.push(HOME_ROUTE);logout();}} 
               className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
                 <i className="fa fa-sign-out text-xl self-center"></i>
                 <span className="ml-2 text-base font-sen">Log Out</span>
@@ -275,16 +238,13 @@ const PublishStory = ({
  
               <button 
               onClick={() => 
-                addStoryCell({defaultValue : {id : uuidv4() , selectType : 'default', input: '' }, defaultIndex : storyList.length})}
+                addStoryCell({defaultValue : {id : uuidv4() , selectType : 'default', input: '' }, defaultIndex : singleStory.length})}
               className="ml-auto px-4 h-10 hover:bg-gray-200">
                 <i className="fa fa-plus self-center"></i>
                 <span className="ml-2 font-semibold">Add</span>
               </button>
               <button
-              onClick={() => 
-                removeStoryCell(singleStory.length-1)
-                //setStoryList({type : "remove" , value : storyList.length-1})
-              }
+              onClick={() => removeStoryCell(singleStory.length-1)}
               className="px-4 h-10 hover:bg-gray-200">
                 <i className="fa fa-minus self-center"></i>
                 <span className="ml-2 font-semibold">Remove</span>
