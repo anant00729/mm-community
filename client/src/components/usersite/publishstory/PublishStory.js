@@ -40,6 +40,16 @@ const PublishStory = ({
     }
   }
 
+  const onBannerUpdate = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.addEventListener('load', () => {
+        console.log('render.result :', reader.result);
+      });
+    }
+  }
+
   
   let storyListJSX = singleStory.map((story, index) => 
      <StoryTemplateCell

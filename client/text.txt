@@ -304,3 +304,28 @@ INSERT INTO public."user"(
           ('WEB'),
           (1)
         );
+
+
+INSERT INTO public.story(
+	title, 
+  content, 
+  cover_image, 
+  like_count, 
+  visit_count, 
+  read_time, 
+  created_at, 
+  updated_at, 
+  user_id, 
+  story_status)
+	VALUES (
+  (:title),
+  (:content),
+  (:cover_image),
+  (:like_count),
+  (:visit_count),
+  (:read_time),
+  (:created_at),
+  (:updated_at),
+  (:user_id),
+  (:story_status)
+);        

@@ -373,3 +373,8 @@ button:focus {
   top: 0;
   opacity: 0;
 }
+
+.ic_close {
+  top: -0.6rem;
+  right: -0.6rem;
+}
