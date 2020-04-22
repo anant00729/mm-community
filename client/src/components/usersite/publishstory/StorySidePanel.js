@@ -1,6 +1,7 @@
 import React, {useState, useReducer} from 'react'
 import DatePicker from "react-datepicker";
 import close from '../../../../src/app_images/close.svg'
+import close_black from '../../../../src/app_images/close_black.svg'
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -10,6 +11,7 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
   let [coverImageVisible, setCoverImageVisible] = useState(0);
   const [tagVisible, isTagImageVisible] = useState(false);
   const [tags, setTags] = useState('');
+  const [tagArray, setTagArray] = useState([]);
   let [bannerImg , setBannerImg] = useState('')
 
 
@@ -22,6 +24,44 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
       });
     }
   }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    console.log('tags :', tags);
+
+    setTagArray(tagArray=> {
+      let defaultValue = tags
+      let defaultIndex = 0
+      let updateList = [...tagArray]
+      updateList.splice(defaultIndex, 0, `#${defaultValue}`);
+      setTags('')
+      return updateList
+    })
+    
+  }
+
+  const onRemoveTag = (removeUIndex) => {
+    setTagArray(tagArray=> {
+      let updateList = tagArray.filter((_, index) => index !== removeUIndex)  
+      return updateList
+    })
+  }
+
+  let lagsArrayJSX = tagArray.map((tag, index) => {
+    return (
+      <li 
+      onClick={() => onRemoveTag(index)}
+      className="mt-1 bg-blue-200 text-gray-800 py-1 px-2 rounded-full text-sm border border-gray-200 flex">
+      <span
+        className="self-center">
+          {tag}
+      </span> 
+      <img 
+      className="w-4 h-4 self-center ml-1 cursor-pointer"
+      src={close_black} alt="close_image"/>
+    </li>
+    )
+  })
 
 
   switch(coverImageVisible){
@@ -118,12 +158,23 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
       {
         tagVisible ? 
         (
-          <input 
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
-          className="w-full mt-2 py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
-          placeholder="add tags with comma seperation"
-          type="email"/>
+          
+          <div>
+            <form 
+              onSubmit={(e) => onSubmit(e)}>
+              <input 
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
+              className="w-full mt-2 py-2 px-2 focus:outline-none rounded"
+              placeholder="add a tag and press enter"
+              type="text"/>
+            </form>
+            <ul className="flex flex-wrap mt-1">
+              {lagsArrayJSX}
+            </ul>
+
+          </div>
+          
         )
         :
         (
