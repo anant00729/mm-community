@@ -13,8 +13,6 @@ exports.sendMail = async (req,res) => {
   const userTemplate = {
     name : 'Sumit'
   }
-
-  console.log('_path :>> ', _path);
   ejs.renderFile(_path, {userTemplate} , (error , result) => {
     if(error){
       console.log('error', error)

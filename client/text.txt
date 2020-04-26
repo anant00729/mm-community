@@ -16,7 +16,6 @@ SELECT
 
 
 
-
 https://tatadigital-performance.peoplestrong.com/#/myMilestone
 
 https://rapidapi.com/imgur/api/imgur-9/endpoints
