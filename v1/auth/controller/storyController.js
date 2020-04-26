@@ -1,5 +1,6 @@
 const Story = require('../model/Story')
 const moment = require('moment')
+const Image = require('../../imageAndMail/model/Image')
 
 
 /* 
@@ -19,20 +20,36 @@ exports.addStory = async (req,res) => {
   const updated_at = date
   const user_id = req.user.user_id || ''
   const story_status = req.body.story_status || -1
-  let story = new Story()
-  let storyStatus = await story.addStory(
-    title,
-    content,
-    cover_image,
-    visit_count,
-    read_time,
-    created_at,
-    updated_at,
-    user_id,
-    story_status,
-    like_count
-  )
-  res.json(storyStatus)  
+
+  const imageObj = new Image()
+
+  let imgUrls = content.filter(c=> {
+    if(c.selectType === 'Image'){
+      return c.input
+    }
+  })
+  imgUrls.push(cover_image)
+  console.log('imgUrls :>> ', imgUrls);
+  // for (const c of content ) {
+    
+  // }
+  //imageObj.updateImageByURL()
+
+
+  // let story = new Story()
+  // let storyStatus = await story.addStory(
+  //   title,
+  //   content,
+  //   cover_image,
+  //   visit_count,
+  //   read_time,
+  //   created_at,
+  //   updated_at,
+  //   user_id,
+  //   story_status,
+  //   like_count
+  // )
+  // res.json(storyStatus)  
 }
 
 

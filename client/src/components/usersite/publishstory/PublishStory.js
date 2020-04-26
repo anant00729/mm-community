@@ -39,6 +39,18 @@ const PublishStory = ({
     setTitleHeight(rows)
   }, [title])
 
+
+  useEffect(()=> {
+     if(bannerImg.includes('base64') || bannerImg.length == 0) {
+        return
+     }
+
+
+  },[bannerImg])
+
+
+  
+
   const onFileUpdate = (e, index) => {
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader();
@@ -67,7 +79,7 @@ const PublishStory = ({
   //   "token" : "sUmkabQpBSho5DNGI8mZYPp2maG7S"
   // }
 
-  console.log('singleStory :>> ', singleStory.length == 0);
+  console.log('bannerImg :>> ', bannerImg);
 
   if(title.length === 0){
     setAlert('Please enter title of your story' , 'red')
