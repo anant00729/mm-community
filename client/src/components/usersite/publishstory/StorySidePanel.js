@@ -3,17 +3,27 @@ import DatePicker from "react-datepicker";
 import close from '../../../../src/app_images/close.svg'
 import close_black from '../../../../src/app_images/close_black.svg'
 import "react-datepicker/dist/react-datepicker.css";
+import {connect} from 'react-redux'
+import { setAlert } from '../../../actions/alert';
 
 
-export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}) {
-  const [startDate, setStartDate] = useState(new Date());
-  const [dateVisible, isDateVisible] = useState(false);
+function StorySidePanel({inBetween,
+  onAddOrRemoveAt, 
+  setInBetween, 
+  publishStory, 
+  tagArray, 
+  setTagArray,
+  bannerImg, 
+  setBannerImg,
+  publishDate, 
+  setPublishDate,
+  dateVisible, 
+  isDateVisible,
+  setAlert
+}) {
   let [coverImageVisible, setCoverImageVisible] = useState(0);
   const [tagVisible, isTagImageVisible] = useState(false);
   const [tags, setTags] = useState('');
-  const [tagArray, setTagArray] = useState([]);
-  let [bannerImg , setBannerImg] = useState('')
-
 
   const onBannerUpdate = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -27,7 +37,10 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log('tags :', tags);
+    if(tags.length === 0){
+      setAlert('Please provide a tag name and then press enter' , 'red')
+      return
+    }
 
     setTagArray(tagArray=> {
       let defaultValue = tags
@@ -80,7 +93,7 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
     case 1:
       coverImageVisible = (
         <div className="shadow mt-2 text-center py-4 text-black rounded upload-btn-wrapper w-full">
-          <i class="fa fa-cloud-upload text-2xl"></i>
+          <i className="fa fa-cloud-upload text-2xl"></i>
           <p className="text-lg">SELECT AN IMAGE</p>
           <input type="file" accept="image/*" 
             onChange={(e) => {setCoverImageVisible(2);onBannerUpdate(e);}}/>
@@ -112,7 +125,9 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
         <i className="fa fa-check self-center"></i>
         <p className="ml-1 text-black">Draft Saved</p>
       </div>
-      <button className="mt-2 app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out cursor-pointer">
+      <button 
+      onClick={() => publishStory()}
+      className="mt-2 app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out cursor-pointer">
         Publish Story
       </button>
     </div>
@@ -210,7 +225,7 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
         shouldCloseOnSelect={true}
         showMonthDropdown={true}
         className="w-full py-2 px-2 mt-2 focus:outline-none rounded"
-        selected={startDate} onChange={date => setStartDate(date)} />
+        selected={publishDate} onChange={date => setPublishDate(date)} />
        ): 
        (
         <button 
@@ -226,3 +241,10 @@ export default function StorySidePanel({inBetween,onAddOrRemoveAt, setInBetween}
     </>
   )
 }
+
+
+const allActions = {
+  setAlert
+}
+
+export default connect(null, allActions)(StorySidePanel);

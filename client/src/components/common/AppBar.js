@@ -11,7 +11,6 @@ import { withRouter } from "react-router-dom";
 
  const AppBar = (props) => {
   let {isAuthenticated, currentRoute} = props
-  console.log('props :', props.history);
   const [dropDownVisible , isDropDownVisible] =  useState(false)
   const [profileVisible , isProfileVisible] =  useState(false)
 

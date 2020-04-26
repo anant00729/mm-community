@@ -113,7 +113,8 @@ export const Register = ({ register, isAuthenticated , setAlert}) => {
               shouldCloseOnSelect={true}
               showMonthDropdown={true}
               className="w-full py-2 px-2 border-gray-300 focus:outline-none rounded border focus:border-blue-600"
-              selected={startDate} onChange={date => setStartDate(date)} />
+              selected={startDate} 
+              onChange={date => setStartDate(date)} />
             </div>
           </div>  
           <select 

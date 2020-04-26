@@ -14,10 +14,12 @@ import StorySidePanel from './StorySidePanel';
 import StoryTopPanel from './StoryTopPanel';
 import StoryTopBar from './StoryTopBar';
 import StoryPreview from './preview/StoryPreview';
-import ShowStory from '../stories/ShowStory';
+import {callInsertStory} from '../../../actions/story'
+
+
 
 const PublishStory = ({
-  setAlert, isAuthenticated , history , logout,
+  setAlert, isAuthenticated , history , logout, token, callInsertStory,
   addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, singleStory
 }) => {
   
@@ -26,6 +28,11 @@ const PublishStory = ({
   const [profileVisible , isProfileVisible] =  useState(false)
   const [inBetween , setInBetween] =  useState(1)
   const [tabIndex , setTabIndex] = useState(0)
+  const [tagArray, setTagArray] = useState([]);
+  let [bannerImg , setBannerImg] = useState('')
+
+  const [publishDate, setPublishDate] = useState(new Date());
+  const [dateVisible, isDateVisible] = useState(false);
   
   useEffect(() => {
     const rows = Math.floor(title.length / 55) + 1
@@ -40,19 +47,62 @@ const PublishStory = ({
     }
   }
 
-  const onBannerUpdate = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.addEventListener('load', () => {
-        console.log('render.result :', reader.result);
-      });
-    }
-  }
 
+ const publishStory = () => {
+
+  // {
+  //   "title":"Dev Must-reads on Hashnode: Week #4",
+  //   "content":[
+  //     {
+  //       "id": "10",
+  //       "selectType" : "Image",
+  //       "input" : "https://cdn.hashnode.com/res/hashnode/image/upload/v1587835300949/4_wwYYN5c.png?w=1600&h=840&fit=crop&crop=entropy&auto=format&q=60"
+  //     }
+  //     ],
+  //   "cover_image":"shdjfgjsdf",
+  //   "read_time":"2 min",
+  //   "created_at":"12-12-12",
+  //   "updated_at":"12-12-12",
+  //   "story_status":0,
+  //   "token" : "sUmkabQpBSho5DNGI8mZYPp2maG7S"
+  // }
+
+  console.log('singleStory :>> ', singleStory.length == 0);
+
+  if(title.length === 0){
+    setAlert('Please enter title of your story' , 'red')
+  }
+  else if(singleStory.length == 0){
+    setAlert('Please add story content' , 'red')
+  }
+  else if (tagArray.length === 0){
+    setAlert('Please add tags for the story' , 'red')
+  }
+  else if(
+    //bannerImg.includes('base64') || 
+    bannerImg.length === 0){
+    setAlert('Please add a banner image for the story' , 'red')
+  }
+  else if(!dateVisible){
+    setAlert('Please provide publish date' , 'red')
+  }
+  else {
+    let publishStoryObj = {
+      title,
+      content : singleStory,
+      cover_image : 'asdasd',
+      tags : tagArray,
+      updated_at : publishDate ,
+      story_status : 0,
+      token
+    }
+    callInsertStory(publishStoryObj)
+  }
+ }
   
   let storyListJSX = singleStory.map((story, index) => 
-     <StoryTemplateCell
+     <StoryTemplateCell 
+      key={index}
       story={story}
       index={index}
       inputChannelCell={inputChannelCell}
@@ -89,7 +139,7 @@ const PublishStory = ({
     case 1:
     case 2:  
     default:
-      tabLayout = <ShowStory singleStory={singleStory}/>
+      tabLayout = <StoryPreview singleStory={singleStory}/>
       break;
   }
 
@@ -118,11 +168,20 @@ const PublishStory = ({
           {tabLayout}
           </div>
           <div className="md:w-1/3 lg:w-1/4 w-full text-gray-600">
-            <div className="border-l border-gray-300 sticky top-0">
+            <div className="border-l border-gray-300">
               <StorySidePanel
               inBetween={inBetween}
               onAddOrRemoveAt={onAddOrRemoveAt}
               setInBetween={setInBetween}
+              publishStory={publishStory}
+              tagArray={tagArray}
+              setTagArray={setTagArray}
+              bannerImg={bannerImg}
+              setBannerImg={setBannerImg}
+              publishDate={publishDate} 
+              setPublishDate={setPublishDate}
+              dateVisible={dateVisible}
+              isDateVisible={isDateVisible}
               />
             </div>
           </div>
@@ -136,17 +195,20 @@ const PublishStory = ({
 
 PublishStory.propTypes = {
   isAuthenticated: PropTypes.bool,
-  singleStory : PropTypes.array
+  singleStory : PropTypes.array,
+  token: PropTypes.string
 };
 
 const mapStateToProps = state => ({
   logout: PropTypes.func.isRequired,
+  callInsertStory: PropTypes.func.isRequired,
   isAuthenticated: state.auth.isAuthenticated,
-  singleStory : state.story.singleStory
+  singleStory : state.story.singleStory,
+  token : state.auth.token
 });
 
 const allActions = {
-  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, logout, setAlert
+  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, logout, setAlert, callInsertStory
 }
 
 export default connect(mapStateToProps, allActions)(withRouter(PublishStory));

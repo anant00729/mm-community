@@ -7,6 +7,13 @@
 "predeploy": "npm run build"
 
 
+SELECT
+    *
+    FROM
+    user_session a
+    INNER JOIN public.user u ON  a.user_id = u.id WHERE refresh_token = 'sUmkabQpBSho5DNGI8mZYPp2maG7S';
+
+
 https://tatadigital-performance.peoplestrong.com/#/myMilestone
 
 https://rapidapi.com/imgur/api/imgur-9/endpoints
@@ -329,3 +336,17 @@ INSERT INTO public.story(
   (:user_id),
   (:story_status)
 );        
+
+
+
+   "offerRedemption": {
+                    "customerActivationRequired": false,
+                    "couponCodeDetails": "GENERIC",
+                    "couponCode": "NLGET35"
+                },
+
+    "offerRedemption": {
+                    "customerActivationRequired": false,
+                    "couponCodeDetails": "",
+                    "couponCode": ""
+                },                

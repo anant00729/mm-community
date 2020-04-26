@@ -105,6 +105,7 @@ app.use(express.static('public'))
 //app.use(database)
 
 app.use('/v1/auth', require('./v1/auth/routes/authRoute'))
+app.use('/v1/story', require('./v1/auth/routes/storyRoute'))
 
 
 // app.get('/testDatabase', async (req, res, next) => {

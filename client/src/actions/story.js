@@ -5,6 +5,7 @@ import {
   REMOVE_STORY_CELL,
   UPDATE_DROPDOWN_CELL,
   INPUT_CHANGE_CELL,
+  PUBLISH_STORY
  } from './types';
 import { setAlert } from './alert'
 
@@ -50,4 +51,31 @@ export const inputChannelCell = (obj) => async dispatch => {
     type: INPUT_CHANGE_CELL,
     payload: obj
   });
+};
+
+
+
+export const callInsertStory = (obj) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const body = JSON.stringify(obj);
+    const res = await axios.post('/v1/story/addStory', body , config);
+    const res_d = res.data
+
+    if(res_d.status){
+      dispatch({
+        type: PUBLISH_STORY,
+        payload: res_d
+      });
+      //dispatch(setAlert(res_d.data, 'green'))
+    }else {
+      dispatch(setAlert(res_d.message, 'red'))
+    }
+  } catch (err) {
+    dispatch(setAlert(err.message, 'red'))
+  }
 };

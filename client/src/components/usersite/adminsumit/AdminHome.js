@@ -56,7 +56,6 @@ export const AdminHome = () => {
         }
       })
       let result = res.data
-      console.log('result :', result);
       setFileUploadResponse(result)
       setMessage('File Uploaded')
     } catch (error) {

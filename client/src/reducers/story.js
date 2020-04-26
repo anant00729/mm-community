@@ -12,6 +12,11 @@ import {
 const initialState = {
   singleStory: [
     {
+      id: '1',
+      selectType : 'Paragraph',
+      input : 'anant'
+    },
+    {
       id: '10',
       selectType : 'Image',
       input : 'https://cdn.hashnode.com/res/hashnode/image/upload/v1587368646362/imngKh2-Q.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=format&q=60'

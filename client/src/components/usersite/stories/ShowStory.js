@@ -6,7 +6,6 @@ import {setAlert} from '../../../actions/alert'
 
 
 const ShowStory = ({singleStory, setAlert}) => {
-  console.log('singleStory :', singleStory);
   return (
     <div className="px-2">
       <div className="md:w-2/3 mx-auto">
