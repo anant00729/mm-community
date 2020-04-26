@@ -42,6 +42,11 @@ function StorySidePanel({inBetween,
       return
     }
 
+    if(tagArray.length === 5){
+      setAlert('You can add upto 5 tags.' , 'red')
+      return
+    }
+
     setTagArray(tagArray=> {
       let defaultValue = tags
       let defaultIndex = 0

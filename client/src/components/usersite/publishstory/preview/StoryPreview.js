@@ -6,12 +6,13 @@ import {setAlert} from '../../../../actions/alert'
 
 
 const StoryPreview = ({singleStory, setAlert}) => {
-  let story = singleStory.find(story=> story.selectType === 'BannerImage')
+  //let story = singleStory.find(story=> story.selectType === 'BannerImage')
   return (
     <div className="px-2">
       <div className="md:w-5/6 mx-auto">
         <img className="post-cover bg-cover bg-center mx-auto" 
-        src={story.input}
+        src={""}
+        alt="some_thing"
         />
       </div>
       
