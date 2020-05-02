@@ -4,7 +4,7 @@ const Image = require('../../imageAndMail/model/Image')
 
 
 /* 
- * @route  v1/auth/login 
+ * @route  v1/story/login 
  * @type   POST 
  * @access public
  */
@@ -53,7 +53,7 @@ exports.addStory = async (req,res) => {
 
 
 /* 
- * @route  v1/auth/getStory 
+ * @route  v1/story/getStory 
  * @type   POST 
  * @access public
  */
@@ -66,13 +66,14 @@ exports.getStory = async (req,res) => {
 
 
 /* 
- * @route  v1/auth/getAllStories 
+ * @route  v1/story/getAllStories 
  * @type   POST 
  * @access public
  */
 exports.getAllStories = async (req,res) => {
+  const isForUser = req.body.isForUser || false
   let story = new Story()
-  let storyStatus = await story.findStoryAllStories()
+  let storyStatus = await story.findStoryAllStories(isForUser, 15 , 1)
   res.json(storyStatus)  
 }
 

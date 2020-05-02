@@ -3,7 +3,7 @@ import { Link , Redirect} from 'react-router-dom'
 import {HOME_ROUTE} from '../../utils/constants';
 import appLogo from '../../../app_images/network.png'
 
-export default function StoryTopBar({isProfileVisible, profileVisible, onLogoutClick}) {
+export default function StoryTopBar({isProfileVisible, profileVisible, onLogoutClick, profileImage}) {
   return (
     <>
       <img
@@ -21,7 +21,7 @@ export default function StoryTopBar({isProfileVisible, profileVisible, onLogoutC
           className="relative">
             <img 
               className="w-full h-full rounded-full border-white border-2 shadow-lg ml-2 cursor-pointer"
-              src="https://hashnode.imgix.net/res/hashnode/image/upload/v1584181566095/yFdLG8gjE.png?w=200&h=200&fit=crop&crop=faces&auto=format&q=60" 
+              src={profileImage} 
               alt="profile_image"/>
             <div 
               className={`w-48 absolute appbar-drop-down border border-gray-400 rounded shadow-lg z-10 bg-white app-bar-dropdown-right ${profileVisible ? '' : 'hidden'}`}>

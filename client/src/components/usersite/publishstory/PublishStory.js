@@ -21,7 +21,7 @@ import {callInsertStory, uploadImage} from '../../../actions/story'
 const PublishStory = ({
   setAlert, isAuthenticated , history , logout, token, callInsertStory,
   addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, singleStory, 
-  uploadImage, posterImage
+  uploadImage, posterImage, user
 }) => {
   
   const [title, setTitle] = useState('')
@@ -46,12 +46,7 @@ const PublishStory = ({
      if(bannerImg.includes('base64') || bannerImg.length == 0) {
         return
      }
-
-
   },[bannerImg])
-
-
-  
 
   const onFileUpdate = (e, index) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -162,6 +157,7 @@ const PublishStory = ({
         isProfileVisible={isProfileVisible} 
         profileVisible={profileVisible} 
         onLogoutClick={()=>{history.push(HOME_ROUTE);logout();}}
+        profileImage={user.profile_image}
         />
       </div>
 
@@ -208,13 +204,15 @@ const PublishStory = ({
 PublishStory.propTypes = {
   isAuthenticated: PropTypes.bool,
   singleStory : PropTypes.array,
-  token: PropTypes.string
+  token: PropTypes.string,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   logout: PropTypes.func.isRequired,
   callInsertStory: PropTypes.func.isRequired,
   isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
   singleStory : state.story.singleStory,
   token : state.auth.token,
   posterImage: state.story.posterImage
@@ -225,8 +223,4 @@ const allActions = {
 }
 
 export default connect(mapStateToProps, allActions)(withRouter(PublishStory));
-
-
-
-
 //https://stackoverflow.com/questions/54770234/updating-an-array-in-react-using-hooks

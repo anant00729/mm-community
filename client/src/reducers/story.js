@@ -9,7 +9,8 @@ import {
   POSTER_IMAGE_FAILED,
   ADD_STORY_IMAGE,
   STORY_IMAGE_LOADING,
-  STORY_IMAGE_FAILED
+  STORY_IMAGE_FAILED,
+  GET_POPULAR_STORY
 } from '../actions/types';
 
 
@@ -20,6 +21,9 @@ const initialState = {
     image : '',
     loading : false
   },
+  popularStoryList : [],
+  featuredStoryList : [],
+  recentStoryList : [],
   singleStory: [
     // {
     //   id: '1',
@@ -163,6 +167,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         singleStory : _s1
+      }  
+
+    case GET_POPULAR_STORY: 
+      return {
+        ...state,
+        popularStoryList : payload
       }  
     default:
       return state;

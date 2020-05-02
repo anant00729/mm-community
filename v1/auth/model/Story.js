@@ -93,9 +93,16 @@ class Story {
       }
   }
 
-  async findStoryAllStories(pageLimit = 15, pageNumber = 1){
+  async findStoryAllStories(isForUser , pageLimit = 15, pageNumber = 1){
     let skipCount = pageLimit * (pageNumber - 1)
-    let q1 = `SELECT * FROM public.story LIMIT (:pageLimit) OFFSET (:skipCount);`
+
+
+    
+    let q1 = `SELECT
+    *
+    FROM
+    public.story a
+    INNER JOIN public.user u ON  a.user_id = u.id LIMIT (:pageLimit) OFFSET (:skipCount);`
     try {
         let res_d = await db.query(q1,{replacements : {pageLimit, skipCount}})
         if(res_d[0].length === 0){

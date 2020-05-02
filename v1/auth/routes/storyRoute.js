@@ -8,7 +8,7 @@ const _r = express.Router()
  */
 _r.post('/addStory', authorizeUser , addStory)
 _r.post('/getStory',  getStory)
-_r.get('/getAllStories',  getAllStories)
+_r.post('/getAllStories',  getAllStories)
 
 
 

@@ -10,7 +10,7 @@ import { withRouter } from "react-router-dom";
 
 
  const AppBar = (props) => {
-  let {isAuthenticated, currentRoute} = props
+  let {isAuthenticated, currentRoute, user} = props
   const [dropDownVisible , isDropDownVisible] =  useState(false)
   const [profileVisible , isProfileVisible] =  useState(false)
 
@@ -32,6 +32,7 @@ import { withRouter } from "react-router-dom";
   )
 
   if(isAuthenticated){
+    let profile_image = user.profile_image
     sideLoginPanel = (   
     <div className="ml-auto flex">
       <div className="self-center pl-4 pr-6 hover:bg-gray-200 cursor-pointer py-2 ml-2">
@@ -43,7 +44,7 @@ import { withRouter } from "react-router-dom";
       className="md:w-12 md:h-12 w-12 h-12 self-center relative ml-2">
         <img 
         className="w-full h-full rounded-full border-white border-2 shadow-lg cursor-pointer"
-        src="https://hashnode.imgix.net/res/hashnode/image/upload/v1584181566095/yFdLG8gjE.png?w=200&h=200&fit=crop&crop=faces&auto=format&q=60" 
+        src={profile_image} 
         alt="profile_image"/>
         <div 
           className={`w-48 absolute appbar-drop-down border border-gray-400 rounded shadow-lg z-10 bg-white app-bar-dropdown-right ${profileVisible ? '' : 'hidden'}`}>
@@ -172,12 +173,14 @@ import { withRouter } from "react-router-dom";
 }
 
 AppBar.propTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   logout: PropTypes.func.isRequired,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
 });
 
 export default connect(mapStateToProps, {logout})(withRouter(AppBar));

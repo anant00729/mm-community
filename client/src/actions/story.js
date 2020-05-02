@@ -11,7 +11,8 @@ import {
   POSTER_IMAGE_LOADING,
   ADD_STORY_IMAGE,
   STORY_IMAGE_LOADING,
-  STORY_IMAGE_FAILED
+  STORY_IMAGE_FAILED,
+  GET_POPULAR_STORY
  } from './types';
 import { setAlert } from './alert'
 
@@ -152,3 +153,34 @@ export const uploadImage = (file,type,index) => async dispatch => {
     dispatch({type: STORY_IMAGE_FAILED});
   }
 };
+
+
+export const getAllStories = () => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const obj = {
+      isForUser: true
+    }
+    const body = JSON.stringify(obj);
+    const res = await axios.post('/v1/story/getAllStories', body , config);
+    const res_d = res.data
+
+    if(res_d.status){
+      dispatch({
+        type: GET_POPULAR_STORY,
+        payload: res_d.data
+      });
+      
+      
+      //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
+    }else {
+      dispatch(setAlert(res_d.message, 'red'))
+    }
+  } catch (err) {
+    dispatch(setAlert(err.message, 'red'))
+  }
+}
