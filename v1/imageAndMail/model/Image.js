@@ -40,11 +40,12 @@ class Image{
   }
 
   async updateImageByURL(image_path, finalized){
-    let q1 = `UPDATE public.image
-    SET finalized=(:finalized)
-    WHERE image_path=(:image_path);`
+    let q1 = `
+    UPDATE public.image
+     SET finalized = (:finalized)
+     WHERE ${image_path}`
     try {
-        let res_d = await db.query(q1,{ replacements : {  finalized, image_path } })
+        let res_d = await db.query(q1,{replacements : {finalized}})
         if(res_d[0].length === 0){
           return { status : false , message : 'Image not updated'  }
         }else {
@@ -54,5 +55,10 @@ class Image{
         return { status : false , message : error.message }
       }
   }
+
+  async finalizeImage(){
+    
+  }
+
 }
 module.exports = Image

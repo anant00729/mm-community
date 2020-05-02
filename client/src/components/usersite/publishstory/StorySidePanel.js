@@ -5,9 +5,11 @@ import close_black from '../../../../src/app_images/close_black.svg'
 import "react-datepicker/dist/react-datepicker.css";
 import {connect} from 'react-redux'
 import { setAlert } from '../../../actions/alert';
+import {uploadImageBanner} from '../../../actions/story'
+import {IMAGE_BASE_URL} from '../../utils/constants';
 
-
-function StorySidePanel({inBetween,
+function StorySidePanel({
+  inBetween,
   onAddOrRemoveAt, 
   setInBetween, 
   publishStory, 
@@ -19,19 +21,21 @@ function StorySidePanel({inBetween,
   setPublishDate,
   dateVisible, 
   isDateVisible,
-  setAlert
+  setAlert,
+  uploadImageBanner,
+  posterImage
 }) {
   let [coverImageVisible, setCoverImageVisible] = useState(0);
   const [tagVisible, isTagImageVisible] = useState(false);
   const [tags, setTags] = useState('');
+  const POSTER_IMAGE = 'story_poster_image'
 
   const onBannerUpdate = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
-      reader.addEventListener('load', () => {
-        setBannerImg(reader.result)
-      });
+      // Upload Image here
+      uploadImageBanner(e.target.files[0], POSTER_IMAGE)
     }
   }
 
@@ -97,10 +101,12 @@ function StorySidePanel({inBetween,
     break;
     case 1:
       coverImageVisible = (
-        <div className="shadow mt-2 text-center py-4 text-black rounded upload-btn-wrapper w-full">
+        <div className="shadow mt-2 text-center py-8 text-black rounded upload-btn-wrapper w-full flex flex-col content-center">
           <i className="fa fa-cloud-upload text-2xl"></i>
-          <p className="text-lg">SELECT AN IMAGE</p>
-          <input type="file" accept="image/*" 
+          <p className="text-lg self-center">SELECT AN IMAGE</p>
+          <input 
+          className="h-full w-full"
+          type="file" accept="image/*" 
             onChange={(e) => {setCoverImageVisible(2);onBannerUpdate(e);}}/>
         </div>
       )
@@ -110,8 +116,7 @@ function StorySidePanel({inBetween,
         <div className="relative mt-4">
           <img 
           className="post-cover bg-cover bg-center mx-auto rounded shadow"
-          src={bannerImg} alt="banner_image"/>
-  
+          src={`${IMAGE_BASE_URL}${posterImage.image}`} alt="banner_image"/>
           <div 
           onClick={() => setCoverImageVisible(0)}
           className="absolute bg-white rounded-full w-6 h-6 text-center ic_close shadow border-2 border-white cursor-pointer">
@@ -121,6 +126,17 @@ function StorySidePanel({inBetween,
       )
     break;
   }
+
+
+
+  if(posterImage.loading){
+    coverImageVisible = (
+      <div className="bg-blue-500 mt-4 w-full h-40 animate text-center flex">
+        <p className="self-center w-full">Uploading Image...</p>
+      </div>
+      )
+  }
+
   
   return (
     <>
@@ -249,7 +265,12 @@ function StorySidePanel({inBetween,
 
 
 const allActions = {
-  setAlert
+  setAlert, uploadImageBanner
 }
 
-export default connect(null, allActions)(StorySidePanel);
+const mapStateToProps = state => ({
+  posterImage: state.story.posterImage
+});
+
+
+export default connect(mapStateToProps, allActions)(StorySidePanel);

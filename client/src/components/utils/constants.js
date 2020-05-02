@@ -15,3 +15,6 @@ export const ALL_STORIES_ROUTE = '/stories'
 export const ALL_DISCUSSIONS = '/discussions'
 export const SHOW_STORY = '/show-story'
 
+
+export const IMAGE_BASE_URL = 'https://mm-blog-community.s3.ap-south-1.amazonaws.com/'
+

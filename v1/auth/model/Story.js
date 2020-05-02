@@ -76,6 +76,37 @@ class Story {
         return { status : false , message : error.message }
       }
   }
+
+  async findStoryByBannerImage(cover_image){
+    let q1 = `SELECT 
+      *
+      from story WHERE cover_image = (:cover_image)`
+    try {
+        let res_d = await db.query(q1,{ replacements : { cover_image } })
+        if(res_d[0].length === 0){
+          return { status : true }
+        }else {
+          return { status : false, message : 'Story aleady added' }
+        }
+      } catch (error) {
+        return { status : false , message : error.message }
+      }
+  }
+
+  async findStoryAllStories(pageLimit = 15, pageNumber = 1){
+    let skipCount = pageLimit * (pageNumber - 1)
+    let q1 = `SELECT * FROM public.story LIMIT (:pageLimit) OFFSET (:skipCount);`
+    try {
+        let res_d = await db.query(q1,{replacements : {pageLimit, skipCount}})
+        if(res_d[0].length === 0){
+          return { status : false , message : 'Stories not Found'  }
+        }else {
+          return { status : true , message : 'Stories Found' , data : res_d[0] }
+        }
+      } catch (error) {
+        return { status : false , message : error.message }
+      }
+  }
 }
 
 module.exports = Story

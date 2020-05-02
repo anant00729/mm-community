@@ -42,7 +42,7 @@ exports.register = async (req,res) => {
     const password = req.body.password || ''
     const social_user_type = 'WEB'
     const type = 'student'
-    const profile_image = ''
+    const profile_image = `https://api.adorable.io/avatars/${email}`
     const user_active = 1
     const created_at = date
     const updated_at = date

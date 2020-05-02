@@ -21,35 +21,34 @@ exports.addStory = async (req,res) => {
   const user_id = req.user.user_id || ''
   const story_status = req.body.story_status || -1
 
+  let story = new Story()
+  let storyExist = await story.findStoryByBannerImage(cover_image.image)
+  if(!storyExist.status){
+    res.json(storyExist)
+    return
+  }
+
   const imageObj = new Image()
+  let imgUrls = content.reduce((acc, cur) => {
+    return acc += cur.selectType == 'Image' ? `image_path = '${cur.input}' OR ` : acc
+  },'')
+  imgUrls += `image_path = '${cover_image.image}'`
+  imageObj.updateImageByURL(imgUrls, 1)
 
-  let imgUrls = content.filter(c=> {
-    if(c.selectType === 'Image'){
-      return c.input
-    }
-  })
-  imgUrls.push(cover_image)
-  console.log('imgUrls :>> ', imgUrls);
-  // for (const c of content ) {
-    
-  // }
-  //imageObj.updateImageByURL()
-
-
-  // let story = new Story()
-  // let storyStatus = await story.addStory(
-  //   title,
-  //   content,
-  //   cover_image,
-  //   visit_count,
-  //   read_time,
-  //   created_at,
-  //   updated_at,
-  //   user_id,
-  //   story_status,
-  //   like_count
-  // )
-  // res.json(storyStatus)  
+  
+  let storyStatus = await story.addStory(
+    title,
+    content,
+    cover_image.image,
+    visit_count,
+    read_time,
+    created_at,
+    updated_at,
+    user_id,
+    story_status,
+    like_count
+  )
+  res.json(storyStatus)  
 }
 
 
@@ -62,6 +61,18 @@ exports.getStory = async (req,res) => {
   const storyId = req.body.storyId || ''
   let story = new Story()
   let storyStatus = await story.findStoryByStoryId(storyId)
+  res.json(storyStatus)  
+}
+
+
+/* 
+ * @route  v1/auth/getAllStories 
+ * @type   POST 
+ * @access public
+ */
+exports.getAllStories = async (req,res) => {
+  let story = new Story()
+  let storyStatus = await story.findStoryAllStories()
   res.json(storyStatus)  
 }
 

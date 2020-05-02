@@ -1,4 +1,5 @@
 import React from 'react'
+import {IMAGE_BASE_URL} from '../../utils/constants';
 
 
 const StoryTemplateCell = ({story, index, inputChannelCell, updateDropDownCell, removeImageContent, removeStoryCell, onFileUpdate}) => {
@@ -27,11 +28,20 @@ const StoryTemplateCell = ({story, index, inputChannelCell, updateDropDownCell, 
                 accept="image/x-png,image/gif,image/jpeg"
                 multiple={false}
                 className="h-64 mx-auto mt-4 object-contain"
-                src={story.input} alt="image_logo"/>
+                src={`${IMAGE_BASE_URL}${story.input}`} alt="image_logo"/>
               </div>
             )}
           </div>
         )
+
+        if(story.loading){
+          bottomWidget = (
+            <div className="bg-blue-500 mt-4 w-full h-40 animate text-center flex text-gray-500">
+              <p className="self-center w-full">Uploading Image...</p>
+            </div>
+          )
+        }
+
         break;
       case "Quote":
       case "Point":

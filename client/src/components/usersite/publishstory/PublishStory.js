@@ -14,13 +14,14 @@ import StorySidePanel from './StorySidePanel';
 import StoryTopPanel from './StoryTopPanel';
 import StoryTopBar from './StoryTopBar';
 import StoryPreview from './preview/StoryPreview';
-import {callInsertStory} from '../../../actions/story'
+import {callInsertStory, uploadImage} from '../../../actions/story'
 
 
 
 const PublishStory = ({
   setAlert, isAuthenticated , history , logout, token, callInsertStory,
-  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, singleStory
+  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, singleStory, 
+  uploadImage, posterImage
 }) => {
   
   const [title, setTitle] = useState('')
@@ -30,6 +31,7 @@ const PublishStory = ({
   const [tabIndex , setTabIndex] = useState(0)
   const [tagArray, setTagArray] = useState([]);
   let [bannerImg , setBannerImg] = useState('')
+  const STORY_IMAGE = 'story_image'
 
   const [publishDate, setPublishDate] = useState(new Date());
   const [dateVisible, isDateVisible] = useState(false);
@@ -55,7 +57,7 @@ const PublishStory = ({
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
-      reader.addEventListener('load', () => {inputChannelCell({iValue : reader.result, itemIndex : index})});
+      uploadImage(e.target.files[0], STORY_IMAGE, index)
     }
   }
 
@@ -90,9 +92,7 @@ const PublishStory = ({
   else if (tagArray.length === 0){
     setAlert('Please add tags for the story' , 'red')
   }
-  else if(
-    //bannerImg.includes('base64') || 
-    bannerImg.length === 0){
+  else if(posterImage.length === 0){
     setAlert('Please add a banner image for the story' , 'red')
   }
   else if(!dateVisible){
@@ -102,7 +102,7 @@ const PublishStory = ({
     let publishStoryObj = {
       title,
       content : singleStory,
-      cover_image : 'asdasd',
+      cover_image : posterImage,
       tags : tagArray,
       updated_at : publishDate ,
       story_status : 0,
@@ -216,11 +216,12 @@ const mapStateToProps = state => ({
   callInsertStory: PropTypes.func.isRequired,
   isAuthenticated: state.auth.isAuthenticated,
   singleStory : state.story.singleStory,
-  token : state.auth.token
+  token : state.auth.token,
+  posterImage: state.story.posterImage
 });
 
 const allActions = {
-  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, logout, setAlert, callInsertStory
+  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, logout, setAlert, callInsertStory, uploadImage
 }
 
 export default connect(mapStateToProps, allActions)(withRouter(PublishStory));

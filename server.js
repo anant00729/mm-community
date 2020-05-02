@@ -25,6 +25,11 @@ app.use('/v1/mail', require('./v1/imageAndMail/routes/mailRoute'))
 
 app.use(express.static('public/build'));
 app.use(express.static('public'));
+
+app.get('/test', (req , res) => {
+   
+})
+
 app.get('*', (req,res)=> {
     res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))
 })

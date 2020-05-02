@@ -5,7 +5,13 @@ import {
   REMOVE_STORY_CELL,
   UPDATE_DROPDOWN_CELL,
   INPUT_CHANGE_CELL,
-  PUBLISH_STORY
+  PUBLISH_STORY,
+  ADD_POSTER_IMAGE,
+  POSTER_IMAGE_FAILED,
+  POSTER_IMAGE_LOADING,
+  ADD_STORY_IMAGE,
+  STORY_IMAGE_LOADING,
+  STORY_IMAGE_FAILED
  } from './types';
 import { setAlert } from './alert'
 
@@ -71,7 +77,7 @@ export const callInsertStory = (obj) => async dispatch => {
         type: PUBLISH_STORY,
         payload: res_d
       });
-      //dispatch(setAlert(res_d.data, 'green'))
+      dispatch(setAlert(res_d.data, 'green'))
     }else {
       dispatch(setAlert(res_d.message, 'red'))
     }
@@ -82,27 +88,67 @@ export const callInsertStory = (obj) => async dispatch => {
 
 
 
-export const uploadImage = (image, type) => async dispatch => {
+export const uploadImageBanner = (file,type) => async dispatch => {
+
   try {
+    dispatch({type : POSTER_IMAGE_LOADING})
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data'
       }
     };
-    const body = JSON.stringify({image, type});
-    const res = await axios.post('/v1/story/addStory', body , config);
+    const formData = new FormData()
+    formData.append('image', file)
+    formData.append('type', type)
+    const res = await axios.post('/v1/image/uploadImage', formData, config);
     const res_d = res.data
 
     if(res_d.status){
       dispatch({
-        type: PUBLISH_STORY,
-        payload: res_d
+        type: ADD_POSTER_IMAGE,
+        payload: res_d.image_path
       });
-      //dispatch(setAlert(res_d.data, 'green'))
     }else {
       dispatch(setAlert(res_d.message, 'red'))
+      dispatch({type: POSTER_IMAGE_FAILED});
     }
   } catch (err) {
     dispatch(setAlert(err.message, 'red'))
+    dispatch({type: POSTER_IMAGE_FAILED});
+  }
+};
+
+
+
+export const uploadImage = (file,type,index) => async dispatch => {
+
+  try {
+    dispatch({type : STORY_IMAGE_LOADING, payload : index})
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    };
+    const formData = new FormData()
+    formData.append('image', file)
+    formData.append('type', type)
+    const res = await axios.post('/v1/image/uploadImage', formData, config);
+    let res_d = res.data
+    res_d.index = index
+
+    console.log('res_d.index :>> ', res_d);
+
+    if(res_d.status){
+      dispatch({
+        type: ADD_STORY_IMAGE,
+        payload: res_d
+      });
+    }else {
+      dispatch(setAlert(res_d.message, 'red'))
+      dispatch({type: STORY_IMAGE_FAILED});
+    }
+  } catch (err) {
+    dispatch(setAlert(err.message, 'red'))
+    dispatch({type: STORY_IMAGE_FAILED});
   }
 };

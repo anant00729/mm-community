@@ -1,5 +1,5 @@
 const express = require('express')
-const { addStory, getStory } = require('../controller/storyController')
+const { addStory, getStory, getAllStories } = require('../controller/storyController')
 const { authorizeUser } = require('../../middleware/CheckUserPresent')
 const _r = express.Router()
 
@@ -8,6 +8,7 @@ const _r = express.Router()
  */
 _r.post('/addStory', authorizeUser , addStory)
 _r.post('/getStory',  getStory)
+_r.get('/getAllStories',  getAllStories)
 
 
 

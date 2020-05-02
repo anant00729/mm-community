@@ -126,3 +126,10 @@ Please find below my observations on the VDs.
  
 @Anant Awasthy, @Prasanta Kumar Sahu, @Pramod Patil, @mayanks Please comment if you need any additional clarifications other than these.
  
+
+
+ UPDATE public.image
+	SET finalized = 1
+	WHERE image_path = 'BhbE1QUaFDXQHHut1kSa3L5WhDFPyr.png' OR
+			image_path = '7fa0PdxjRoUL6QvmpI3DLvBpkIN31D.png' OR 
+			image_path = 'qhqHIhAc4Pur2omUBieAOsIqT0hS7R.png';

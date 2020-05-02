@@ -35,11 +35,26 @@ let uploadS3 = multer({
       cb(null, {fieldName : file.fieldname })
     },
     key : (req , file , cb ) => {
-      cb(null, new Date ().toISOString() + file.originalname)
+      let nameArr = file.originalname.split('.')
+      if(nameArr.length > 0){
+        let fileType = nameArr[nameArr.length - 1]
+        cb(null, `${makeid(30)}.${fileType}`)
+      }
     },
     contentType : multerS3.AUTO_CONTENT_TYPE
   })
 })
+
+
+let makeid = (length) => {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+} 
 
 
 module.exports = uploadS3;
