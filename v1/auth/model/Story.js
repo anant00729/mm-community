@@ -62,14 +62,17 @@ class Story {
 
 
   async findStoryByStoryId(storyId){
-    let q1 = `SELECT 
-      *
-      from story WHERE id = (:id)`
+    let q1 = `SELECT
+    *
+    FROM
+    public.story a 
+    INNER JOIN public.user u ON a.user_id = u.id WHERE a.id = (:id)`
     try {
         let res_d = await db.query(q1,{ replacements : { id : storyId } })
         if(res_d[0].length === 0){
           return { status : false , message : 'Story not Found'  }
         }else {
+          delete res_d[0][0].password
           return { status : true , message : 'Story Found' , data : res_d[0][0] }
         }
       } catch (error) {
@@ -95,14 +98,12 @@ class Story {
 
   async findStoryAllStories(isForUser , pageLimit = 15, pageNumber = 1){
     let skipCount = pageLimit * (pageNumber - 1)
-
-
     
     let q1 = `SELECT
-    *
-    FROM
-    public.story a
-    INNER JOIN public.user u ON  a.user_id = u.id LIMIT (:pageLimit) OFFSET (:skipCount);`
+      *
+      FROM
+      public.story a 
+      INNER JOIN public.user u ON a.user_id = u.id ORDER BY a.id DESC LIMIT (:pageLimit) OFFSET (:skipCount);`
     try {
         let res_d = await db.query(q1,{replacements : {pageLimit, skipCount}})
         if(res_d[0].length === 0){

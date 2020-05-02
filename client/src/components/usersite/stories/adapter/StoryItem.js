@@ -16,7 +16,7 @@ function StoryItem({type, popularStoryList, getAllStories}) {
   }else {
     return (
       <ul>
-        {popularStoryList.map(story=> {
+        {popularStoryList.map((story, index)=> {
           let para = story.content.find(s=> s.selectType === "Paragraph")
           let title = story.title
           let profile_image = story.profile_image
@@ -31,14 +31,14 @@ function StoryItem({type, popularStoryList, getAllStories}) {
           
           return (
             <li 
-            key={story.id}
+            key={index}
             className="bg-white rounded mt-4 p-4 cursor-pointer">
               <div className="flex">
                 <img 
                 className="w-12 h-12 rounded-full border-gray-200 border-2"
                 src={profile_image}
                 alt="profile_image"/>
-                <p className="self-center ml-3 text-sm font-semibold md:text-base">Domenico Solazzo's blog</p>
+                <p className="self-center ml-3 text-sm font-semibold md:text-base">{story.name}'s blog</p>
               </div>
               <div className="md:flex mt-4">
                 <div className="md:w-3/4 w-full mr-4">

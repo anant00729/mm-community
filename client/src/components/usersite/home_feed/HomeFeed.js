@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import {HOME_ROUTE} from '../../utils/constants';
 import { connect } from 'react-redux';
@@ -8,6 +8,11 @@ import {CREATE_STORY_ROUTE} from '../../utils/constants';
 
 const HomeFeed = ({isAuthenticated}) => {
   const [menuHidden , setMenuHidden] = useState(true)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   if(!isAuthenticated){
     return <Redirect to={HOME_ROUTE}/>;
   }

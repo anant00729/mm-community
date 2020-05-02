@@ -18,3 +18,12 @@ export const SHOW_STORY = '/show-story'
 
 export const IMAGE_BASE_URL = 'https://mm-blog-community.s3.ap-south-1.amazonaws.com/'
 
+
+export const PARAGRAPH = 'Paragraph'
+export const IMAGE = 'Image'
+export const QUOTE = 'Quote'
+export const SUBTITLE = 'Subtitle'
+export const POINT = 'Point'
+
+ 
+

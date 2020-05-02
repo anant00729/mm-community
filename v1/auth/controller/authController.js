@@ -125,3 +125,19 @@ exports.logout = async (req,res) => {
 
 
 
+/* 
+ * @route  v1/auth/getAllUsers 
+ * @type   POST 
+ * @access public
+ */
+exports.getAllUsers = async (req,res) => {
+  const type = req.body.type || ''
+  let user = new User()
+  let userResponse = await user.getAllUsers()
+  res.json(userResponse)
+}
+
+
+
+
+

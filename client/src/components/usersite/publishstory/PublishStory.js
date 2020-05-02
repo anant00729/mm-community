@@ -14,14 +14,14 @@ import StorySidePanel from './StorySidePanel';
 import StoryTopPanel from './StoryTopPanel';
 import StoryTopBar from './StoryTopBar';
 import StoryPreview from './preview/StoryPreview';
-import {callInsertStory, uploadImage} from '../../../actions/story'
+import {callInsertStory, uploadImage, clearStoryContent} from '../../../actions/story'
 
 
 
 const PublishStory = ({
   setAlert, isAuthenticated , history , logout, token, callInsertStory,
   addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, singleStory, 
-  uploadImage, posterImage, user
+  uploadImage, posterImage, user, clearStoryContent
 }) => {
   
   const [title, setTitle] = useState('')
@@ -40,6 +40,10 @@ const PublishStory = ({
     const rows = Math.floor(title.length / 55) + 1
     setTitleHeight(rows)
   }, [title])
+
+  useEffect(() => {
+    clearStoryContent()
+  }, []) 
 
 
   useEffect(()=> {
@@ -103,7 +107,7 @@ const PublishStory = ({
       story_status : 0,
       token
     }
-    callInsertStory(publishStoryObj)
+    callInsertStory(publishStoryObj, history)
   }
  }
   
@@ -211,6 +215,7 @@ PublishStory.propTypes = {
 const mapStateToProps = state => ({
   logout: PropTypes.func.isRequired,
   callInsertStory: PropTypes.func.isRequired,
+  clearStoryContent : PropTypes.func.isRequired,
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
   singleStory : state.story.singleStory,
@@ -219,7 +224,9 @@ const mapStateToProps = state => ({
 });
 
 const allActions = {
-  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, logout, setAlert, callInsertStory, uploadImage
+  addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, 
+  inputChannelCell, logout, setAlert, callInsertStory, uploadImage, 
+  clearStoryContent
 }
 
 export default connect(mapStateToProps, allActions)(withRouter(PublishStory));

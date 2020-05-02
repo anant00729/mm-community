@@ -7,6 +7,9 @@ import PropTypes from 'prop-types';
 
 
 const Stories = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   
   return (
     <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
@@ -46,9 +49,7 @@ const Stories = () => {
           {/* Story List Section */}
           {/* <div className="mx-auto loader mt-56"></div> */}
           {/* {storyList} */}
-          <StoryItem
-
-          />
+          <StoryItem/>
           
 
         </div>

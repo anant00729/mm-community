@@ -1,27 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import membersBanner from '../../../app_images/members-img-1.png'
+import MemberItem from './adapter/MemberItem'
 
 export const Members = () => {
 
-
-  let memeberList = []
-
-  for(let i = 0 ; i < 20 ; ++ i){
-      memeberList.push(
-        <div key= {i} className="md:w-1/3 w-1/2 px-2 mt-4">
-          <div className="rounded bg-white text-center py-6">
-            <img 
-                className="w-20 h-20 rounded-full mx-auto"
-                src="https://hashnode.imgix.net/res/hashnode/image/upload/v1584181566095/yFdLG8gjE.png?w=200&h=200&fit=crop&crop=faces&auto=format&q=60" 
-                alt="profile_image"/>
-            <p className="font-sen text-md font-bold mt-4">Bolaji Ayodeji</p>
-            <p className="font-sen text-gray-700">Dev Evangelist, Outreach at Hashnode</p>
-            <p className="font-sen mt-1">Joined: <strong>May 17, 2019</strong></p>
-          </div>
-        </div>
-      )
-  }
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
@@ -60,7 +45,9 @@ export const Members = () => {
           {/* Story List Section */}
           <div className="">
             <div className="flex -mx-2 flex-wrap">
-              {memeberList}
+              {
+                <MemberItem/>
+              }
             </div>
           </div>
 

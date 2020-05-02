@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import aboutImg1 from '../../../app_images/about-img-1.png'
 
 export const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div>
       <div className="md:flex md:flex-wrap justify-center d-block h-screen">

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import { Link, Redirect } from 'react-router-dom';
 import {CREATE_STORY_ROUTE} from '../../utils/constants';
 
 const Discussion = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const storyList = []
 

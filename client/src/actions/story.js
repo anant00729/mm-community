@@ -12,8 +12,13 @@ import {
   ADD_STORY_IMAGE,
   STORY_IMAGE_LOADING,
   STORY_IMAGE_FAILED,
-  GET_POPULAR_STORY
+  GET_POPULAR_STORY,
+  CLEAR_STORY_CONTENT,
+  GET_STORY_BY_ID
  } from './types';
+
+ import {ALL_STORIES_ROUTE} from '../components/utils/constants'
+
 import { setAlert } from './alert'
 
 
@@ -60,9 +65,16 @@ export const inputChannelCell = (obj) => async dispatch => {
   });
 };
 
+export const clearStoryContent = () => async dispatch => {
+  dispatch({
+    type : CLEAR_STORY_CONTENT, 
+    payload : ''
+  })
+}
 
 
-export const callInsertStory = (obj) => async dispatch => {
+
+export const callInsertStory = (obj, history) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -78,7 +90,8 @@ export const callInsertStory = (obj) => async dispatch => {
         type: PUBLISH_STORY,
         payload: res_d
       });
-      dispatch(setAlert(res_d.data, 'green'))
+      dispatch(setAlert('Story Published', 'green'))
+      history.push(ALL_STORIES_ROUTE)
     }else {
       dispatch(setAlert(res_d.message, 'red'))
     }
@@ -174,13 +187,42 @@ export const getAllStories = () => async dispatch => {
         type: GET_POPULAR_STORY,
         payload: res_d.data
       });
-      
-      
       //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
     }else {
+      console.log('else  :>> ');
       dispatch(setAlert(res_d.message, 'red'))
     }
   } catch (err) {
+    console.log('catch');
+    dispatch(setAlert(err.message, 'red'))
+  }
+}
+
+
+export const getStoryById = (storyId) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    
+    const body = JSON.stringify({storyId});
+    const res = await axios.post('/v1/story/getStory', body , config);
+    const res_d = res.data
+
+    if(res_d.status){
+      dispatch({
+        type: GET_STORY_BY_ID,
+        payload: res_d.data
+      });
+      //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
+    }else {
+      console.log('else  :>> ');
+      dispatch(setAlert(res_d.message, 'red'))
+    }
+  } catch (err) {
+    console.log('catch');
     dispatch(setAlert(err.message, 'red'))
   }
 }

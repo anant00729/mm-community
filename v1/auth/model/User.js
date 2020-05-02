@@ -120,6 +120,21 @@ class User {
       return { status : false , message : error.message }
     }
   }
+
+  async getAllUsers(){
+    let q1 = `SELECT * from public."user"`
+    try {
+        let res_d = await db.query(q1)
+        if(res_d[0].length === 0){
+          return { status : false , message : 'User not Found'  }
+        }else {
+          return { status : true , message : 'User Found' , data : res_d[0] }
+        }
+        
+      } catch (error) {
+        return { status : false , message : error.message }
+      }
+  }
 }
 
 module.exports = User

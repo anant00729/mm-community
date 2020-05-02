@@ -10,7 +10,9 @@ import {
   ADD_STORY_IMAGE,
   STORY_IMAGE_LOADING,
   STORY_IMAGE_FAILED,
-  GET_POPULAR_STORY
+  GET_POPULAR_STORY,
+  CLEAR_STORY_CONTENT,
+  GET_STORY_BY_ID
 } from '../actions/types';
 
 
@@ -24,50 +26,10 @@ const initialState = {
   popularStoryList : [],
   featuredStoryList : [],
   recentStoryList : [],
-  singleStory: [
-    // {
-    //   id: '1',
-    //   selectType : 'Paragraph',
-    //   input : 'anant'
-    // },
-    // {
-    //   id: '10',
-    //   selectType : 'Image',
-    //   input : 'https://cdn.hashnode.com/res/hashnode/image/upload/v1587368646362/imngKh2-Q.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=format&q=60'
-    // },
-    // {
-    //   id: '1',
-    //   selectType : 'Paragraph',
-    //   input : 'asdasddadas'
-    // },
-    // {
-    //   id: '2',
-    //   selectType : 'Quote',
-    //   input : 'asdasddadas'
-    // },
-    // {
-    //   id: '3',
-    //   selectType : 'Image',
-    //   input : 'https://2.bp.blogspot.com/-iNIWqYfZGVM/TxWQVXH-tQI/AAAAAAAALoM/f00JzI3GRWA/s1600/Hanuman-Powerful+wallpapers+%25285%2529.jpg'
-    // },
-    // {
-    //   id: '4',
-    //   selectType : 'Point',
-    //   input : 'asdasddadas'
-    // },
-    // {
-    //   id: '5',
-    //   selectType : 'Subtitle',
-    //   input : 'asdasddadas'
-    // },
-    // {
-    //   id: '6',
-    //   selectType : 'Subtitle',
-    //   input : 'asdasddadas'
-    // }
-  ],
+  singleStory: [],
   loading: true,
-  error: {}
+  error: {},
+  showStoryById : {}
 };
 
 export default function(state = initialState, action) {
@@ -173,6 +135,27 @@ export default function(state = initialState, action) {
       return {
         ...state,
         popularStoryList : payload
+      }  
+
+    case CLEAR_STORY_CONTENT:
+      return {
+        ...state, 
+        posterImage : {
+          image : '',
+          loading : false
+        },
+        popularStoryList : [],
+        featuredStoryList : [],
+        recentStoryList : [],
+        singleStory: [],
+        loading: true,
+        error: {}
+      }  
+
+    case GET_STORY_BY_ID: 
+      return {
+        ...state, 
+        showStoryById : payload
       }  
     default:
       return state;
