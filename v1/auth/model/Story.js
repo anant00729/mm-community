@@ -100,7 +100,13 @@ class Story {
     let skipCount = pageLimit * (pageNumber - 1)
     
     let q1 = `SELECT
-      *
+      a.id,
+      a.user_id,
+      u.name,
+      u.profile_image,
+      a.title,
+      a.content,
+      a.cover_image
       FROM
       public.story a 
       INNER JOIN public.user u ON a.user_id = u.id ORDER BY a.id DESC LIMIT (:pageLimit) OFFSET (:skipCount);`

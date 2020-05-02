@@ -14,13 +14,11 @@ import {
 } from '../../utils/constants'
 
 
-const ShowStory = ({getStoryById, showStoryById}) => {
-  useEffect(()=> {
-    getStoryById(38)
-  }, [])
-
-
-  console.log('showStoryById :>> ', showStoryById);
+const ShowStory = ({getStoryById, showStoryById, match}) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    getStoryById(match.params.id);
+  }, [getStoryById, match.params.id]);
   let {cover_image , title , profile_image, name , content } = showStoryById
 
   let contentJSX = []
@@ -62,34 +60,29 @@ const ShowStory = ({getStoryById, showStoryById}) => {
   return (
     <div className="px-2">
       <div className="md:w-2/3 mx-auto">
+        <h1 className="text-4xl font-sen font-bold">
+          {title}
+        </h1>
+        <div className="flex">
+          <div className="w-full flex flex-wrap py-4">
+            <img 
+            className="w-14 h-14 rounded-full cursor-pointer"
+            src={`${profile_image}`} 
+            alt="profile_image"/>
+            <p className="self-center ml-4">{`${name} published a story Apr 17`}</p>
+          </div>
+        </div>
+      </div>
+      <div className="md:w-2/3 mx-auto">
         <img className="post-cover bg-cover bg-center mx-auto" 
         src={`${IMAGE_BASE_URL}${cover_image}`}
         />
       </div>
       
       <div className="flex -mx-2 justify-center mt-4">
-        <div className="w-1/6 px-2 hidden">
-          {/* <div className="bg-gray-400 h-12"></div> */}
-        </div>
         <div className="w-full md:w-4/6 px-2">
-          <div className="">
-            <h1 className="text-4xl font-sen font-bold">
-            {title}
-            </h1>
-            <div className="flex">
-              <div className="w-full flex flex-wrap py-4">
-                <img 
-                className="w-14 h-14 rounded-full cursor-pointer"
-                src={`${profile_image}`} 
-                alt="profile_image"/>
-                <p className="self-center ml-4">{`${name} published a story Apr 17`}</p>
-              </div>
-            </div>
-          </div>
-          <div>
-              {/* Paragraph , Image , Quote , Subtitle , Point */}
-              {contentJSX}            
-          </div>
+          {/* Paragraph , Image , Quote , Subtitle , Point */}
+          {contentJSX}            
         </div>
         <div className="w-1/6 px-2 hidden">
           {/* <div className="bg-gray-400 h-12">

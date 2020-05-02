@@ -1,19 +1,52 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import mainHomeImg from '../../../app_images/main-home-img.png'
 import imageOne from '../../../app_images/main-home-i1.png'
 import imageTwo from '../../../app_images/main-home-i2.png'
 import imageThree from '../../../app_images/main-home-i3.png'
 import { Link, Redirect } from 'react-router-dom';
-import {REGISTER_ROUTE, LOGIN_ROUTE, HOME_FEED_ROUTE} from '../../utils/constants';
+import {REGISTER_ROUTE, LOGIN_ROUTE, HOME_FEED_ROUTE, IMAGE_BASE_URL} from '../../utils/constants';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {getAllStories} from '../../../actions/story'
 
 
-const GuestHome = ({isAuthenticated}) => {
+
+
+const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
+
+  useEffect(() => {getAllStories()}, [])
  
   if (isAuthenticated) {
     return <Redirect to={HOME_FEED_ROUTE}/>;
   }
+
+  let popularStoryListJSX = popularStoryList.map((story, index) => {
+    let para = story.content.find(s=> s.selectType === "Paragraph")
+    let { title , cover_image , id } = story
+    if(para){
+      if(para.input.length > 300){
+        para.input = `${para.input.substring(1, 300)}...`;
+      }
+    }
+    return (
+      <div
+      key={index}
+       className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
+         <Link to={`/show-story/${id}`}>
+          <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
+            <div 
+              className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
+              style={{backgroundImage : `url(${IMAGE_BASE_URL}${cover_image})`}}
+              alt=""/>
+              <div className="py-2 px-4">
+                <p className="font-sen text-black text-xl md:text-2xl font-medium">{title}</p>
+                <p className="text-gray-700">{para.input}</p>
+              </div>
+            </div>
+          </Link>
+      </div>
+    )
+  })
 
   return (
     <div>
@@ -82,79 +115,8 @@ const GuestHome = ({isAuthenticated}) => {
         <div className="mt-2">
           <p className="text-gray-600 font-sen text-sm md:text-lg font-medium tracking-wide mt-16">DEVELOPER STORIES</p>
           <p className="font-sen text-black text-3xl md:text-4xl">Trending developer stories on StudyNode</p>
-          <div className="md:flex md:flex-wrap md:justify-between mt-8">
-          <div className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
-            <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
-                <div 
-                  className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
-                  style={{backgroundImage : `url(${"https://www.apple.com/v/iphone/home/af/images/overview/hero/hero_iphone11_pro_alt__f7h0mlyexoya_large_2x.jpg"})`}}
-                  alt=""/>
-                  <div className="py-2 px-4">
-                    <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>
-                    <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
-                  </div>
-            </div>
-          </div>
-          <div className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
-            <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
-                <div 
-                  className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
-                  style={{backgroundImage : `url(${"https://hashnode.imgix.net/res/hashnode/image/upload/v1585661908456/Q9PJQ8PyF.png?w=800&auto=format&q=60"})`}}
-                  alt=""/>
-                  <div className="py-2 px-4">
-                    <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>
-                    <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
-                  </div>
-            </div>
-          </div>
-          <div className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
-            <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
-                <div 
-                  className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
-                  style={{backgroundImage : `url(${"https://hashnode.imgix.net/res/hashnode/image/upload/v1585661908456/Q9PJQ8PyF.png?w=800&auto=format&q=60"})`}}
-                  alt=""/>
-                  <div className="py-2 px-4">
-                    <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>
-                    <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
-                  </div>
-            </div>
-          </div>
-          <div className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
-            <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
-                <div 
-                  className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
-                  style={{backgroundImage : `url(${"https://hashnode.imgix.net/res/hashnode/image/upload/v1585661908456/Q9PJQ8PyF.png?w=800&auto=format&q=60"})`}}
-                  alt=""/>
-                  <div className="py-2 px-4">
-                    <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>
-                    <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
-                  </div>
-            </div>
-          </div>
-          <div className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
-            <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
-                <div 
-                  className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
-                  style={{backgroundImage : `url(${"https://www.apple.com/v/iphone/home/af/images/overview/hero/hero_iphone11_alt__felxve0k6euu_large_2x.jpg"})`}}
-                  alt=""/>
-                  <div className="py-2 px-4">
-                    <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>
-                    <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
-                  </div>
-            </div>
-          </div>
-          <div className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
-            <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
-                <div 
-                  className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"
-                  style={{backgroundImage : `url(${"https://mm-blog-community.s3.ap-south-1.amazonaws.com/2020-04-11T17%3A00%3A24.533ZScreenshot%202020-03-29%20at%208.06.50%20AM.png"})`}}
-                  alt=""/>
-                  <div className="py-2 px-4">
-                    <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>
-                    <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
-                  </div>
-            </div>
-          </div>
+          <div className="md:flex md:flex-wrap md:justify-start mt-8">
+            {popularStoryListJSX}
           </div>
         </div>
       </div>
@@ -163,13 +125,20 @@ const GuestHome = ({isAuthenticated}) => {
 }
 
 GuestHome.propTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  getAllStories: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  popularStoryList: state.story.popularStoryList
 });
 
-export default connect(mapStateToProps)(GuestHome);
+const allActions = {
+  getAllStories
+}
+
+
+export default connect(mapStateToProps, allActions)(GuestHome);
 
 

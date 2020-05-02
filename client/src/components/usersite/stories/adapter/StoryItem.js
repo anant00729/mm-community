@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {getAllStories} from '../../../../actions/story'
 import { setAlert } from '../../../../actions/alert';
 import {IMAGE_BASE_URL} from '../../../utils/constants';
+import { Link } from 'react-router-dom';
 
 
 function StoryItem({type, popularStoryList, getAllStories}) {
@@ -18,36 +19,38 @@ function StoryItem({type, popularStoryList, getAllStories}) {
       <ul>
         {popularStoryList.map((story, index)=> {
           let para = story.content.find(s=> s.selectType === "Paragraph")
-          let title = story.title
-          let profile_image = story.profile_image
-          let cover_image = story.cover_image
+          let { title , profile_image , cover_image , id } = story
           if(para){
-            console.log('para.length :>> ', para.input.length);
             if(para.input.length > 300){
               para.input = `${para.input.substring(1, 300)}...`;
             }
           }
-          
-          
           return (
             <li 
             key={index}
             className="bg-white rounded mt-4 p-4 cursor-pointer">
-              <div className="flex">
-                <img 
-                className="w-12 h-12 rounded-full border-gray-200 border-2"
-                src={profile_image}
-                alt="profile_image"/>
-                <p className="self-center ml-3 text-sm font-semibold md:text-base">{story.name}'s blog</p>
-              </div>
+              
+              <Link to={`/show-story/${id}`}>
+                <div className="flex">
+                  <img 
+                  className="w-12 h-12 rounded-full border-gray-200 border-2"
+                  src={profile_image}
+                  alt="profile_image"/>
+                  <p className="self-center ml-3 text-sm font-semibold md:text-base">{story.name}'s blog</p>
+                </div>  
+              </Link>
+              
               <div className="md:flex mt-4">
+
                 <div className="md:w-3/4 w-full mr-4">
+                <Link to={`/show-story/${id}`}>
                   <p className="font-sen text-black font-bold md:text-2xl text-xl">
                     {title}
                   </p>
                   <p className="mt-2 text-gray-700">
                     {para ? para.input : null}
                   </p>
+                </Link>
                 </div>
                 <div className="md:w-1/4 w-full mt-3 md:mt-0"> 
                   <div 

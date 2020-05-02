@@ -133,3 +133,14 @@ Please find below my observations on the VDs.
 	WHERE image_path = 'BhbE1QUaFDXQHHut1kSa3L5WhDFPyr.png' OR
 			image_path = '7fa0PdxjRoUL6QvmpI3DLvBpkIN31D.png' OR 
 			image_path = 'qhqHIhAc4Pur2omUBieAOsIqT0hS7R.png';
+
+SELECT
+      a.id
+      a.user_id
+      u.name
+      u.profile_image
+      a.title
+      a.content
+      FROM
+      public.story a 
+      INNER JOIN public.user u ON a.user_id = u.id ORDER BY a.id DESC LIMIT (:pageLimit) OFFSET (:skipCount);                  

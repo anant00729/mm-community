@@ -1,7 +1,7 @@
 import React , { useState, useEffect, useReducer } from 'react'
 
 import { Link , Redirect} from 'react-router-dom'
-import {HOME_ROUTE} from '../../utils/constants';
+import {HOME_ROUTE, LOGIN_ROUTE} from '../../utils/constants';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import {logout} from '../../../actions/auth'
@@ -138,7 +138,7 @@ const PublishStory = ({
   }
 
   if(!isAuthenticated){
-    return <Redirect to={HOME_ROUTE}/>;
+    return <Redirect to={LOGIN_ROUTE}/>;
   }
 
   let tabLayout = {}

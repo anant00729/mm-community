@@ -38,9 +38,11 @@ const Routes = props => {
     case ALL_STORIES_ROUTE:  
     case ALL_DISCUSSIONS:
     case HOME_FEED_ROUTE:   
-    case SHOW_STORY:   
       isVisible = true
   }
+
+  if(props.location.pathname.includes(SHOW_STORY)) isVisible = true
+
   return (
     <div>
     {isVisible && <AppBar currentRoute={props.location.pathname}/>}
@@ -54,7 +56,7 @@ const Routes = props => {
           <Route exact path={ALL_DISCUSSIONS} component={Discussion} />
           <Route exact path={CREATE_STORY_ROUTE} component={PublishStory} />
           <Route exact path={HOME_FEED_ROUTE} component={HomeFeed} />
-          <Route exact path={SHOW_STORY} component={ShowStory}/>
+          <Route exact path={`${SHOW_STORY}/:id`} component={ShowStory}/>
           <Route component={PageNotFound} />
       </Switch>
       <Alert />
