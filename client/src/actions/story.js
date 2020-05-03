@@ -237,34 +237,3 @@ export const getStoryById = (storyId) => async dispatch => {
   }
 }
 
-export const incrementStoryCount = (storyId, visit_count) => async dispatch => {
-  console.log('storyId :>> ', storyId);
-  try {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-    const body = JSON.stringify({storyId , visit_count});
-    const res = await axios.post('/v1/story/incrementStoryCount', body , config);
-    const res_d = res.data
-
-    console.log('res_d :>> ', res_d);
-
-    if(res_d.status){
-      // dispatch({
-      //   type: GET_POPULAR_STORY,
-      //   payload: res_d.data
-      // });
-      //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
-    }else {
-      console.log('else  :>> ');
-      dispatch(setAlert(res_d.message, 'red'))
-    }
-  } catch (err) {
-    console.log('catch');
-    dispatch(setAlert(err.message, 'red'))
-  }
-}
-
-

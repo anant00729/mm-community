@@ -63,8 +63,10 @@ exports.getStory = async (req,res) => {
   let storyStatus = await story.findStoryByStoryId(storyId)
   
   setTimeout(async() => {
-    let visit_count = storyStatus.data.visit_count + 1
-    await story.incrementStoryCount(storyStatus.data.id, visit_count)
+    if(storyStatus.status){
+      let visit_count = storyStatus.data.visit_count + 1
+      await story.incrementStoryCount(storyStatus.data.id, visit_count)
+    }
     res.json(storyStatus)  
   }, 1000)
   
@@ -98,5 +100,37 @@ exports.incrementStoryCount = async (req,res) => {
   let storyStatus = await story.incrementStoryCount(storyId, visit_count)
   res.json(storyStatus)  
 }
+
+/* 
+ * @route  v1/story/incrementStoryCount 
+ * @type   POST 
+ * @access public
+ */
+exports.incrementStoryCount = async (req,res) => {
+  const storyId = req.body.storyId || false
+  let visit_count = req.body.visit_count || -1
+  visit_count += 1
+  let story = new Story()
+  let storyStatus = await story.incrementStoryCount(storyId, visit_count)
+  res.json(storyStatus)  
+}
+
+
+/* 
+ * @route  v1/story/getUserStories
+ * @type   POST 
+ * @access public
+ */
+exports.getUserStories = async (req,res) => {
+  const user_id = req.user.user_id || ''
+  let story = new Story()
+  let storyStatus = await story.getStoryByUserId(user_id)
+  setTimeout(() => {
+    res.json(storyStatus)  
+  } , 1000)
+  
+}
+
+
 
 

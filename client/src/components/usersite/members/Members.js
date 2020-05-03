@@ -1,10 +1,9 @@
 import React, {useEffect,useState} from 'react'
 import membersBanner from '../../../app_images/members-img-1.png'
 import MemberItem from './adapter/MemberItem'
+import {STUDENT , TEACHER} from '../../utils/constants'
 
 export const Members = () => {
-  const STUDENT = 'student'
-  const TEACHER = 'teacher'
   const [type, setType] = useState(STUDENT)
   useEffect(() => {
     window.scrollTo(0, 0)

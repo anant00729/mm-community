@@ -38,8 +38,6 @@ function MemberItem({getAllMembers, homeMemberList, type}) {
 MemberItem.propTypes = {
   getAllMembers: PropTypes.func.isRequired
 };
-
-
    
 const mapStateToProps = state => ({
   homeMemberList: state.members.homeMemberList,

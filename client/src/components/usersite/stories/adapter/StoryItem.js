@@ -7,6 +7,7 @@ import {IMAGE_BASE_URL, SHOW_STORY} from '../../../utils/constants';
 import { Link } from 'react-router-dom';
 
 
+
 function StoryItem({type, popularStoryList, getAllStories}) {
   useEffect(() => {getAllStories()}, [])
   if(popularStoryList.length === 0){
@@ -42,7 +43,7 @@ function StoryItem({type, popularStoryList, getAllStories}) {
               <div className="md:flex mt-4">
 
                 <div className="md:w-3/4 w-full mr-4">
-                <Link to={`/show-story/${id}`} className="cursor-pointer">
+                <Link to={`${SHOW_STORY}/${id}`} className="cursor-pointer">
                   <p className="font-sen text-black font-bold md:text-2xl text-xl">
                     {title}
                   </p>

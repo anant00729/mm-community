@@ -4,6 +4,7 @@ import auth from './auth';
 import profile from './profile';
 import story from './story';
 import members from './members';
+import home from './home';
 
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   auth,
   profile,
   story,
-  members
+  members,
+  home
 });

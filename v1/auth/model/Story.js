@@ -148,6 +148,31 @@ class Story {
         return { status : false , message : error.message }
       }
   }
+
+  async getStoryByUserId(user_id){
+    
+    let q1 = `SELECT
+    a.id,
+    u.name,
+    u.profile_image,
+    a.title,
+    a.content,
+    a.cover_image
+    FROM
+    public.story a 
+    INNER JOIN public.user u ON a.user_id = u.id WHERE a.user_id = (:user_id) ORDER BY a.id DESC;`
+    try {
+      let res_d = await db.query(q1,{replacements : {user_id}})
+      if(res_d[0].length === 0){
+        return { status : false , message : 'Stories not Found' }
+      }else {
+        return { status : true , message : 'Stories Found' , data : res_d[0] }
+      }
+    } catch (error) {
+      return { status : false , message : error.message }
+    }
+  }
+  
 }
 
 module.exports = Story

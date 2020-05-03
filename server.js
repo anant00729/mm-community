@@ -27,7 +27,37 @@ app.use(express.static('public/build'));
 app.use(express.static('public'));
 
 app.get('/test', (req , res) => {
-   
+   let homeUserLeftMenu =  [
+    {
+      value : 'My Feeds',
+      visible : 'all',
+      selected : true       
+    },
+    {
+      value : 'My Stories',
+      visible : 'all',
+      selected : false       
+    },
+    {
+      value : 'My Pending Story',
+      visible : 'all' ,
+      selected : false      
+    },
+    {
+      value : 'My Students Pending Stories',
+      visible : 'all' ,
+      selected : false      
+    }
+  ]
+
+  let index = 0
+
+  let newhomeUserLeftMenu = homeUserLeftMenu.map((data, dataIndex) => {
+    data.selected = dataIndex == index
+    return data
+  } )
+
+  res.json(newhomeUserLeftMenu)
 })
 
 app.get('*', (req,res)=> {

@@ -25,5 +25,42 @@ export const QUOTE = 'Quote'
 export const SUBTITLE = 'Subtitle'
 export const POINT = 'Point'
 
+
+export const STUDENT = 'student'
+export const TEACHER = 'teacher'
+
+export const ALL_HOME_FEEDS = 'ALL_HOME_FEEDS'
+export const USER_STORY_LIST = 'USER_STORY_LIST'
+export const USER_PENDING_STORY_LIST = 'USER_PENDING_STORY_LIST'
+export const ALL_STUDENT_PENDING_STORY_LIST = 'ALL_STUDENT_PENDING_STORY_LIST'
+
+
+export const HOME_USER_LEFT_MENU = [
+  {
+    type : ALL_HOME_FEEDS,
+    value : 'My Feeds',
+    visible : 'all',
+    selected : true       
+  },
+  {
+    type : USER_STORY_LIST,
+    value : 'My Stories',
+    visible : 'all',
+    selected : false       
+  },
+  {
+    type : USER_PENDING_STORY_LIST,
+    value : 'My Pending Story',
+    visible : 'all' ,
+    selected : false      
+  },
+  {
+    type : ALL_STUDENT_PENDING_STORY_LIST,
+    value : 'My Students Pending Stories',
+    visible : 'all' ,
+    selected : false      
+  }
+]
+
  
 
