@@ -61,7 +61,13 @@ exports.getStory = async (req,res) => {
   const storyId = req.body.storyId || ''
   let story = new Story()
   let storyStatus = await story.findStoryByStoryId(storyId)
-  res.json(storyStatus)  
+  
+  setTimeout(async() => {
+    let visit_count = storyStatus.data.visit_count + 1
+    await story.incrementStoryCount(storyStatus.data.id, visit_count)
+    res.json(storyStatus)  
+  }, 1000)
+  
 }
 
 
@@ -74,8 +80,23 @@ exports.getAllStories = async (req,res) => {
   const isForUser = req.body.isForUser || false
   let story = new Story()
   let storyStatus = await story.findStoryAllStories(isForUser, 15 , 1)
-  res.json(storyStatus)  
+  setTimeout(() => {
+    res.json(storyStatus)
+  }, 1000)
 }
 
+/* 
+ * @route  v1/story/incrementStoryCount 
+ * @type   POST 
+ * @access public
+ */
+exports.incrementStoryCount = async (req,res) => {
+  const storyId = req.body.storyId || false
+  let visit_count = req.body.visit_count || -1
+  visit_count += 1
+  let story = new Story()
+  let storyStatus = await story.incrementStoryCount(storyId, visit_count)
+  res.json(storyStatus)  
+}
 
 

@@ -12,6 +12,7 @@ import {
   SUBTITLE,
   POINT
 } from '../../utils/constants'
+import PageNotFound from '../../common/PageNotFound'
 
 
 const ShowStory = ({getStoryById, showStoryById, match}) => {
@@ -19,46 +20,15 @@ const ShowStory = ({getStoryById, showStoryById, match}) => {
     window.scrollTo(0, 0)
     getStoryById(match.params.id);
   }, [getStoryById, match.params.id]);
-  let {cover_image , title , profile_image, name , content } = showStoryById
-
-  let contentJSX = []
-  if(content){
-    contentJSX = content.map((item, index)=> {
-      switch(item.selectType){
-        case PARAGRAPH:
-          return (
-          <p className="text-xl text-gray-800 py-1">{item.input}</p>
-          )
-        case IMAGE:
-          return (
-            <img className="post-cover bg-cover bg-center mx-auto my-2" 
-            src={`${IMAGE_BASE_URL}${item.input}`}
-            />
-          )  
-        case QUOTE:
-          return (
-            <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-2" role="alert">
-              <p className="text-xl">{`"${item.input}"`}</p>
-            </div>
-          )
-        case SUBTITLE:
-          return (
-            <h1 className="w-full md:text-4xl text-3xl input-add-title py-1">{item.input}</h1>
-          )  
-        case POINT:
-          return (
-            <ul className="text-xl text-gray-800 ml-10 py-8 px-10" style={{listStyle : 'disc'}}>
-                  <li>{item.input}</li>
-            </ul>                
-          )  
-      }
-    })    
-  }
-
-  
-
-  return (
-    <div className="px-2">
+  if(Object.keys(showStoryById).length === 0){
+    // Show loading
+    return <div className="mx-auto loader mt-56"></div> 
+  }else if(!showStoryById.status){
+    return <PageNotFound/>
+  }else {
+    let {cover_image , title , profile_image, name , content } = showStoryById.data
+    return (
+      <div className="px-2">
       <div className="md:w-2/3 mx-auto">
         <h1 className="text-4xl font-sen font-bold">
           {title}
@@ -82,7 +52,37 @@ const ShowStory = ({getStoryById, showStoryById, match}) => {
       <div className="flex -mx-2 justify-center mt-4">
         <div className="w-full md:w-4/6 px-2">
           {/* Paragraph , Image , Quote , Subtitle , Point */}
-          {contentJSX}            
+          { content.map((item, index)=> {
+              switch(item.selectType){
+                case PARAGRAPH:
+                  return (
+                  <p key={index} className="text-xl text-gray-800 py-1">{item.input}</p>
+                  )
+                case IMAGE:
+                  return (
+                    <img key={index} className="post-cover bg-cover bg-center mx-auto my-2" 
+                    src={`${IMAGE_BASE_URL}${item.input}`}
+                    />
+                  )  
+                case QUOTE:
+                  return (
+                    <div key={index} className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-2" role="alert">
+                      <p className="text-xl">{`"${item.input}"`}</p>
+                    </div>
+                  )
+                case SUBTITLE:
+                  return (
+                    <h1 key={index} className="w-full md:text-4xl text-3xl input-add-title py-1">{item.input}</h1>
+                  )  
+                case POINT:
+                  return (
+                    <ul key={index} className="text-xl text-gray-800 ml-10 py-8 px-10" style={{listStyle : 'disc'}}>
+                          <li>{item.input}</li>
+                    </ul>                
+                  )  
+              }
+            })
+          }            
         </div>
         <div className="w-1/6 px-2 hidden">
           {/* <div className="bg-gray-400 h-12">
@@ -91,7 +91,10 @@ const ShowStory = ({getStoryById, showStoryById, match}) => {
         </div>
       </div>
     </div>
-  )
+    )
+    
+  }
+
 }
 
 

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import {getAllMembers} from '../../../../actions/members'
 
 
-function MemberItem({getAllMembers, homeMemberList}) {
+function MemberItem({getAllMembers, homeMemberList, type}) {
   useEffect(() => {
-    getAllMembers()
-  }, [])
+    if(type) getAllMembers(type);
+  }, [type])
 
   console.log('homeMemberList :>> ', homeMemberList);
   if(homeMemberList.length === 0){

@@ -121,10 +121,10 @@ class User {
     }
   }
 
-  async getAllUsers(){
-    let q1 = `SELECT * from public."user"`
+  async getAllUsers(type){
+    let q1 = `SELECT * from public."user" WHERE type =(:type)`
     try {
-        let res_d = await db.query(q1)
+        let res_d = await db.query(q1,{replacements : {type}})
         if(res_d[0].length === 0){
           return { status : false , message : 'User not Found'  }
         }else {

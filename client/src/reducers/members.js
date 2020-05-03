@@ -1,5 +1,6 @@
 import {
-  GET_ALL_MEMBERS
+  GET_ALL_MEMBERS,
+  CLEAR_ALL_MEMBERS
 } from '../actions/types';
 
 const initialState = {
@@ -16,6 +17,12 @@ export default function(state = initialState, action) {
         ...state,
         homeMemberList : payload
       };
+
+    case CLEAR_ALL_MEMBERS:
+      return {
+        ...state,
+        homeMemberList : []
+      };            
     default:
       return state;
   }

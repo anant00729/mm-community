@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { GET_ALL_MEMBERS } from './types';
+import { GET_ALL_MEMBERS, CLEAR_ALL_MEMBERS } from './types';
 import { setAlert } from './alert'
 
 
 // getAllMembers
 export const getAllMembers = (type = 'student') => async dispatch => {
+  dispatch({type : CLEAR_ALL_MEMBERS})
   try {
     const config = {
       headers: {

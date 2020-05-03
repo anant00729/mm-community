@@ -144,3 +144,15 @@ SELECT
       FROM
       public.story a 
       INNER JOIN public.user u ON a.user_id = u.id ORDER BY a.id DESC LIMIT (:pageLimit) OFFSET (:skipCount);                  
+
+
+UPDATE public.story SET 
+      visit_count=1
+	WHERE id = '32';      
+
+
+UPDATE public."user"
+	SET type='teacher'
+	WHERE name='neelam awasthi';      
+
+SELECT * FROM public."user"      

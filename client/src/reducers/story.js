@@ -12,7 +12,8 @@ import {
   STORY_IMAGE_FAILED,
   GET_POPULAR_STORY,
   CLEAR_STORY_CONTENT,
-  GET_STORY_BY_ID
+  GET_STORY_BY_ID,
+  CLEAR_STORY_BY_ID
 } from '../actions/types';
 
 
@@ -157,6 +158,12 @@ export default function(state = initialState, action) {
         ...state, 
         showStoryById : payload
       }  
+
+    case CLEAR_STORY_BY_ID:
+      return {
+        ...state, 
+        showStoryById : {}
+      }      
     default:
       return state;
   }

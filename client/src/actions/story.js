@@ -14,7 +14,8 @@ import {
   STORY_IMAGE_FAILED,
   GET_POPULAR_STORY,
   CLEAR_STORY_CONTENT,
-  GET_STORY_BY_ID
+  GET_STORY_BY_ID,
+  CLEAR_STORY_BY_ID
  } from './types';
 
  import {ALL_STORIES_ROUTE} from '../components/utils/constants'
@@ -169,6 +170,7 @@ export const uploadImage = (file,type,index) => async dispatch => {
 
 
 export const getAllStories = () => async dispatch => {
+  dispatch({type: CLEAR_STORY_CONTENT})
   try {
     const config = {
       headers: {
@@ -200,6 +202,7 @@ export const getAllStories = () => async dispatch => {
 
 
 export const getStoryById = (storyId) => async dispatch => {
+  dispatch({type: CLEAR_STORY_BY_ID});
   try {
     const config = {
       headers: {
@@ -214,8 +217,45 @@ export const getStoryById = (storyId) => async dispatch => {
     if(res_d.status){
       dispatch({
         type: GET_STORY_BY_ID,
-        payload: res_d.data
+        payload: res_d
       });
+      //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
+    }else {
+      dispatch({
+        type: GET_STORY_BY_ID,
+        payload: res_d
+      });
+      //dispatch(setAlert(res_d.message, 'red'))
+    }
+  } catch (err) {
+    err.status = false
+    dispatch({
+      type: GET_STORY_BY_ID,
+      payload: err
+    });
+    //dispatch(setAlert(err.message, 'red'))
+  }
+}
+
+export const incrementStoryCount = (storyId, visit_count) => async dispatch => {
+  console.log('storyId :>> ', storyId);
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const body = JSON.stringify({storyId , visit_count});
+    const res = await axios.post('/v1/story/incrementStoryCount', body , config);
+    const res_d = res.data
+
+    console.log('res_d :>> ', res_d);
+
+    if(res_d.status){
+      // dispatch({
+      //   type: GET_POPULAR_STORY,
+      //   payload: res_d.data
+      // });
       //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
     }else {
       console.log('else  :>> ');
@@ -226,3 +266,5 @@ export const getStoryById = (storyId) => async dispatch => {
     dispatch(setAlert(err.message, 'red'))
   }
 }
+
+

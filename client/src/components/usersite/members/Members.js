@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react'
+import React, {useEffect,useState} from 'react'
 import membersBanner from '../../../app_images/members-img-1.png'
 import MemberItem from './adapter/MemberItem'
 
 export const Members = () => {
-
+  const STUDENT = 'student'
+  const TEACHER = 'teacher'
+  const [type, setType] = useState(STUDENT)
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -14,7 +16,7 @@ export const Members = () => {
       <div className="md:flex-row -mx-2 flex flex-col-reverse">
         <div className="md:w-1/4 px-2 w-full mt-6 md:mt-0">
           <div className="sticky top-story">
-            <div className="bg-white rounded p-4">
+            <div className="bg-white rounded p-4 mt-4">
               <p className="font-sen text-black text-xl md:text-2xl font-bold">Community Members</p> 
               <p className="text-gray-700">Browser Hashnode community members and follow them to see their posts on your feed.</p>
               <img 
@@ -29,24 +31,26 @@ export const Members = () => {
           <div className="bg-white rounded md:mt-0 flex flex-wrap text-sm text-gray-700 sticky top-story-data">
             <div className="w-full h-4 bg-gray-200"></div>
             <button
-            className="px-4 h-10 app-font-color border-b-2 app-border-bottom font-extrabold">
+            onClick={() => setType(STUDENT)}
+            className={`px-4 h-10 ${type === STUDENT ? 'font-extrabold app-font-color border-b-2 app-border-bottom' : ''}`}>
               <span className="font-semibold">STUDENTS</span>
             </button>
-            <button
-            className="px-4 h-10">
+            <button 
+            onClick={() => setType(TEACHER)}
+            className={`px-4 h-10 ${type === TEACHER ? 'font-extrabold app-font-color border-b-2 app-border-bottom' : ''}`}>
               <span className="font-semibold">TEACHERS</span>
             </button>
-            <button
+            {/* <button
             className="px-4 h-10">
               <span className="font-semibold">RECENTLY JOINED</span>
-            </button>
+            </button> */}
           </div>
 
           {/* Story List Section */}
           <div className="">
             <div className="flex -mx-2 flex-wrap">
               {
-                <MemberItem/>
+                <MemberItem type={type}/>
               }
             </div>
           </div>

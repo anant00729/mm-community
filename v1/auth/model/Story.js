@@ -62,8 +62,25 @@ class Story {
 
 
   async findStoryByStoryId(storyId){
+
     let q1 = `SELECT
-    *
+    a.id,
+    a.user_id,
+    u.name,
+    u.profile_image,
+    a.title,
+    a.content,
+    a.cover_image,
+    a.like_count,
+    a.visit_count,
+    a.read_time,
+    a.created_at,
+    a.updated_at,
+    a.story_status,
+    u.email,
+    u.type,
+    u.profile_image,
+    u.user_active
     FROM
     public.story a 
     INNER JOIN public.user u ON a.user_id = u.id WHERE a.id = (:id)`
@@ -117,6 +134,16 @@ class Story {
         }else {
           return { status : true , message : 'Stories Found' , data : res_d[0] }
         }
+      } catch (error) {
+        return { status : false , message : error.message }
+      }
+  }
+
+  async incrementStoryCount(storyId, visit_count){
+    let q1 = `UPDATE public.story SET visit_count = (:visit_count) WHERE id = (:storyId);`
+    try {
+        await db.query(q1,{replacements : {storyId, visit_count}})
+        return { status : true , message : 'Stories visit updated' }
       } catch (error) {
         return { status : false , message : error.message }
       }

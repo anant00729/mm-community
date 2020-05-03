@@ -4,7 +4,7 @@ import imageOne from '../../../app_images/main-home-i1.png'
 import imageTwo from '../../../app_images/main-home-i2.png'
 import imageThree from '../../../app_images/main-home-i3.png'
 import { Link, Redirect } from 'react-router-dom';
-import {REGISTER_ROUTE, LOGIN_ROUTE, HOME_FEED_ROUTE, IMAGE_BASE_URL} from '../../utils/constants';
+import {REGISTER_ROUTE, LOGIN_ROUTE, HOME_FEED_ROUTE, IMAGE_BASE_URL , SHOW_STORY} from '../../utils/constants';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {getAllStories} from '../../../actions/story'
@@ -32,7 +32,7 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
       <div
       key={index}
        className="md:w-1/2 lg:w-1/3 w-full mb-6 cursor-pointer">
-         <Link to={`/show-story/${id}`}>
+         <Link to={`${SHOW_STORY}/${id}`}>
           <div className="mr-2 border border-gray-200 bg-white border rounded hover:shadow-lg overflow-hidden mr-2 transition duration-500 ease-in-out">
             <div 
               className="h-56 mx-auto mb-4 post-cover w-full block bg-cover bg-center"

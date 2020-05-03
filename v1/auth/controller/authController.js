@@ -131,10 +131,12 @@ exports.logout = async (req,res) => {
  * @access public
  */
 exports.getAllUsers = async (req,res) => {
-  const type = req.body.type || ''
+  const type = req.body.type || 'student'
   let user = new User()
-  let userResponse = await user.getAllUsers()
-  res.json(userResponse)
+  let userResponse = await user.getAllUsers(type)
+  setTimeout(()=> {
+    res.json(userResponse)
+  }, 1000)
 }
 
 

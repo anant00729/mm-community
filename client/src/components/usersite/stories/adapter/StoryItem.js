@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {getAllStories} from '../../../../actions/story'
 import { setAlert } from '../../../../actions/alert';
-import {IMAGE_BASE_URL} from '../../../utils/constants';
+import {IMAGE_BASE_URL, SHOW_STORY} from '../../../utils/constants';
 import { Link } from 'react-router-dom';
 
 
 function StoryItem({type, popularStoryList, getAllStories}) {
   useEffect(() => {getAllStories()}, [])
-  console.log('popularStoryList :>> ', popularStoryList);
   if(popularStoryList.length === 0){
     return (
       <div className="mx-auto loader mt-56"></div> 
@@ -28,9 +27,9 @@ function StoryItem({type, popularStoryList, getAllStories}) {
           return (
             <li 
             key={index}
-            className="bg-white rounded mt-4 p-4 cursor-pointer">
+            className="bg-white rounded mt-4 p-4">
               
-              <Link to={`/show-story/${id}`}>
+              <Link className="cursor-pointer" to={`${SHOW_STORY}/${id}`}>
                 <div className="flex">
                   <img 
                   className="w-12 h-12 rounded-full border-gray-200 border-2"
@@ -43,7 +42,7 @@ function StoryItem({type, popularStoryList, getAllStories}) {
               <div className="md:flex mt-4">
 
                 <div className="md:w-3/4 w-full mr-4">
-                <Link to={`/show-story/${id}`}>
+                <Link to={`/show-story/${id}`} className="cursor-pointer">
                   <p className="font-sen text-black font-bold md:text-2xl text-xl">
                     {title}
                   </p>
