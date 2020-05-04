@@ -150,7 +150,7 @@ const PublishStory = ({
     case 1:
     case 2:  
     default:
-      tabLayout = <StoryPreview singleStory={singleStory}/>
+      tabLayout = <ul><StoryPreview singleStory={singleStory} posterImage={posterImage} title={title}/></ul>
       break;
   }
 

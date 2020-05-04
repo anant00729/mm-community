@@ -39,13 +39,7 @@ const HomeFeed = ({isAuthenticated, user}) => {
       },
       {
         type : USER_PENDING_STORY_LIST,
-        value : 'My Pending Story',
-        visible : 'all' ,
-        selected : false      
-      },
-      {
-        type : ALL_STUDENT_PENDING_STORY_LIST,
-        value : 'My Students Pending Stories',
+        value : 'Publish Request',
         visible : 'all' ,
         selected : false      
       }
@@ -68,8 +62,6 @@ const HomeFeed = ({isAuthenticated, user}) => {
   if(!isAuthenticated){
     return <Redirect to={HOME_ROUTE}/>;
   }
-
- 
 
   return (
     <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">

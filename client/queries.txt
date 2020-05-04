@@ -156,3 +156,27 @@ UPDATE public."user"
 	WHERE name='neelam awasthi';      
 
 SELECT * FROM public."user"      
+
+
+UPDATE public."user"
+	SET type='teacher'
+	WHERE name='neelam awasthi';      
+	
+SELECT * FROM public."user"      	
+
+SELECT * FROM public.story WHERE user_id = '56' 
+
+
+SELECT
+    a.id,
+    u.name,
+    u.profile_image,
+    a.title,
+    a.content,
+    a.cover_image
+    FROM
+    public.story a 
+    INNER JOIN public.user u ON a.user_id = u.id WHERE a.user_id = '56' ORDER BY a.id DESC;
+
+
+word-break: break-word;

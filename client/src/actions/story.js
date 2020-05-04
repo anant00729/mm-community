@@ -170,7 +170,7 @@ export const uploadImage = (file,type,index) => async dispatch => {
 
 
 export const getAllStories = () => async dispatch => {
-  dispatch({type: CLEAR_STORY_CONTENT})
+  dispatch({type: CLEAR_STORY_CONTENT, payload : ''})
   try {
     const config = {
       headers: {
@@ -192,11 +192,11 @@ export const getAllStories = () => async dispatch => {
       //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
     }else {
       console.log('else  :>> ');
-      dispatch(setAlert(res_d.message, 'red'))
+      //dispatch(setAlert(res_d.message, 'red'))
     }
   } catch (err) {
     console.log('catch');
-    dispatch(setAlert(err.message, 'red'))
+    //dispatch(setAlert(err.message, 'red'))
   }
 }
 

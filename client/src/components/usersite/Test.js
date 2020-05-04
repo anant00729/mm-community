@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-export default function App() {
+export default function Test() {
   const [upImg, setUpImg] = useState();
   const [imgRef, setImgRef] = useState(null);
   const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 });

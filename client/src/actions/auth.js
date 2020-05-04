@@ -78,10 +78,10 @@ export const logout = () => async dispatch => {
       dispatch({ type: LOGOUT });
       //dispatch(setAlert(res_d.data, 'green'))
     }else {
-      dispatch(setAlert(res_d.message, 'red'))
+      //dispatch(setAlert(res_d.message, 'red'))
     }
   } catch (err) {
-    dispatch(setAlert(err.message))
+    //dispatch(setAlert(err.message , 'red'))
   }
   
   

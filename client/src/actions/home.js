@@ -28,6 +28,6 @@ export const getUserStories = (token = '-1') => async dispatch => {
       dispatch(setAlert(res_d.message, 'red'))
     }
   } catch (err) {
-    dispatch(setAlert(err.message))
+    dispatch(setAlert(err.message , 'red'))
   }
 };

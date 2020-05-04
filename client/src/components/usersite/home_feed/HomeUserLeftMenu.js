@@ -4,13 +4,17 @@ import {
   ALL_HOME_FEEDS,
   USER_STORY_LIST,
   USER_PENDING_STORY_LIST,
-  ALL_STUDENT_PENDING_STORY_LIST
+  ALL_STUDENT_PENDING_STORY_LIST,
+  STUDENT
 } from '../../utils/constants';
 import { Link, Redirect } from 'react-router-dom';
 
 
 function HomeUserLeftMenu({setMenuHidden , menuHidden, user, onHomeMenuChange, homeUserLeftMenu}) {
 
+  if(user.type === STUDENT){
+    delete homeUserLeftMenu[2]
+  }
 
   let sideMenuJSX = homeUserLeftMenu.map((menu, index) => {
     return (
@@ -24,9 +28,6 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, onHomeMenuChange, h
     </div>
     )
   })
-
-
-  
   
 
   return (

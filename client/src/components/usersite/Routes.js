@@ -11,6 +11,7 @@ import Discussion from '../../../src/components/usersite/discusssion/Discussion'
 import HomeFeed from '../../components/usersite/home_feed/HomeFeed'
 
 import PrivateRoute from '../usersite/PrivateRoute';
+import Test from '../../components/usersite/Test'
 import AppBar from '../common/AppBar'
 import GuestHome from '../usersite/home/GuestHome'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -57,6 +58,7 @@ const Routes = props => {
           <Route exact path={CREATE_STORY_ROUTE} component={PublishStory} />
           <Route exact path={HOME_FEED_ROUTE} component={HomeFeed} />
           <Route exact path={`${SHOW_STORY}/:id`} component={ShowStory}/>
+          <Route exact path={`/test`} component={Test}/>
           <Route component={PageNotFound} />
       </Switch>
       <Alert />

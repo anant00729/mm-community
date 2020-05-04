@@ -7,7 +7,7 @@ const initialState = {}
 
 const middelware = [thunk]
 
-//const store = createStore(rootReducer, initialState , applyMiddleware(...middelware))
+// const store = createStore(rootReducer, initialState , applyMiddleware(...middelware))
 
 const store = createStore(rootReducer, initialState ,
 compose(

@@ -10,8 +10,9 @@ import {SHOW_STORY} from '../../../utils/constants'
 function HomeUserStoryItem({selectedMenuItem, getUserStories, token, homeUserStoryList}) {
 
   useEffect(() => {
-    //console.log('useEffect :>> ', selectedMenuItem);
-    getUserStories(token)
+    if(token){
+      getUserStories(token)
+    }
   }, [selectedMenuItem])
 
   if(homeUserStoryList.length === 0){
