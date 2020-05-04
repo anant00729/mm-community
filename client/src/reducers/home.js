@@ -68,14 +68,15 @@ export default function(state = initialState, action) {
         homeUserLeftMenu : newhomeUserLeftMenu
       };            
     case ON_PUBLISH_REQ_TAB_CHANGE:
-      let requests = state.homeUserLeftMenu[2].requests.filter(menu => {
+      let pubHomeUserLeftMenu = [...state.homeUserLeftMenu]
+      let requests = pubHomeUserLeftMenu[2].requests.filter(menu => {
         menu.selected = menu.type === payload
         return menu
       })
-      state.homeUserLeftMenu[2] = {...state.homeUserLeftMenu[2], requests}
+      pubHomeUserLeftMenu[2].requests = requests
       return {
         ...state,
-        homeUserLeftMenu : state.homeUserLeftMenu
+        homeUserLeftMenu : pubHomeUserLeftMenu
       };            
     default:
       return state;

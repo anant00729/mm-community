@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HomeUserStoryItem from '../../usersite/home_feed/adapter/HomeUserStoryItem'
+import { v4 as uuidv4 } from 'uuid';
 
 function PublishRequest({selectedMenuItem, onPublishRequestTabChange}) {
   
@@ -10,7 +11,17 @@ function PublishRequest({selectedMenuItem, onPublishRequestTabChange}) {
     window.scrollTo(0, 0)
   }, [])
 
+
+  let homeUserJSX = {}
+
   let menuJSX = selectedMenuItem.requests.map(req => {
+
+    if(req.selected){
+      homeUserJSX = <HomeUserStoryItem 
+      key={uuidv4()}
+      selectedMenuItem={selectedMenuItem}/>
+    }
+
     return (
       <button
       key={req.type}
@@ -21,13 +32,18 @@ function PublishRequest({selectedMenuItem, onPublishRequestTabChange}) {
     )
   })
 
+
+  console.log('homeUserJSX :>> ', homeUserJSX);
+
+  
+
   return (
     <div>
       <div className="bg-white rounded md:mt-0 flex flex-wrap text-sm text-gray-700 sticky top-story-data">
           <div className="w-full h-4 bg-gray-200"></div>
           {menuJSX}
       </div>
-      <HomeUserStoryItem selectedMenuItem={selectedMenuItem}/>
+      {homeUserJSX}
     </div>
   )
 }

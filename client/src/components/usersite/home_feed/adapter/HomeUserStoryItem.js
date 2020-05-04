@@ -13,6 +13,7 @@ function HomeUserStoryItem({
   getUserStories, token, homeUserStoryList}) {
 
 
+
     console.log('HomeUserStoryItem :>> ', selectedMenuItem);
 
     // if(token){
@@ -21,8 +22,10 @@ function HomeUserStoryItem({
 
   useEffect(() => {
     if(selectedMenuItem.type === ALL_HOME_FEEDS){
+
     }
     else if(selectedMenuItem.type === USER_STORY_LIST){
+      
     }
     else if(selectedMenuItem.type === USER_PENDING_STORY_LIST){
 
@@ -31,6 +34,7 @@ function HomeUserStoryItem({
     if(token){
       getUserStories(token)
     }
+    window.scrollTo(0, 0)
   }, [selectedMenuItem])
 
     
