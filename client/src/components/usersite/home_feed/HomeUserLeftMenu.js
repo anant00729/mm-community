@@ -10,16 +10,18 @@ import {
 import { Link, Redirect } from 'react-router-dom';
 
 
-function HomeUserLeftMenu({setMenuHidden , menuHidden, user, onHomeMenuChange, homeUserLeftMenu}) {
+function HomeUserLeftMenu({setMenuHidden , menuHidden, user,  onHomeLeftMenuChange, homeUserLeftMenu}) {
 
   if(user.type === STUDENT){
     delete homeUserLeftMenu[2]
   }
 
+  
+
   let sideMenuJSX = homeUserLeftMenu.map((menu, index) => {
     return (
       <div 
-      onClick={() => onHomeMenuChange(index)}
+      onClick={() => onHomeLeftMenuChange(index)}
       key={index}
       className={`px-4 py-3 flex cursor-pointer ${menu.selected ? 'app-font-color border-r-2 border-blue-500' : 'text-gray-800'}`}
       >

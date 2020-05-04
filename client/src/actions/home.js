@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { 
   GET_HOME_USER_STORIES,
-  CLEAR_ALL_HOME_STORIES } from './types';
+  CLEAR_ALL_HOME_STORIES,
+  ON_HOME_MENU_CHANGE,
+  ON_PUBLISH_REQ_TAB_CHANGE
+ } from './types';
 import { setAlert } from './alert'
 
 
@@ -31,3 +34,13 @@ export const getUserStories = (token = '-1') => async dispatch => {
     dispatch(setAlert(err.message , 'red'))
   }
 };
+
+export const onHomeMenuChange = (index = 0) => async dispatch => {
+  dispatch({type : ON_HOME_MENU_CHANGE, payload : index})
+}
+
+export const onPublishReqTabChange = (tabName) => async dispatch => {
+  dispatch({type : ON_PUBLISH_REQ_TAB_CHANGE, payload : tabName})
+}
+
+

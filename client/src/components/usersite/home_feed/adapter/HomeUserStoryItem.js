@@ -4,16 +4,36 @@ import PropTypes from 'prop-types';
 import {getUserStories} from '../../../../actions/home'
 import { IMAGE_BASE_URL } from '../../../utils/constants';
 import { Link } from 'react-router-dom';
-import {SHOW_STORY} from '../../../utils/constants'
+import {SHOW_STORY, ALL_HOME_FEEDS, USER_STORY_LIST , USER_PENDING_STORY_LIST} from '../../../utils/constants'
 
 
-function HomeUserStoryItem({selectedMenuItem, getUserStories, token, homeUserStoryList}) {
+function HomeUserStoryItem({
+  selectedMenuItem, 
+  //Redux
+  getUserStories, token, homeUserStoryList}) {
+
+
+    console.log('HomeUserStoryItem :>> ', selectedMenuItem);
+
+    // if(token){
+    //   getUserStories(token)
+    // }
 
   useEffect(() => {
+    if(selectedMenuItem.type === ALL_HOME_FEEDS){
+    }
+    else if(selectedMenuItem.type === USER_STORY_LIST){
+    }
+    else if(selectedMenuItem.type === USER_PENDING_STORY_LIST){
+
+    }
+
     if(token){
       getUserStories(token)
     }
   }, [selectedMenuItem])
+
+    
 
   if(homeUserStoryList.length === 0){
     // Show loading
