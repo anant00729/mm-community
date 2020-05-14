@@ -14,27 +14,32 @@ const initialState = {
       type : ALL_HOME_FEEDS,
       value : 'Daily Feeds',
       visible : 'all',
-      selected : false       
+      selected : false,
+      code: '/home-feeds/one'       
     },
     {
       type : USER_STORY_LIST,
       value : 'My Stories',
       visible : 'all',
-      selected : false       
+      selected : false,
+      code: '/home-feeds/two'           
     },
     {
       type : USER_PENDING_STORY_LIST,
       value : 'Publish Request',
-      visible : 'all' ,
-      selected : true ,
+      visible : 'all',
+      selected : true,
+      code: '/home-feeds/publish-request',
       requests : [
         {
           type : OPEN,
-          selected : true
+          selected : true,
+          code: '/home-feeds/publish-request/open'
         },
         {
           type : CLOSED,
-          selected : false
+          selected : false,
+          code : '/home-feeds/publish-request/closed'
         }
       ]     
     }
@@ -56,27 +61,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         homeUserStoryList : []
-      };            
-    case ON_HOME_MENU_CHANGE:
-      let newhomeUserLeftMenu = state.homeUserLeftMenu.map((data, dataIndex) => {
-        data.selected = dataIndex == payload
-        return data
-      })
-      
-      return {
-        ...state,
-        homeUserLeftMenu : newhomeUserLeftMenu
-      };            
-    case ON_PUBLISH_REQ_TAB_CHANGE:
-      let pubHomeUserLeftMenu = [...state.homeUserLeftMenu]
-      let requests = pubHomeUserLeftMenu[2].requests.filter(menu => {
-        menu.selected = menu.type === payload
-        return menu
-      })
-      pubHomeUserLeftMenu[2].requests = requests
-      return {
-        ...state,
-        homeUserLeftMenu : pubHomeUserLeftMenu
       };            
     default:
       return state;

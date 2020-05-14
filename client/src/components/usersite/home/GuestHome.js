@@ -24,7 +24,7 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
    }, [])
  
   if (isAuthenticated) {
-    return <Redirect to={HOME_FEED_ROUTE}/>;
+    return <Redirect to={'/home-feeds/one'}/>;
   }
 
   let popularStoryListJSX = popularStoryList.map((story, index) => {

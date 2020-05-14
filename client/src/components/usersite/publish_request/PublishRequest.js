@@ -12,28 +12,28 @@ function PublishRequest({selectedMenuItem, onPublishRequestTabChange}) {
   }, [])
 
 
-  let homeUserJSX = {}
+  //let homeUserJSX = {}
 
-  let menuJSX = selectedMenuItem.requests.map(req => {
+  // let menuJSX = selectedMenuItem.requests.map(req => {
 
-    if(req.selected){
-      homeUserJSX = <HomeUserStoryItem 
-      key={uuidv4()}
-      selectedMenuItem={selectedMenuItem}/>
-    }
+  //   if(req.selected){
+  //     homeUserJSX = <HomeUserStoryItem 
+  //     key={uuidv4()}
+  //     selectedMenuItem={selectedMenuItem}/>
+  //   }
 
-    return (
-      <button
-      key={req.type}
-      onClick={() => onPublishRequestTabChange(req.type)}
-      className={`px-4 h-10 ${req.selected ? 'font-extrabold app-font-color border-b-2 app-border-bottom' : ''}`}>
-        <span className="font-semibold">{req.type}</span>
-      </button>
-    )
-  })
+  //   return (
+  //     <button
+  //     key={req.type}
+  //     onClick={() => onPublishRequestTabChange(req.type)}
+  //     className={`px-4 h-10 ${req.selected ? 'font-extrabold app-font-color border-b-2 app-border-bottom' : ''}`}>
+  //       <span className="font-semibold">{req.type}</span>
+  //     </button>
+  //   )
+  // })
 
 
-  console.log('homeUserJSX :>> ', homeUserJSX);
+  
 
   
 
@@ -41,9 +41,9 @@ function PublishRequest({selectedMenuItem, onPublishRequestTabChange}) {
     <div>
       <div className="bg-white rounded md:mt-0 flex flex-wrap text-sm text-gray-700 sticky top-story-data">
           <div className="w-full h-4 bg-gray-200"></div>
-          {menuJSX}
+          {/* {menuJSX} */}
       </div>
-      {homeUserJSX}
+      {/* {homeUserJSX} */}
     </div>
   )
 }

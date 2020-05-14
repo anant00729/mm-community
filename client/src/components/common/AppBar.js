@@ -65,6 +65,8 @@ import { withRouter } from "react-router-dom";
       
   </div>)
   }
+
+  console.log('currentRoute :>> ', currentRoute);
   
   return (
     <nav className="bg-white border-b border-gray-300 md:text-base text-sm fixed w-full z-10 sticky top-0">
@@ -105,7 +107,7 @@ import { withRouter } from "react-router-dom";
             <div className="flex flex-wrap">
               <Link to={HOME_ROUTE} 
               className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
-                ${(currentRoute == HOME_ROUTE || currentRoute == HOME_FEED_ROUTE) ? 'app-font-color border-b-2 app-border-bottom' : ''}`}>
+                ${(currentRoute == HOME_ROUTE || currentRoute.includes('/home-feeds/')) ? 'app-font-color border-b-2 app-border-bottom' : ''}`}>
                 Home
               </Link>
               <Link 

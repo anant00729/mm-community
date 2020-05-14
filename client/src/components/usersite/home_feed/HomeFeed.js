@@ -7,7 +7,11 @@ import HomeUserLeftMenu from './HomeUserLeftMenu';
 import HomeUserRightMenu from './HomeUserRightMenu';
 import HomeUserStoryItem from './adapter/HomeUserStoryItem'
 import PublishRequest from '../../usersite/publish_request/PublishRequest'
-import {onPublishReqTabChange , onHomeMenuChange} from '../../../actions/home'
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import One from './One';
+import Two from './Two';
+import Three from './Three';
 
 import {
   HOME_ROUTE,
@@ -15,35 +19,35 @@ import {
 } from '../../utils/constants'
 
 
-const HomeFeed = ({isAuthenticated, user, onPublishReqTabChange , onHomeMenuChange, homeUserLeftMenu}) => {
+const HomeFeed = ({isAuthenticated, user, homeUserLeftMenu}) => {
   const [menuHidden , setMenuHidden] = useState(true)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
-  const onHomeLeftMenuChange = (index) => onHomeMenuChange(index)
-  const onPublishRequestTabChange = (tabName) => onPublishReqTabChange(tabName)
+
 
   if(!isAuthenticated){
     return <Redirect to={HOME_ROUTE}/>;
   }
 
-  let homeMiddleComponentJSX = ''
+  // let homeMiddleComponentJSX = ''
 
-  homeMiddleComponentJSX = homeUserLeftMenu.find(menu=> {
-    if(menu.selected){
-      if(menu.type === USER_PENDING_STORY_LIST)  {
-        menu.component = <PublishRequest 
-        selectedMenuItem={menu} 
-        onPublishRequestTabChange={onPublishRequestTabChange}/>
-        return menu
-      }else {
-        menu.component = <HomeUserStoryItem selectedMenuItem={menu}/>
-        return menu
-      }
-    }
-  })
+  // homeMiddleComponentJSX = homeUserLeftMenu.find(menu=> {
+  //   if(menu.selected){
+  //     if(menu.type === USER_PENDING_STORY_LIST)  {
+  //       menu.component = <Route path={'/home-feeds/one'} component={PublishRequest} />
+  //       // <PublishRequest 
+  //       // selectedMenuItem={menu} 
+  //       // onPublishRequestTabChange={onPublishRequestTabChange}/>
+  //       return menu
+  //     }else {
+  //       menu.component = <Route path={'/home-feeds/two'} component={Two} />
+  //       return menu
+  //     }
+  //   }
+  // })
 
   return (
     <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
@@ -53,12 +57,13 @@ const HomeFeed = ({isAuthenticated, user, onPublishReqTabChange , onHomeMenuChan
           setMenuHidden={setMenuHidden}
           menuHidden={menuHidden}
           user={user}
-          onHomeLeftMenuChange={onHomeLeftMenuChange}
           homeUserLeftMenu={homeUserLeftMenu}
           />
         </div>
         <div className="w-full lg:w-3/5 px-2 mt-4 lg:mt-0">
-          {homeMiddleComponentJSX.component}
+          <Route path={'/home-feeds/one'} component={HomeUserStoryItem} />
+          <Route path={'/home-feeds/two'} component={HomeUserStoryItem} />
+          <Route path={'/home-feeds/three'} component={PublishRequest} />
         </div>
         <div className="w-full lg:w-1/5 px-2 mt-4 lg:mt-0">
           <div className="sticky top-app-bar-mdd">
@@ -85,8 +90,7 @@ const mapStateToProps = state => ({
 });
 
 const allActions = {
-  onHomeMenuChange, 
-  onPublishReqTabChange
+  
 }
 
 export default connect(mapStateToProps, allActions)(HomeFeed);

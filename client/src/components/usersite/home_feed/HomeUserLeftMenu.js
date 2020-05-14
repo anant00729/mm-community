@@ -8,26 +8,29 @@ import {
   STUDENT
 } from '../../utils/constants';
 import { Link, Redirect } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 
-function HomeUserLeftMenu({setMenuHidden , menuHidden, user,  onHomeLeftMenuChange, homeUserLeftMenu}) {
+
+function HomeUserLeftMenu({setMenuHidden , menuHidden, user, homeUserLeftMenu, location}) {
 
   if(user.type === STUDENT){
     delete homeUserLeftMenu[2]
   }
 
+
+  console.log('props.location.pathname :>> ', location.pathname);
   
 
   let sideMenuJSX = homeUserLeftMenu.map((menu, index) => {
     return (
-      <div 
-      onClick={() => onHomeLeftMenuChange(index)}
+      <Link to={menu.code} 
       key={index}
-      className={`px-4 py-3 flex cursor-pointer ${menu.selected ? 'app-font-color border-r-2 border-blue-500' : 'text-gray-800'}`}
+      className={`px-4 py-3 flex cursor-pointer ${location.pathname == menu.code ? 'app-font-color border-r-2 border-blue-500' : 'text-gray-800'}`}
       >
         <i className="fa fa-home self-center text-xl"></i>
         <p className="self-center ml-4 text-md">{menu.value}</p>
-    </div>
+    </Link>
     )
   })
   
@@ -66,4 +69,4 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user,  onHomeLeftMenuChan
 }
 
 
-export default HomeUserLeftMenu
+export default withRouter(HomeUserLeftMenu)

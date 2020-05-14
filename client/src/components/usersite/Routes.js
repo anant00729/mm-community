@@ -43,6 +43,7 @@ const Routes = props => {
   }
 
   if(props.location.pathname.includes(SHOW_STORY)) isVisible = true
+  if(props.location.pathname.includes(HOME_FEED_ROUTE)) isVisible = true
 
   return (
     <div>
@@ -56,7 +57,7 @@ const Routes = props => {
           <Route exact path={ALL_STORIES_ROUTE} component={Stories} />
           <Route exact path={ALL_DISCUSSIONS} component={Discussion} />
           <Route exact path={CREATE_STORY_ROUTE} component={PublishStory} />
-          <Route exact path={HOME_FEED_ROUTE} component={HomeFeed} />
+          <Route path={HOME_FEED_ROUTE} component={HomeFeed} />
           <Route exact path={`${SHOW_STORY}/:id`} component={ShowStory}/>
           <Route exact path={`/test`} component={Test}/>
           <Route component={PageNotFound} />

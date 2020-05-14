@@ -180,3 +180,35 @@ SELECT
 
 
 word-break: break-word;
+
+
+
+"state": "Karnataka",
+"timings": "11:00 am to 09:00 pm",
+"email": "Westside167@trent-tata.com",
+
+
+
+
+"country" : "",
+
+
+Hi, 
+
+I have been facing issues while running the Test cases. The Bill Payment module is casuing the issue. 
+Please let me know when it will be fixed.
+
+
+https://i.imgur.com/BrFKqdg.png
+https://i.imgur.com/ppsDu4F.png
+https://i.imgur.com/sVloClv.png
+https://i.imgur.com/SiWes94.png
+https://i.imgur.com/51FvAtP.png
+https://i.imgur.com/XISVejb.png
+
+
+Name:
+lohit.kn@tatadigital.com
+
+Password:
+j9y9Ryp6O*
