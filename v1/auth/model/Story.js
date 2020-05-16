@@ -177,59 +177,8 @@ class Story {
     }
   }
 
-  async getPublishedStory() {
-    let q1 = `SELECT 
-    id,
-    title,
-    content,
-    cover_image, 
-    like_count,
-    visit_count,
-    read_time,
-    created_at,
-    updated_at,
-    user_id,
-    story_status
-    FROM public.story where story_status = 1`;
-
-    try {
-      let res_d = await db.query(q1);
-      if (res_d[0].length === 0) {
-        return { status: false, message: "Stories not Found" };
-      } else {
-        return { status: true, message: "Stories Found", data: res_d[0] };
-      }
-    } catch (err) {
-      return { status: false, message: err.message };
-    }
-  }
-
-  async getPendingStories() {
-    let q1 = `SELECT id,
-    title, content,
-    cover_image,
-    like_count,
-    visit_count,
-    read_time,
-    created_at,
-    updated_at,
-    user_id,
-    story_status
-    FROM public.story where story_status = -1`;
-
-    try {
-      let res_d = await db.query(q1);
-      if (res_d[0].length === 0) {
-        return { status: false, message: "Stories not Found" };
-      } else {
-        return { status: true, message: "Stories Found", data: res_d[0] };
-      }
-    } catch (err) {
-      return { status: false, message: err.message };
-    }
-  }
-
-  async publishStoryByID(storyId) {
+  
+  async updateStoryStatusByStoryId(storyId) {
     let q1 = `UPDATE public.story SET story_status=1 WHERE id=(:storyId)`;
 
     try {
@@ -241,9 +190,19 @@ class Story {
     }
   }
 
-  async getAllPublishedStories(story_status) {
-    let q1 = `SELECT id, title, content, cover_image, like_count, visit_count, read_time, created_at, updated_at, user_id, story_status
-    FROM public.story WHERE story_status = (:story_status);`;
+  async getAllPublishedOrPendingStories(story_status) {
+    let q1 = `
+    SELECT
+    a.id,
+    u.name,
+    u.profile_image,
+    a.title,
+    a.content,
+    a.cover_image
+    FROM
+    public.story a 
+    INNER JOIN public.user u ON a.user_id = u.id WHERE a.story_status = (:story_status) ORDER BY a.id DESC;	
+    `;
     try {
       let res_d = await db.query(q1, { replacements: { story_status } });
       // res_d[0] ---> actual

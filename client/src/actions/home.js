@@ -33,3 +33,29 @@ export const getUserStories = (token = '-1') => async dispatch => {
   }
 };
 
+export const getAdminStories = (token = '-1', story_status = 0) => async dispatch => {
+  dispatch({type : CLEAR_ALL_HOME_STORIES})
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const body = JSON.stringify({ token, story_status });
+    const res = await axios.post('/v1/story/getAllAdminStories', body , config);
+    const res_d = res.data
+
+    if(res_d.status){
+      dispatch({
+        type: GET_HOME_USER_STORIES,
+        payload: res_d.data
+      });
+      //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
+    }else {
+      dispatch(setAlert(res_d.message, 'red'))
+    }
+  } catch (err) {
+    dispatch(setAlert(err.message , 'red'))
+  }
+};
+

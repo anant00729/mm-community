@@ -5,12 +5,11 @@ const {
   getAllStories,
   incrementStoryCount,
   getUserStories,
-  getPublishedStory,
-  getPendingStories,
-  publishStoryByID,
-  getPublishedStories,
+  updateStoryStatusByStoryId,
+  getAllAdminStories,
 } = require("../controller/storyController");
 const { authorizeUser } = require("../../middleware/CheckUserPresent");
+const _r = express.Router()
 
 /*
  * Authentication required
@@ -20,9 +19,11 @@ _r.post("/getStory", getStory);
 _r.post("/incrementStoryCount", incrementStoryCount);
 _r.post("/getAllStories", getAllStories);
 _r.post("/getUserStories", authorizeUser, getUserStories);
-_r.post("/getPublishedStory", authorizeUser, getPublishedStory);
-_r.post("/getPendingStories", authorizeUser, getPendingStories);
-_r.post("/publishStoryByID", authorizeUser, publishStoryByID);
-_r.post("/getPublishedStories", getPublishedStories);
+
+/**
+ * All Routes for Admin Only
+ */
+_r.post("/updateStoryStatusByStoryId", updateStoryStatusByStoryId);
+_r.post("/getAllAdminStories", getAllAdminStories);
 
 module.exports = _r;

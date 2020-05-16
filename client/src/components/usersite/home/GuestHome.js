@@ -71,17 +71,20 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
             <br/>
             the best developers from across the world.</p>
           <div className="mt-4">
-            <Link to={REGISTER_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4  focus:outline-none hover:shadow-xl shadow transition duration-500 ease-in-out">
+            {/* <Link to={REGISTER_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4  focus:outline-none hover:shadow-xl shadow transition duration-500 ease-in-out">
               Create an account
+            </Link> */}
+            <Link to={LOGIN_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4  focus:outline-none hover:shadow-xl shadow transition duration-500 ease-in-out">
+              Login as student
             </Link>
           </div>
-          <div className="mt-4">
+          {/* <div className="mt-4">
             <Link to={LOGIN_ROUTE} className="text-gray-700  hover:text-black px-2 py-4 focus:outline-none">Already have an account?</Link>
-          </div>
+          </div> */}
         </div>
         <div className="w-full mt-6 md:mt-0">
           <img 
-          className="lg:w-1/2 mx-auto w-full px-16 mt-4 md:w-3/4 object-cover"
+          className="lg:w-1/2 mx-auto w-full px-16 mt-4 md:w-3/4 object-cover mt-6"
           src={mainHomeImg} alt="mainHomeImg" />
         </div>
       </div>

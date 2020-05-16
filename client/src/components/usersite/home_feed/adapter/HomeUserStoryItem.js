@@ -1,33 +1,57 @@
 import React,{useEffect} from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {getUserStories} from '../../../../actions/home'
+import {getUserStories, getAdminStories} from '../../../../actions/home'
 import { IMAGE_BASE_URL } from '../../../utils/constants';
-import { Link } from 'react-router-dom';
-import {SHOW_STORY, ALL_HOME_FEEDS, USER_STORY_LIST , USER_PENDING_STORY_LIST} from '../../../utils/constants'
+import { Link , withRouter} from 'react-router-dom';
+import {SHOW_STORY,
+   HOME_FEED_ROUTE,
+   PUBLISH_REQUEST,
+   PENDING,
+   PUBLISHED
+  } from '../../../utils/constants'
 
 
 function HomeUserStoryItem({
-  selectedMenuItem, 
   //Redux
-  getUserStories, token, homeUserStoryList}) {
+  getAdminStories,
+  getUserStories, 
+  token, 
+  homeUserStoryList, 
+  location}) {
 
-    console.log('HomeUserStoryItem :>> ', selectedMenuItem);
-
-    // if(token){
-    //   getUserStories(token)
-    // }
-
+  let _p = location.pathname 
+  let approveBtnJSX = null
+  if(_p === `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PENDING}`){
+    approveBtnJSX = <button className="ml-auto px-4 py-2 
+    hover:bg-gray-200 
+    hover:border 
+    hover:border-blue-500 
+    rounded
+    app-font-color
+    ">APPROVE</button>
+  }
+  
   useEffect(() => {
-    
-
+    let story_status = 0
+    switch(_p){
+      case `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PENDING}`:
+        story_status = -1
+        break;
+      case `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PUBLISHED}`:
+        story_status = 1
+        break;  
+    }
     if(token){
-      getUserStories(token)
+      if(story_status == 0){
+        getUserStories(token)
+      }else {
+        getAdminStories(token, story_status)
+      }
+      
     }
     window.scrollTo(0, 0)
-  }, [selectedMenuItem])
-
-    
+  }, [])
 
   if(homeUserStoryList.length === 0){
     // Show loading
@@ -39,7 +63,7 @@ function HomeUserStoryItem({
         let para = story.content.find(s=> s.selectType === "Paragraph")
         let { title , profile_image , cover_image , id, name } = story
         if(para){
-          if(para.input.length > 300){
+          if(para.input.length > 310){
             para.input = `${para.input.substring(1, 300)}...`;
           }
         }
@@ -48,15 +72,18 @@ function HomeUserStoryItem({
             key={index}
             className="bg-white rounded mt-4 p-4">
               
-              <Link className="cursor-pointer" to={`${SHOW_STORY}/${id}`}>
+              
                 <div className="flex">
+                <Link className="cursor-pointer flex" to={`${SHOW_STORY}/${id}`}>
                   <img 
                   className="w-12 h-12 rounded-full border-gray-200 border-2"
                   src={profile_image}
                   alt="profile_image"/>
                   <p className="self-center ml-3 text-sm font-semibold md:text-base">{name}'s blog</p>
+                </Link>
+                  {approveBtnJSX}
                 </div>  
-              </Link>
+              
               
               <div className="md:flex mt-4">
 
@@ -86,7 +113,8 @@ function HomeUserStoryItem({
 
 
 HomeUserStoryItem.propTypes = {
-  getUserStories: PropTypes.func.isRequired
+  getUserStories: PropTypes.func.isRequired,
+  getAdminStories: PropTypes.func.isRequired,
 };
    
 const mapStateToProps = state => ({
@@ -95,10 +123,10 @@ const mapStateToProps = state => ({
 });
 
 const allActions = {
-  getUserStories
+  getUserStories, getAdminStories
 }
 
-export default connect(mapStateToProps, allActions)(HomeUserStoryItem);
+export default connect(mapStateToProps, allActions)(withRouter(HomeUserStoryItem));
 
 
 

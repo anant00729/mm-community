@@ -6,7 +6,7 @@ import HomeUserStoryItem from '../../usersite/home_feed/adapter/HomeUserStoryIte
 import { v4 as uuidv4 } from 'uuid';
 import {PUBLISHED, PENDING , HOME_FEED_ROUTE, PUBLISH_REQUEST} from '../../utils/constants'
 
-function PublishRequest({selectedMenuItem, onPublishRequestTabChange, location}) {
+function PublishRequest({location}) {
   
   let pub_req_path = `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}`
 
@@ -15,31 +15,6 @@ function PublishRequest({selectedMenuItem, onPublishRequestTabChange, location})
     window.scrollTo(0, 0)
   }, [])
 
-
-  //let homeUserJSX = {}
-
-  // let menuJSX = selectedMenuItem.requests.map(req => {
-
-  //   if(req.selected){
-  //     homeUserJSX = <HomeUserStoryItem 
-  //     key={uuidv4()}
-  //     selectedMenuItem={selectedMenuItem}/>
-  //   }
-
-  //   return (
-  //     <button
-  //     key={req.type}
-  //     onClick={() => onPublishRequestTabChange(req.type)}
-  //     className={`px-4 h-10 ${req.selected ? 'font-extrabold app-font-color border-b-2 app-border-bottom' : ''}`}>
-  //       <span className="font-semibold">{req.type}</span>
-  //     </button>
-  //   )
-  // })
-
-
-  
-
-  
 
   return (
     <div>

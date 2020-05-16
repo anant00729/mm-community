@@ -16,16 +16,20 @@ import { withRouter } from "react-router-dom";
 
   let sideLoginPanel = (
     <div className="ml-auto flex">
-    <Link to={LOGIN_ROUTE} className="ml-auto text-gray-700 my-auto font-bold py-2 cursor-pointer md:px-8 px-4 focus:outline-none">
+    {/* <Link to={LOGIN_ROUTE} className="ml-auto text-gray-700 my-auto font-bold py-2 cursor-pointer md:px-8 px-4 focus:outline-none">
       Login
-    </Link>
+    </Link> */}
     <Link 
-    to={REGISTER_ROUTE}
-    className="app-color px-4 my-auto text-white rounded flex flex-wrap content-center py-2 font-bold cursor-pointer focus:outline-none">
+    to={LOGIN_ROUTE}
+    className="
+    ml-4
+    app-color px-4 my-auto text-white rounded flex flex-wrap content-center py-2 font-bold cursor-pointer focus:outline-none">
       <i className="fa fa-user self-center"></i>
       <p className="ml-2 self-center">
-        <span className="register-lg-txt">Create an account</span>
-        <span className="register-sm-txt">Sign Up</span>
+        {/* <span className="register-lg-txt">Create an account</span>
+        <span className="register-sm-txt">Sign Up</span> */}
+        <span className="register-lg-txt">Login</span>
+        <span className="register-sm-txt">Login</span>
       </p> 
     </Link>
   </div>
@@ -65,8 +69,6 @@ import { withRouter } from "react-router-dom";
       
   </div>)
   }
-
-  console.log('currentRoute :>> ', currentRoute);
   
   return (
     <nav className="bg-white border-b border-gray-300 md:text-base text-sm fixed w-full z-10 sticky top-0">
@@ -131,11 +133,11 @@ import { withRouter } from "react-router-dom";
                     console.log('Search')
                   }} 
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button>
-                  <button 
+                  {/* <button 
                   onClick={() => {
                     console.log('Discussion')
                   }} 
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button>
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button> */}
                   <button 
                   onClick={() => {
                     console.log('Members')
@@ -149,10 +151,10 @@ import { withRouter } from "react-router-dom";
               </div>
               </div>
               <div className="hidden md:visible md:flex md:flex-wrap">
-                <Link 
+                {/* <Link 
                 className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
                 ${currentRoute == ALL_DISCUSSIONS ? 'app-font-color border-b-2 app-border-bottom' : ''}`}
-                to={ALL_DISCUSSIONS}>Discussion</Link>
+                to={ALL_DISCUSSIONS}>Discussion</Link> */}
                 <Link 
                 className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
                 ${currentRoute == ALL_MEMBERS_ROUTE ? 'app-font-color border-b-2 app-border-bottom' : ''}`}

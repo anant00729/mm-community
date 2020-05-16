@@ -5,7 +5,7 @@ export const CLOSE_APPBAR_DROPDOWN = 'CLOSE_APPBAR_DROPDOWN'
 // All routes
 export const SEARCH_ROUTE = '/search'
 export const HOME_ROUTE = '/'
-export const HOME_FEED_ROUTE = '/home-feeds'
+
 export const ALL_MEMBERS_ROUTE = '/all-members'
 export const LOGIN_ROUTE = '/login'
 export const REGISTER_ROUTE = '/register'
@@ -19,6 +19,7 @@ export const SHOW_STORY = '/show-story'
 /**
  * Stories routes
  */
+export const HOME_FEED_ROUTE = '/home-feeds'
 export const DAILY_FEEDS = '/daily-feeds'
 export const MY_STORIES = '/my-stories'
 export const PUBLISH_REQUEST = '/publish-requests'

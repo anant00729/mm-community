@@ -126,35 +126,28 @@ exports.getUserStories = async (req, res) => {
 };
 
 /*
- * @route  v1/story/getPublishedStory
+ * @route  v1/story/updateStoryStatusByStoryId
  * @type   POST
  * @access public
  */
-exports.getPublishedStory = async (req, res) => {
+exports.updateStoryStatusByStoryId = async (req, res) => {
+  const storyId = req.body.storyId || 0;
   let story = new Story();
-
-  let storyStatus = await story.getPublishedStory();
-  res.json(storyStatus);
-};
-
-exports.getPendingStories = async (req, res) => {
-  let story = new Story();
-
-  let storyStatus = await story.getPendingStories();
-  res.json(storyStatus);
-};
-
-exports.publishStoryByID = async (req, res) => {
-  const storyId = req.body.id || 0;
-  let story = new Story();
-  exports.getPublishedStories = async (req, res) => {
-    let story_status = 1;
-    let story = new Story();
-    let storyObj = await story.getAllPublishedStories(story_status);
-    res.json(storyObj);
-  };
-
-  let publishedStoryByAdmin = await story.publishStoryByID(storyId);
-  //console.log("publishedStoryByAdmin :>> ", publishedStoryByAdmin);
+  let publishedStoryByAdmin = await story.updateStoryStatusByStoryId(storyId);
   res.json(publishedStoryByAdmin);
+};
+
+
+/*
+ * @route  v1/story/getAllAdminStories
+ * @type   POST
+ * @access public
+ */
+exports.getAllAdminStories = async (req, res) => {
+  let story_status = req.body.story_status || -1;
+  let story = new Story();
+  let storyObj = await story.getAllPublishedOrPendingStories(story_status);
+  setTimeout(() => {
+    res.json(storyObj);
+  }, 1000);
 };

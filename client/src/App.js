@@ -11,7 +11,6 @@ const history = createBrowserHistory()
 
 function App() {
   useEffect(() => {
-    console.log('localStorage.token :', localStorage.token);
     setAuthToken(localStorage.token);
   }, []);
   return (
