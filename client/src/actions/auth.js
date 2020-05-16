@@ -72,8 +72,6 @@ export const logout = () => async dispatch => {
     const res = await axios.post('/v1/auth/logout', body , config);
     const res_d = res.data
 
-    console.log('res_d', res_d)
-
     if(res_d.status){
       dispatch({ type: LOGOUT });
       //dispatch(setAlert(res_d.data, 'green'))
