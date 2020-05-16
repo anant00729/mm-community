@@ -4,11 +4,11 @@ const multer = require('multer')
 
 // All config  
 const config = require('config')
-const secretAccessKey = config.get('secretAccessKey')
-const accessKeyId = config.get('accessKeyId')
-const region = config.get('region')
-const ACL = config.get('ACL')
-const bucket = config.get('bucket')
+const secretAccessKey = process.env.SECERT_ACCESS_KEY || config.get('secretAccessKey')
+const accessKeyId = process.env.ACCESS_KEY_ID || config.get('accessKeyId')
+const region = process.env.REGION || config.get('region')
+const ACL = process.env.ACL || config.get('ACL')
+const bucket = process.env.BUCKET || config.get('bucket')
 
 /**
  * S3 bucket storage

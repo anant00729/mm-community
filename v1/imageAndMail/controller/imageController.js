@@ -1,6 +1,6 @@
 const Image = require('../model/Image')
 const config = require('config')
-const IMAGE_BASE_URL = config.get('imageBaseUrl')
+
 
 /* 
  * @route  v1/image/upload 
