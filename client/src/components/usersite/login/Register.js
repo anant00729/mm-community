@@ -48,11 +48,6 @@ export const Register = ({ register, isAuthenticated , setAlert}) => {
   }
 
 
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard" />;
-  // }
-
-
   return (
     <div className="md:flex md:flex-wrap bg-gray-300">
       <div className="flex-1 bg-white p-10 self-center flex content-center flex-wrap md:h-screen md:p-20">

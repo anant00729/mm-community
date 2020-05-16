@@ -22,6 +22,8 @@ export const SHOW_STORY = '/show-story'
 export const DAILY_FEEDS = '/daily-feeds'
 export const MY_STORIES = '/my-stories'
 export const PUBLISH_REQUEST = '/publish-requests'
+export const PUBLISHED = '/published'
+export const PENDING = '/pending'
 
 
 export const IMAGE_BASE_URL = 'https://mm-blog-community.s3.ap-south-1.amazonaws.com/'

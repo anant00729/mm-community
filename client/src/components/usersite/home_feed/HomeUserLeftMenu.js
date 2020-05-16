@@ -5,7 +5,8 @@ import {
   USER_STORY_LIST,
   USER_PENDING_STORY_LIST,
   ALL_STUDENT_PENDING_STORY_LIST,
-  STUDENT
+  STUDENT,
+  PENDING
 } from '../../utils/constants';
 import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
@@ -41,25 +42,20 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, location}) {
   }
 
   let sideMenuJSX = homeUserLeftMenu.map((menu, index) => {
+    let isSelected = location.pathname.includes(menu.code)
+    if(menu.code === `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}`){
+      menu.code = `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PENDING}`
+    }
     return (
       <Link to={menu.code} 
       key={index}
-      className={`px-4 py-3 flex cursor-pointer ${location.pathname == menu.code ? 'app-font-color border-r-2 border-blue-500' : 'text-gray-800'}`}
+      className={`px-4 py-3 flex cursor-pointer ${isSelected ? 'app-font-color border-r-2 border-blue-500' : 'text-gray-800'}`}
       >
         <i className="fa fa-home self-center text-xl"></i>
         <p className="self-center ml-4 text-md">{menu.value}</p>
     </Link>
     )
   })
-
-  
-
-  console.log('user.type :>> ', user.type);
-  console.log('STUDENT :>> ', STUDENT);
-
-  console.log('homeUserLeftMenu :>> ', homeUserLeftMenu);
-
-  
 
   return (
     <>
