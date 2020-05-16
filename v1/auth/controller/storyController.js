@@ -147,6 +147,12 @@ exports.getPendingStories = async (req, res) => {
 exports.publishStoryByID = async (req, res) => {
   const storyId = req.body.id || 0;
   let story = new Story();
+  exports.getPublishedStories = async (req, res) => {
+    let story_status = 1;
+    let story = new Story();
+    let storyObj = await story.getAllPublishedStories(story_status);
+    res.json(storyObj);
+  };
 
   let publishedStoryByAdmin = await story.publishStoryByID(storyId);
   //console.log("publishedStoryByAdmin :>> ", publishedStoryByAdmin);

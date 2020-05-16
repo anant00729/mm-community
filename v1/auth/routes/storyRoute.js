@@ -8,9 +8,9 @@ const {
   getPublishedStory,
   getPendingStories,
   publishStoryByID,
+  getPublishedStories,
 } = require("../controller/storyController");
 const { authorizeUser } = require("../../middleware/CheckUserPresent");
-const _r = express.Router();
 
 /*
  * Authentication required
@@ -23,5 +23,6 @@ _r.post("/getUserStories", authorizeUser, getUserStories);
 _r.post("/getPublishedStory", authorizeUser, getPublishedStory);
 _r.post("/getPendingStories", authorizeUser, getPendingStories);
 _r.post("/publishStoryByID", authorizeUser, publishStoryByID);
+_r.post("/getPublishedStories", getPublishedStories);
 
 module.exports = _r;

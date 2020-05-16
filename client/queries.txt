@@ -212,3 +212,14 @@ lohit.kn@tatadigital.com
 
 Password:
 j9y9Ryp6O*
+
+
+SELECT id, title, content, cover_image, like_count, visit_count, read_time, created_at, updated_at, user_id, story_status
+	FROM public.story WHERE story_status = '-1';
+	
+	
+SELECT id, title, content, cover_image, like_count, visit_count, read_time, created_at, updated_at, user_id, story_status
+	FROM public.story WHERE story_status = (:story_status);
+	
+	
+	

@@ -4,7 +4,7 @@ import imageOne from '../../../app_images/main-home-i1.png'
 import imageTwo from '../../../app_images/main-home-i2.png'
 import imageThree from '../../../app_images/main-home-i3.png'
 import { Link, Redirect } from 'react-router-dom';
-import {REGISTER_ROUTE, LOGIN_ROUTE, HOME_FEED_ROUTE, IMAGE_BASE_URL , SHOW_STORY} from '../../utils/constants';
+import {REGISTER_ROUTE, LOGIN_ROUTE, HOME_FEED_ROUTE, IMAGE_BASE_URL , SHOW_STORY, DAILY_FEEDS} from '../../utils/constants';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {getAllStories} from '../../../actions/story'
@@ -24,7 +24,7 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
    }, [])
  
   if (isAuthenticated) {
-    return <Redirect to={'/home-feeds/one'}/>;
+    return <Redirect to={`${HOME_FEED_ROUTE}${DAILY_FEEDS}`}/>;
   }
 
   let popularStoryListJSX = popularStoryList.map((story, index) => {

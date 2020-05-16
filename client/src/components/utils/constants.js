@@ -16,6 +16,16 @@ export const ALL_DISCUSSIONS = '/discussions'
 export const SHOW_STORY = '/show-story'
 
 
+/**
+ * Stories routes
+ */
+export const DAILY_FEEDS = '/daily-feeds'
+export const MY_STORIES = '/my-stories'
+export const PUBLISH_REQUEST = '/publish-requests'
+export const PUBLISHED = '/published'
+export const PENDING = '/pending'
+
+
 export const IMAGE_BASE_URL = 'https://mm-blog-community.s3.ap-south-1.amazonaws.com/'
 
 
@@ -29,10 +39,6 @@ export const POINT = 'Point'
 export const STUDENT = 'student'
 export const TEACHER = 'teacher'
 
-export const ALL_HOME_FEEDS = 'ALL_HOME_FEEDS'
-export const USER_STORY_LIST = 'USER_STORY_LIST'
-export const USER_PENDING_STORY_LIST = 'USER_PENDING_STORY_LIST'
-export const ALL_STUDENT_PENDING_STORY_LIST = 'ALL_STUDENT_PENDING_STORY_LIST'
 
 
 export const OPEN = 'OPEN'
