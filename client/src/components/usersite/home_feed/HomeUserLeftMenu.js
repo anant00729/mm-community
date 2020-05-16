@@ -76,14 +76,14 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, location}) {
             <i className="fa fa-home self-center text-xl"></i>
             <p className="self-center ml-4 text-md">New story</p>
           </Link>
-          <Link to={CREATE_STORY_ROUTE} className="px-4 py-3 flex cursor-pointer border-b border-gray-200">
+          {/* <Link to={CREATE_STORY_ROUTE} className="px-4 py-3 flex cursor-pointer border-b border-gray-200">
             <i className="fa fa-home self-center text-xl"></i>
             <p className="self-center ml-4 text-md">New discussion</p>
           </Link>
           <Link to={CREATE_STORY_ROUTE} className="px-4 py-3 flex cursor-pointer border-b border-gray-200">
             <i className="fa fa-home self-center text-xl"></i>
             <p className="self-center ml-4 text-md">New poll</p>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </>

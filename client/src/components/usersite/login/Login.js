@@ -64,9 +64,11 @@ export const Login = ({login, isAuthenticated, setAlert}) => {
           type="submit"/>
         </form>
 
-        <p className="mt-1 font-sen text-gray-700 text-xl w-full font-semibold mt-8">Or continue with your social account</p>
 
-        <div className="flex mt-4 w-11/12">
+        {/* START Social Logins */}
+        {/* <p className="mt-1 font-sen text-gray-700 text-xl w-full font-semibold mt-8">Or continue with your social account</p> */}
+
+        {/* <div className="flex mt-4 w-11/12">
           <button 
           className="w-1/2 xl:w-1/3 flex flex-wrap text-gray-700 rounded shadow mr-3 px-3 py-2 focus:outline-none hover:shadow-xl shadow transition duration-500 ease-in-out"
           >
@@ -83,7 +85,9 @@ export const Login = ({login, isAuthenticated, setAlert}) => {
             src={facebookLogo} alt="google logo"/>
             <span className="self-center ml-2 pr-8">Facebook</span>
           </button>
-        </div>
+        </div> */}
+
+        {/* END Social Logins */}
 
         
       </div>
