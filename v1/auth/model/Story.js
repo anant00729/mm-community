@@ -172,6 +172,23 @@ class Story {
       return { status : false , message : error.message }
     }
   }
+
+  async getAllPublishedStories(story_status){
+    let q1 = `SELECT id, title, content, cover_image, like_count, visit_count, read_time, created_at, updated_at, user_id, story_status
+    FROM public.story WHERE story_status = (:story_status);`
+    try {
+      let res_d = await db.query(q1,{replacements : {story_status}})
+      // res_d[0] ---> actual
+      // res_d[1] ---> 
+      if(res_d[0].length === 0){
+        return { status : false , message : 'Stories not Found' }
+      }else {
+        return { status : true , message : 'Stories Found' , data : res_d[0] }
+      }
+    } catch (error) {
+      return { status : false , message : error.message }
+    }
+  }
   
 }
 

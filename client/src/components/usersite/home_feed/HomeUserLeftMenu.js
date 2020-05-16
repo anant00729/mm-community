@@ -9,18 +9,36 @@ import {
 } from '../../utils/constants';
 import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
+import {HOME_FEED_ROUTE , DAILY_FEEDS, MY_STORIES , PUBLISH_REQUEST} from '../../utils/constants'
 
 
 
-function HomeUserLeftMenu({setMenuHidden , menuHidden, user, homeUserLeftMenu, location}) {
+function HomeUserLeftMenu({setMenuHidden , menuHidden, user, location}) {
+
+  let homeUserLeftMenu = [
+    {
+    code : `${HOME_FEED_ROUTE}${DAILY_FEEDS}`,
+    value : 'Daily Feeds',
+    visible : 'all',
+    selected : false
+  },
+  {
+    code : `${HOME_FEED_ROUTE}${MY_STORIES}`,
+    value : 'My Stories',
+    visible : 'all',
+    selected : false
+  },
+  {
+    code : `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}`,
+    value : 'Publish Request',
+    visible : 'all',
+    selected : true
+    }
+  ]
 
   if(user.type === STUDENT){
     delete homeUserLeftMenu[2]
   }
-
-
-  console.log('props.location.pathname :>> ', location.pathname);
-  
 
   let sideMenuJSX = homeUserLeftMenu.map((menu, index) => {
     return (
@@ -33,6 +51,14 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, homeUserLeftMenu, l
     </Link>
     )
   })
+
+  
+
+  console.log('user.type :>> ', user.type);
+  console.log('STUDENT :>> ', STUDENT);
+
+  console.log('homeUserLeftMenu :>> ', homeUserLeftMenu);
+
   
 
   return (

@@ -9,9 +9,7 @@ import HomeUserStoryItem from './adapter/HomeUserStoryItem'
 import PublishRequest from '../../usersite/publish_request/PublishRequest'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import One from './One';
-import Two from './Two';
-import Three from './Three';
+import {DAILY_FEEDS , HOME_FEED_ROUTE , MY_STORIES, PUBLISH_REQUEST} from '../../utils/constants'
 
 import {
   HOME_ROUTE,
@@ -19,7 +17,7 @@ import {
 } from '../../utils/constants'
 
 
-const HomeFeed = ({isAuthenticated, user, homeUserLeftMenu}) => {
+const HomeFeed = ({isAuthenticated, user}) => {
   const [menuHidden , setMenuHidden] = useState(true)
 
   useEffect(() => {
@@ -32,23 +30,7 @@ const HomeFeed = ({isAuthenticated, user, homeUserLeftMenu}) => {
     return <Redirect to={HOME_ROUTE}/>;
   }
 
-  // let homeMiddleComponentJSX = ''
-
-  // homeMiddleComponentJSX = homeUserLeftMenu.find(menu=> {
-  //   if(menu.selected){
-  //     if(menu.type === USER_PENDING_STORY_LIST)  {
-  //       menu.component = <Route path={'/home-feeds/one'} component={PublishRequest} />
-  //       // <PublishRequest 
-  //       // selectedMenuItem={menu} 
-  //       // onPublishRequestTabChange={onPublishRequestTabChange}/>
-  //       return menu
-  //     }else {
-  //       menu.component = <Route path={'/home-feeds/two'} component={Two} />
-  //       return menu
-  //     }
-  //   }
-  // })
-
+  
   return (
     <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
       <div className="flex -mx-2 flex-wrap">
@@ -57,13 +39,12 @@ const HomeFeed = ({isAuthenticated, user, homeUserLeftMenu}) => {
           setMenuHidden={setMenuHidden}
           menuHidden={menuHidden}
           user={user}
-          homeUserLeftMenu={homeUserLeftMenu}
           />
         </div>
         <div className="w-full lg:w-3/5 px-2 mt-4 lg:mt-0">
-          <Route path={'/home-feeds/one'} component={HomeUserStoryItem} />
-          <Route path={'/home-feeds/two'} component={HomeUserStoryItem} />
-          <Route path={'/home-feeds/three'} component={PublishRequest} />
+          <Route path={`${HOME_FEED_ROUTE}${DAILY_FEEDS}`} component={HomeUserStoryItem} />
+          <Route path={`${HOME_FEED_ROUTE}${MY_STORIES}`} component={HomeUserStoryItem} />
+          <Route path={`${HOME_FEED_ROUTE}${PUBLISH_REQUEST}`} component={PublishRequest} />
         </div>
         <div className="w-full lg:w-1/5 px-2 mt-4 lg:mt-0">
           <div className="sticky top-app-bar-mdd">
@@ -78,15 +59,12 @@ const HomeFeed = ({isAuthenticated, user, homeUserLeftMenu}) => {
 
 HomeFeed.propTypes = {
   isAuthenticated: PropTypes.bool,
-  user: PropTypes.object,
-  onHomeMenuChange: PropTypes.func.isRequired,
-  onPublishReqTabChange: PropTypes.func.isRequired
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user,
-  homeUserLeftMenu: state.home.homeUserLeftMenu
+  user: state.auth.user
 });
 
 const allActions = {

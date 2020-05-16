@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../../actions/alert';
 import { login } from '../../../actions/auth'
-import {HOME_FEED_ROUTE} from '../../utils/constants'
+import {HOME_FEED_ROUTE, DAILY_FEEDS} from '../../utils/constants'
 import { Redirect } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 
@@ -31,7 +31,7 @@ export const Login = ({login, isAuthenticated, setAlert}) => {
 
 
   if (isAuthenticated) {
-    return <Redirect to={HOME_FEED_ROUTE}/>;
+    return <Redirect to={`${HOME_FEED_ROUTE}${DAILY_FEEDS}`}/>;
   }
   
 

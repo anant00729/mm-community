@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../../actions/alert';
 import { register } from '../../../actions/auth'
-import {HOME_FEED_ROUTE} from '../../utils/constants'
+import {HOME_FEED_ROUTE, DAILY_FEEDS} from '../../utils/constants'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -25,9 +25,8 @@ export const Register = ({ register, isAuthenticated , setAlert}) => {
 
 
   if (isAuthenticated) {
-    return <Redirect to={HOME_FEED_ROUTE}/>;
-  }
-  
+    return <Redirect to={`${HOME_FEED_ROUTE}${DAILY_FEEDS}`}/>;
+  }  
 
   const onSubmit = (e) => {
     e.preventDefault()

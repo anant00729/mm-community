@@ -133,4 +133,11 @@ exports.getUserStories = async (req,res) => {
 
 
 
+exports.getPublishedStories = async (req,res) => {
+  let story_status = 1
+  let story = new Story()
+  let storyObj = await story.getAllPublishedStories(story_status)
+  res.json(storyObj)
+}
+
 
