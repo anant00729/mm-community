@@ -352,3 +352,13 @@ INSERT INTO public.story(
                     "couponCodeDetails": "",
                     "couponCode": ""
                 },                
+
+
+INSERT INTO public."user"(
+	name)
+	VALUES ('aa'), ('bb');                
+
+
+UPDATE public."user"
+	SET type='student'
+;

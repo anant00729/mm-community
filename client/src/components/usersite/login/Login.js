@@ -44,7 +44,7 @@ export const Login = ({login, isAuthenticated, setAlert}) => {
       <div className="flex-1 bg-white p-10 self-center flex content-center flex-wrap md:h-screen md:p-20">
         <div className="flex md:mb-20 mb-10 w-full">
           <img src={appLogo} 
-          className="h-8 w-8 mt-1"
+          className="h-16 w-16 mt-1"
           alt="appLogo"/>
           <p className="ml-2 tracking-wide text-3xl font-extrabold my-auto">Hi-Story</p> 
         </div>
