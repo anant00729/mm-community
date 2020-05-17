@@ -61,6 +61,7 @@ const PublishStory = ({
     }
   }
 
+  console.log('posterImage :>> ', posterImage);
 
  const publishStory = () => {
 
@@ -81,7 +82,8 @@ const PublishStory = ({
   //   "token" : "sUmkabQpBSho5DNGI8mZYPp2maG7S"
   // }
 
-  console.log('bannerImg :>> ', bannerImg);
+  
+  
 
   if(title.length === 0){
     setAlert('Please enter title of your story' , 'red')
@@ -92,7 +94,7 @@ const PublishStory = ({
   else if (tagArray.length === 0){
     setAlert('Please add tags for the story' , 'red')
   }
-  else if(posterImage.length === 0){
+  else if(posterImage.image.length === 0){
     setAlert('Please add a banner image for the story' , 'red')
   }
   else if(!dateVisible){

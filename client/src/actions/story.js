@@ -15,10 +15,12 @@ import {
   GET_POPULAR_STORY,
   CLEAR_STORY_CONTENT,
   GET_STORY_BY_ID,
-  CLEAR_STORY_BY_ID
+  CLEAR_STORY_BY_ID,
+  REMOVE_POSTER_IMAGE
  } from './types';
 
- import {ALL_STORIES_ROUTE} from '../components/utils/constants'
+ import {ALL_STORIES_ROUTE, HOME_FEED_ROUTE,
+  MY_STORIES} from '../components/utils/constants'
 
 import { setAlert } from './alert'
 
@@ -92,7 +94,7 @@ export const callInsertStory = (obj, history) => async dispatch => {
         payload: res_d
       });
       dispatch(setAlert('Story Published', 'green'))
-      history.push(ALL_STORIES_ROUTE)
+      history.push(`${HOME_FEED_ROUTE}${MY_STORIES}`)
     }else {
       dispatch(setAlert(res_d.message, 'red'))
     }
@@ -132,6 +134,10 @@ export const uploadImageBanner = (file,type) => async dispatch => {
     dispatch({type: POSTER_IMAGE_FAILED});
   }
 };
+
+export const removeBannerImage = () => async dispatch => {
+  dispatch({type : REMOVE_POSTER_IMAGE})
+}
 
 
 

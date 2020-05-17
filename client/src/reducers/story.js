@@ -13,7 +13,8 @@ import {
   GET_POPULAR_STORY,
   CLEAR_STORY_CONTENT,
   GET_STORY_BY_ID,
-  CLEAR_STORY_BY_ID
+  CLEAR_STORY_BY_ID,
+  REMOVE_POSTER_IMAGE
 } from '../actions/types';
 
 
@@ -163,7 +164,16 @@ export default function(state = initialState, action) {
       return {
         ...state, 
         showStoryById : {}
-      }      
+      }  
+      
+    case REMOVE_POSTER_IMAGE:  
+    return {
+      ...state,
+      posterImage : {
+        image : '',
+        loading : false
+      }
+    }
     default:
       return state;
   }

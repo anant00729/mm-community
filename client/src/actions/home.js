@@ -7,7 +7,7 @@ import { setAlert } from './alert'
 
 
 // getAllMembers
-export const getUserStories = (token = '-1') => async dispatch => {
+export const getUserStories = (token = '-1', story_status = 0) => async dispatch => {
   dispatch({type : CLEAR_ALL_HOME_STORIES})
   try {
     const config = {
@@ -16,7 +16,14 @@ export const getUserStories = (token = '-1') => async dispatch => {
       }
     };
     const body = JSON.stringify({ token });
-    const res = await axios.post('/v1/story/getUserStories', body , config);
+    let res 
+    if(story_status == 0){
+      res = await axios.post('/v1/story/getUserStories', body , config);
+    }else if(story_status == 2) {
+      res = await axios.post('/v1/story/getAllStories', body , config);
+    }
+    
+    
     const res_d = res.data
 
     if(res_d.status){

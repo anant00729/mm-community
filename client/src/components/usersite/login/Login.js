@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import mainLoginImg from '../../../app_images/main-login-img.png'
 import appLogo from '../../../app_images/network.png'
 import googleLogo from '../../../app_images/google.svg'
@@ -15,6 +15,10 @@ import { withRouter } from "react-router-dom";
 export const Login = ({login, isAuthenticated, setAlert}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const onSubmit = (e) => {
     e.preventDefault()

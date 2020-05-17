@@ -25,12 +25,12 @@ export default function StoryTopBar({isProfileVisible, profileVisible, onLogoutC
               alt="profile_image"/>
             <div 
               className={`w-48 absolute appbar-drop-down border border-gray-400 rounded shadow-lg z-10 bg-white app-bar-dropdown-right ${profileVisible ? '' : 'hidden'}`}>
-              <div 
+              {/* <div 
               onClick={() => {}} 
               className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
                 <i className="fa fa-user-circle text-xl self-center"></i>
                 <span className="ml-2 text-base font-sen">Profile</span>
-              </div>
+              </div> */}
               <div 
               onClick={() => onLogoutClick()} 
               className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">

@@ -5,7 +5,7 @@ import close_black from '../../../../src/app_images/close_black.svg'
 import "react-datepicker/dist/react-datepicker.css";
 import {connect} from 'react-redux'
 import { setAlert } from '../../../actions/alert';
-import {uploadImageBanner} from '../../../actions/story'
+import {uploadImageBanner, removeBannerImage} from '../../../actions/story'
 import {IMAGE_BASE_URL} from '../../utils/constants';
 
 function StorySidePanel({
@@ -23,6 +23,7 @@ function StorySidePanel({
   isDateVisible,
   setAlert,
   uploadImageBanner,
+  removeBannerImage,
   posterImage
 }) {
   let [coverImageVisible, setCoverImageVisible] = useState(0);
@@ -118,7 +119,7 @@ function StorySidePanel({
           className="post-cover bg-cover bg-center mx-auto rounded shadow"
           src={`${IMAGE_BASE_URL}${posterImage.image}`} alt="banner_image"/>
           <div 
-          onClick={() => setCoverImageVisible(0)}
+          onClick={() => {setCoverImageVisible(0);removeBannerImage();}}
           className="absolute bg-white rounded-full w-6 h-6 text-center ic_close shadow border-2 border-white cursor-pointer">
             <img src={close} alt="ic_close"/>
           </div>
@@ -265,7 +266,7 @@ function StorySidePanel({
 
 
 const allActions = {
-  setAlert, uploadImageBanner
+  setAlert, uploadImageBanner, removeBannerImage
 }
 
 const mapStateToProps = state => ({

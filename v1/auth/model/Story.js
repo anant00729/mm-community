@@ -126,10 +126,12 @@ class Story {
       u.profile_image,
       a.title,
       a.content,
-      a.cover_image
+      a.cover_image,
+      a.story_status
       FROM
       public.story a 
-      INNER JOIN public.user u ON a.user_id = u.id ORDER BY a.id DESC LIMIT (:pageLimit) OFFSET (:skipCount);`;
+      INNER JOIN public.user u ON a.user_id = u.id WHERE a.story_status = 1 ORDER BY a.id DESC;`;
+      // LIMIT (:pageLimit) OFFSET (:skipCount);
     try {
       let res_d = await db.query(q1, {
         replacements: { pageLimit, skipCount },
@@ -161,7 +163,8 @@ class Story {
     u.profile_image,
     a.title,
     a.content,
-    a.cover_image
+    a.cover_image,
+    a.story_status
     FROM
     public.story a 
     INNER JOIN public.user u ON a.user_id = u.id WHERE a.user_id = (:user_id) ORDER BY a.id DESC;`;
@@ -198,7 +201,8 @@ class Story {
     u.profile_image,
     a.title,
     a.content,
-    a.cover_image
+    a.cover_image,
+    a.story_status
     FROM
     public.story a 
     INNER JOIN public.user u ON a.user_id = u.id WHERE a.story_status = (:story_status) ORDER BY a.id DESC;	

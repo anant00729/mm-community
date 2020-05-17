@@ -3,7 +3,7 @@ import {CREATE_STORY_ROUTE} from '../../utils/constants';
 import { Link, Redirect } from 'react-router-dom';
 import StoryItem from './adapter/StoryItem'
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 
 
 const Stories = () => {
@@ -18,7 +18,7 @@ const Stories = () => {
           <div className="sticky top-story">
             <div className="bg-white rounded p-4 mt-4">
               <p className="font-sen text-black text-xl md:text-2xl font-bold">Popular Stories</p> 
-              <p className="text-gray-700 mb-4">Learnt something new recently? Write about it on Hi-Story and showcase your knowledge. People get hired by sharing knowledge actively on Hi-Story.</p>
+              <p className="text-gray-700 mb-4">Learnt something new recently? Write about it on Hi-Story and showcase your knowledge.</p>
               <Link to={CREATE_STORY_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out">
                 New Story
               </Link>

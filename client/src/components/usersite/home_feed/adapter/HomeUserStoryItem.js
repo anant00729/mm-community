@@ -8,7 +8,9 @@ import {SHOW_STORY,
    HOME_FEED_ROUTE,
    PUBLISH_REQUEST,
    PENDING,
-   PUBLISHED
+   PUBLISHED,
+   DAILY_FEEDS,
+   MY_STORIES
   } from '../../../utils/constants'
 
 
@@ -22,15 +24,7 @@ function HomeUserStoryItem({
 
   let _p = location.pathname 
   let approveBtnJSX = null
-  if(_p === `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PENDING}`){
-    approveBtnJSX = <button className="ml-auto px-4 py-2 
-    hover:bg-gray-200 
-    hover:border 
-    hover:border-blue-500 
-    rounded
-    app-font-color
-    ">APPROVE</button>
-  }
+  
   
   useEffect(() => {
     let story_status = 0
@@ -41,10 +35,13 @@ function HomeUserStoryItem({
       case `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PUBLISHED}`:
         story_status = 1
         break;  
+      case `${HOME_FEED_ROUTE}${DAILY_FEEDS}`:  
+        story_status = 2
+        break;  
     }
     if(token){
-      if(story_status == 0){
-        getUserStories(token)
+      if(story_status == 0 || story_status == 2){
+        getUserStories(token , story_status)
       }else {
         getAdminStories(token, story_status)
       }
@@ -52,6 +49,8 @@ function HomeUserStoryItem({
     }
     window.scrollTo(0, 0)
   }, [])
+  
+ 
 
   if(homeUserStoryList.length === 0){
     // Show loading
@@ -61,12 +60,44 @@ function HomeUserStoryItem({
     return (
       homeUserStoryList.map((story, index)=> {
         let para = story.content.find(s=> s.selectType === "Paragraph")
-        let { title , profile_image , cover_image , id, name } = story
+        let { title , profile_image , cover_image , id, name, story_status } = story
         if(para){
           if(para.input.length > 310){
             para.input = `${para.input.substring(1, 300)}...`;
           }
         }
+
+
+
+        const dispalyStoryStatus = (story_status) => {
+          if(_p === `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PENDING}`){
+            return <button 
+            className="ml-auto px-4 py-2 
+            bg-gray-100 
+            hover:bg-gray-200 
+            rounded
+            app-font-color
+            text-sm
+            ">APPROVE</button>
+          }else if(_p === `${HOME_FEED_ROUTE}${MY_STORIES}`){
+            console.log('dispalyStoryStatus :>> ', story_status);
+            return <p 
+            className={
+              `ml-auto 
+              px-4
+              py-2 
+              bg-gray-200 
+              rounded
+              my-auto
+              text-sm
+              ${story_status === -1 ? 'text-red-500' : 'text-green-500'}`
+            }>{story_status === -1 ? 'UNDER REVEIW' : 'PUBLISHED'}</p>
+          }
+          return null
+        }
+
+
+
         return (
           <div 
             key={index}
@@ -81,7 +112,7 @@ function HomeUserStoryItem({
                   alt="profile_image"/>
                   <p className="self-center ml-3 text-sm font-semibold md:text-base">{name}'s blog</p>
                 </Link>
-                  {approveBtnJSX}
+                  {dispalyStoryStatus(story_status)}
                 </div>  
               
               
@@ -109,6 +140,8 @@ function HomeUserStoryItem({
       })
     )
   }
+
+  
 }
 
 
