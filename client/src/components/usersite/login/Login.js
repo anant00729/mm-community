@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import mainLoginImg from '../../../app_images/main-login-img.png'
-import appLogo from '../../../app_images/network.png'
+import appLogo from '../../../app_images/network.svg'
 import googleLogo from '../../../app_images/google.svg'
 import facebookLogo from '../../../app_images/facebook.svg'
 import { connect } from 'react-redux';

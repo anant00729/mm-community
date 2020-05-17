@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import appLogo from '../../app_images/network.png'
+import appLogo from '../../app_images/network.svg'
 import {connect} from 'react-redux'
 import {REGISTER_ROUTE , LOGIN_ROUTE, HOME_ROUTE, ALL_STORIES_ROUTE, CREATE_STORY_ROUTE,
   ALL_DISCUSSIONS, ALL_MEMBERS_ROUTE, ABOUT_ROUTE, HOME_FEED_ROUTE} from '../utils/constants';

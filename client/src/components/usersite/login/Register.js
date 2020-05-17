@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import memberImage from '../../../app_images/members-img-1.png'
-import appLogo from '../../../app_images/network.png'
+import appLogo from '../../../app_images/network.svg'
 import googleLogo from '../../../app_images/google.svg'
 import facebookLogo from '../../../app_images/facebook.svg'
 import { connect } from 'react-redux';

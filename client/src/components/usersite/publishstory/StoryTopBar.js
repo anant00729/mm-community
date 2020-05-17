@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link , Redirect} from 'react-router-dom'
 import {HOME_ROUTE} from '../../utils/constants';
-import appLogo from '../../../app_images/network.png'
+import appLogo from '../../../app_images/network.svg'
 
 export default function StoryTopBar({isProfileVisible, profileVisible, onLogoutClick, profileImage}) {
   return (
