@@ -62,14 +62,14 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
       <div className="flex flex-col-reverse md:flex-col">
         <div className="text-center mt-10 px-4">
           <p className="text-gray-600 font-sen text-xs md:text-sm">
-            FRIENDLY AND INCLUSIVE DEVELOPER COMMUNITY
+            TEACHING AND LEARNING COMMUNITY
           </p>
           <p className="mt-2 font-sen text-black text-4xl md:text-5xl">
-            Welcome to StudyNode
+            Welcome to Hi-Story
           </p>
-          <p className="text-base md:text-lg">A place to share your life as a developer and connect with 
+          <p className="text-base md:text-lg">A place of positive teacher taught relations,
             <br/>
-            the best developers from across the world.</p>
+            the best place to learn history.</p>
           <div className="mt-4">
             {/* <Link to={REGISTER_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4  focus:outline-none hover:shadow-xl shadow transition duration-500 ease-in-out">
               Create an account
@@ -94,7 +94,7 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
 
         <div className="md:mt-0 mt-2">
           <p className="text-gray-600 font-sen text-sm md:text-lg font-medium tracking-wide">LEARN. SHARE. CONNECT.</p>
-          <p className="font-sen text-black text-3xl md:text-4xl">Helping devs solve real-life issues</p>
+          <p className="font-sen text-black text-2xl md:text-3xl">Helping students to solve real life problems as counselor and as a history and political science teacher</p>
           <div className="md:flex md:flex-wrap md:justify-between mt-4">
             <div className="md:w-1/3 w-full mb-6">
               <img 
@@ -102,7 +102,7 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
                 src={imageOne} 
                 alt=""/>
                 <p className="font-sen text-black text-xl md:text-2xl font-medium">Publish stories</p>
-                <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
+                <p className="text-gray-700">Ask a question on Hi-Story and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
             </div>
             <div className="md:w-1/3 w-full mb-6">
               <img 
@@ -110,7 +110,7 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
                 src={imageTwo} 
                 alt=""/>
                 <p className="font-sen text-black text-xl md:text-2xl font-medium">Ask a question</p>
-                <p className="text-gray-700">Ask a question on StudyNode and get help from the community members. We do not ban users for asking subjective and opinionated questions. Go anonymous, if you are too shy.</p>
+                <p className="text-gray-700">Ask a question on Hi-Story reallife psychological, pratical problems concepts related with History and Political science.</p>
             </div>
             <div className="md:w-1/3 w-full mb-6">
               <img 
@@ -118,15 +118,15 @@ const GuestHome = ({isAuthenticated, getAllStories, popularStoryList}) => {
                 src={imageThree} 
                 alt=""/>
                 <p className="font-sen text-black text-xl md:text-2xl font-medium">Start your new blog</p>
-                <p className="text-gray-700">Build your own brand and start a blog on your domain for free with StudyNode. Write stories on your blog and share them with StudyNode community directly.</p>
+                <p className="text-gray-700">Build your own brand and start a blog on your domain for free with Hi-Story. Write stories on your blog and share them with Hi-Story community directly.</p>
             </div>
           </div>
         </div>
         
         {/* Trending Section */}
         <div className="mt-2">
-          <p className="text-gray-600 font-sen text-sm md:text-lg font-medium tracking-wide mt-16">DEVELOPER STORIES</p>
-          <p className="font-sen text-black text-3xl md:text-4xl">Trending developer stories on StudyNode</p>
+          <p className="text-gray-600 font-sen text-sm md:text-lg font-medium tracking-wide mt-16">STUDENT'S STORIES</p>
+          <p className="font-sen text-black text-3xl md:text-4xl">Trending student learning on Hi-Story</p>
           <div className="md:flex md:flex-wrap md:justify-start mt-8">
             {popularStoryListJSX}
           </div>

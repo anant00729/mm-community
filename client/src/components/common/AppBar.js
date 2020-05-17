@@ -78,7 +78,7 @@ import { withRouter } from "react-router-dom";
               <img src={appLogo} 
               className="h-8 w-8 mt-1"
               alt="appLogo"/>
-              <p className="ml-2 tracking-wide app-logo font-extrabold my-auto">StudyNode</p> 
+              <p className="ml-2 tracking-wide app-logo font-extrabold my-auto">Hi-Story</p> 
             </div>
             <div className="md:ml-4 
             md:bg-gray-100
