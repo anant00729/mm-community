@@ -178,7 +178,9 @@ class User {
   }
 
   async findAll(){
-    let q1 = `SELECT * from public."user" WHERE id = '58' OR id = '59' OR id = 83`
+    let q1 = `SELECT * from public."user" WHERE id = '66'`
+    //WHERE id = '80' OR id = '83'
+     
     try {
         let res_d = await db.query(q1)
         if(res_d[0].length === 0){
