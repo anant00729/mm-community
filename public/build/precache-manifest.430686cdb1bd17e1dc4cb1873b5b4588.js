@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d90882a5b4ed82cb541752112e348f63",
+    "revision": "e69282cfdf480117c85f47c8fc231a1d",
     "url": "/index.html"
   },
   {
-    "revision": "dc19ecfd87030ea16628",
+    "revision": "e8634db80313463529c3",
     "url": "/static/css/2.6b43a75d.chunk.css"
   },
   {
-    "revision": "04f175b8f7a0751dae49",
-    "url": "/static/css/main.7d2188d3.chunk.css"
+    "revision": "fbca20e3e10aec992e80",
+    "url": "/static/css/main.bfc570ae.chunk.css"
   },
   {
-    "revision": "dc19ecfd87030ea16628",
-    "url": "/static/js/2.93721865.chunk.js"
+    "revision": "e8634db80313463529c3",
+    "url": "/static/js/2.2bab4b39.chunk.js"
   },
   {
     "revision": "d2966845b94a3318bf32eecc7af8015d",
-    "url": "/static/js/2.93721865.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.2bab4b39.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "04f175b8f7a0751dae49",
-    "url": "/static/js/main.bc9d013a.chunk.js"
+    "revision": "fbca20e3e10aec992e80",
+    "url": "/static/js/main.18c612dc.chunk.js"
   },
   {
     "revision": "d1b989a47c9d5bf95f21",
@@ -70,5 +70,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "5a5979e767cdd71de313858f6a35e5d9",
     "url": "/static/media/page-not-found-img.5a5979e7.png"
+  },
+  {
+    "revision": "c41f6908a60ff346d5162c0f13db92f2",
+    "url": "/static/media/shipping-and-delivery.c41f6908.svg"
   }
 ]);
