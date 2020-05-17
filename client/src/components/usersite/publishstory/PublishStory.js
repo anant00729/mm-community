@@ -64,7 +64,7 @@ const PublishStory = ({
  const publishStory = () => {
 
   // {
-  //   "title":"Dev Must-reads on Hashnode: Week #4",
+  //   "title":"Dev Must-reads on Hi-Story: Week #4",
   //   "content":[
   //     {
   //       "id": "10",

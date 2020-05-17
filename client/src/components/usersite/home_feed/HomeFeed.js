@@ -32,7 +32,7 @@ const HomeFeed = ({isAuthenticated, user}) => {
 
   
   return (
-    <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
+    <div className="md:px-16 px-2 bg-gray-200 min-h-screen pb-6">
       <div className="flex -mx-2 flex-wrap">
         <div className="w-full lg:w-1/5 px-2">
           <HomeUserLeftMenu

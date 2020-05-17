@@ -43,13 +43,13 @@ const Discussion = () => {
   }
 
   return (
-    <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
+    <div className="md:px-16 px-2 bg-gray-200 min-h-screen pb-6">
       <div className="md:flex-row -mx-2 flex flex-col">
         <div className="md:w-1/4 px-2 w-full">
           <div className="sticky top-story">
             <div className="bg-white rounded p-4 mt-4">
               <p className="font-sen text-black text-xl md:text-2xl font-bold">Discussions</p> 
-              <p className="text-gray-700 mb-4">Participate in the discussions and build your developer profile on Hashnode. You can also ask questions anonymously, if you are too shy.</p>
+              <p className="text-gray-700 mb-4">Participate in the discussions and build your developer profile on Hi-Story. You can also ask questions anonymously, if you are too shy.</p>
               <Link to={CREATE_STORY_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out">
                 New discussion
               </Link>

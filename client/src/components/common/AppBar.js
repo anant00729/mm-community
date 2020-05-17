@@ -45,19 +45,19 @@ import { withRouter } from "react-router-dom";
 
       <div 
       onClick={() => isProfileVisible(profileVisible => !profileVisible)} 
-      className="md:w-12 md:h-12 w-12 h-12 self-center relative ml-2">
+      className="md:w-12 md:h-12 w-10 h-10 self-center relative ml-2">
         <img 
         className="w-full h-full rounded-full border-white border-2 shadow-lg cursor-pointer"
         src={profile_image} 
         alt="profile_image"/>
         <div 
           className={`w-48 absolute appbar-drop-down border border-gray-400 rounded shadow-lg z-10 bg-white app-bar-dropdown-right ${profileVisible ? '' : 'hidden'}`}>
-            <div 
+            {/* <div 
             onClick={() => {}} 
             className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
               <i className="fa fa-user-circle text-xl self-center"></i>
               <span className="ml-2 text-base font-sen">Profile</span>
-            </div>
+            </div> */}
             <div 
             onClick={() => {props.history.push(HOME_ROUTE);props.logout();}} 
             className="flex px-4 py-3 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left text-gray-700">
@@ -72,7 +72,7 @@ import { withRouter } from "react-router-dom";
   
   return (
     <nav className="bg-white border-b border-gray-300 md:text-base text-sm fixed w-full z-10 sticky top-0">
-        <div className="pt-5 md:px-16 px-6">
+        <div className="pt-5 md:px-16 px-0">
           <div className="flex px-4">
             <div className="flex">
               <img src={appLogo} 
@@ -108,12 +108,12 @@ import { withRouter } from "react-router-dom";
           <div className="mt-4 flex flex-wrap">
             <div className="flex flex-wrap">
               <Link to={HOME_ROUTE} 
-              className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+              className={`px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
                 ${(currentRoute == HOME_ROUTE || currentRoute.includes('/home-feeds/')) ? 'app-font-color border-b-2 app-border-bottom' : ''}`}>
                 Home
               </Link>
               <Link 
-              className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+              className={`px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
               ${currentRoute == ALL_STORIES_ROUTE ? ' app-font-color border-b-2 app-border-bottom' : ''}`}
               to={ALL_STORIES_ROUTE}>
                 Stories
@@ -122,45 +122,45 @@ import { withRouter } from "react-router-dom";
               onClick={() => isDropDownVisible(downVisible => !downVisible)} 
               className="visible md:hidden d-block relative">
                 <button 
-                className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
+                className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide">
                    <span>More</span> 
                    <i className="fa fa-chevron-down text-xs ml-2"></i>
                 </button>
                 <div 
                 className={`absolute appbar-drop-down rounded shadow-lg z-10 bg-white ${dropDownVisible ? '' : 'hidden'}`}>
-                  <button 
+                  {/* <button 
                   onClick={() => {
                     console.log('Search')
                   }} 
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button>
+                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Search</button> */}
                   {/* <button 
                   onClick={() => {
                     console.log('Discussion')
                   }} 
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button> */}
+                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button> */}
                   <button 
                   onClick={() => {
                     console.log('Members')
                   }} 
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
+                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
                   <button 
                   onClick={() => {
                     console.log('About')
                   }} 
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
+                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
               </div>
               </div>
               <div className="hidden md:visible md:flex md:flex-wrap">
                 {/* <Link 
-                className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+                className={`px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
                 ${currentRoute == ALL_DISCUSSIONS ? 'app-font-color border-b-2 app-border-bottom' : ''}`}
                 to={ALL_DISCUSSIONS}>Discussion</Link> */}
                 <Link 
-                className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+                className={`px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
                 ${currentRoute == ALL_MEMBERS_ROUTE ? 'app-font-color border-b-2 app-border-bottom' : ''}`}
                 to={ALL_MEMBERS_ROUTE}>Members</Link>
                 <Link 
-                className={`px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
+                className={`px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide 
                 ${currentRoute == ABOUT_ROUTE ? 'app-font-color border-b-2 app-border-bottom' : ''}`}
                 to={ABOUT_ROUTE}>About</Link>
               </div>

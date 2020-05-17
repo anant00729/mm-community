@@ -163,8 +163,8 @@ export const Register = ({ register, isAuthenticated , setAlert}) => {
         <img 
         className="mx-auto w-2/3 object-fit h-96"
         src={memberImage} alt="main-login-image"/>
-        <p className="font-sen text-black text-xl md:text-2xl font-medium mt-8">Personalize your Hashnode experience, log in to your account.</p>
-        <p className="text-gray-700">Hashnode is the easiest way to connect with the best developers from around the world and grow your career!</p>
+        <p className="font-sen text-black text-xl md:text-2xl font-medium mt-8">Personalize your Hi-Story experience, log in to your account.</p>
+        <p className="text-gray-700">Hi-Story is the easiest way to connect with the best developers from around the world and grow your career!</p>
         
       </div>
 

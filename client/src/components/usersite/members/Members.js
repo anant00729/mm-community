@@ -10,14 +10,14 @@ export const Members = () => {
   }, [])
 
   return (
-    <div className="md:px-16 px-6 px-2 bg-gray-200 min-h-screen pb-6">
+    <div className="md:px-16 px-2 bg-gray-200 min-h-screen pb-6">
       
       <div className="md:flex-row -mx-2 flex flex-col-reverse">
         <div className="md:w-1/4 px-2 w-full mt-6 md:mt-0">
           <div className="sticky top-story">
             <div className="bg-white rounded p-4 mt-4">
               <p className="font-sen text-black text-xl md:text-2xl font-bold">Community Members</p> 
-              <p className="text-gray-700">Browser Hashnode community members and follow them to see their posts on your feed.</p>
+              <p className="text-gray-700">Browser Hi-Story community members and follow them to see their posts on your feed.</p>
               <img 
               className="md:w-4/5 mx-auto my-4 w-2/4"
               src={membersBanner} 

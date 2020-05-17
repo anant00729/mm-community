@@ -25,7 +25,7 @@ function MemberItem({getAllMembers, homeMemberList, type}) {
                 src={_m.profile_image} 
                 alt="profile_image"/>
             <p className="font-sen text-md font-bold mt-4">{_m.name}</p>
-            <p className="font-sen text-gray-700">Dev Evangelist, Outreach at Hashnode</p>
+            <p className="font-sen text-gray-700">Dev Evangelist, Outreach at Hi-Story</p>
             <p className="font-sen mt-1">Joined: <strong>May 17, 2019</strong></p>
           </div>
         </div>  
