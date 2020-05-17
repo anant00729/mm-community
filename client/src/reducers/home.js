@@ -8,7 +8,7 @@ import {
 
 
 const initialState = {
-  homeUserStoryList : []
+  homeUserStoryList : null
 }
 
 export default function(state = initialState, action) {
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
     case CLEAR_ALL_HOME_STORIES:
       return {
         ...state,
-        homeUserStoryList : []
+        homeUserStoryList : null
       };            
     default:
       return state;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {getUserStories, getAdminStories, approveRequest} from '../../../../actions/home'
 import { IMAGE_BASE_URL } from '../../../utils/constants';
 import { Link , withRouter} from 'react-router-dom';
+import openBox from '../../../../app_images/shipping-and-delivery.svg'
 import {SHOW_STORY,
    HOME_FEED_ROUTE,
    PUBLISH_REQUEST,
@@ -55,9 +56,23 @@ function HomeUserStoryItem({
   
  
 
-  if(homeUserStoryList.length === 0){
+  console.log('homeUserStoryList :>> ', homeUserStoryList);
+
+  if(homeUserStoryList === null){
     // Show loading
     return <div className="mx-auto loader mt-56"></div> 
+  }
+  else if (homeUserStoryList.length == 0){
+    return (
+      <div className="flex flex-col bg-white rounded sm:mx-10 sm:mt-4 p-8">
+          <img 
+          className="w-12 h-12 self-center"
+          src={openBox} alt="open_box"/>
+          <p className="mt-2 text-center">
+          <span>No Story found.</span>
+          </p>
+        </div>
+    )
   }
   else {
     return (

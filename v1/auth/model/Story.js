@@ -137,7 +137,7 @@ class Story {
         replacements: { pageLimit, skipCount },
       });
       if (res_d[0].length === 0) {
-        return { status: false, message: "Stories not Found" };
+        return { status: true, message: "Stories not Found" , data : [] };
       } else {
         return { status: true, message: "Stories Found", data: res_d[0] };
       }
@@ -171,7 +171,7 @@ class Story {
     try {
       let res_d = await db.query(q1, { replacements: { user_id } });
       if (res_d[0].length === 0) {
-        return { status: false, message: "Stories not Found" };
+        return { status: true, message: "Stories not Found" , data : []};
       } else {
         return { status: true, message: "Stories Found", data: res_d[0] };
       }
@@ -211,7 +211,7 @@ class Story {
       // res_d[0] ---> actual
       // res_d[1] --->
       if (res_d[0].length === 0) {
-        return { status: false, message: "Stories not Found" };
+        return { status: true, message: "Stories not Found", data : [] };
       } else {
         return { status: true, message: "Stories Found", data: res_d[0] };
       }

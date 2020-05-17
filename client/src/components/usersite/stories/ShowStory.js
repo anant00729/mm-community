@@ -30,7 +30,7 @@ const ShowStory = ({getStoryById, showStoryById, match}) => {
     return (
       <div className="px-2">
       <div className="md:w-2/3 mx-auto">
-        <h1 className="text-4xl font-sen font-bold">
+        <h1 className="text-4xl font-sen font-bold mt-4">
           {title}
         </h1>
         <div className="flex">
@@ -76,7 +76,7 @@ const ShowStory = ({getStoryById, showStoryById, match}) => {
                   )  
                 case POINT:
                   return (
-                    <ul key={index} className="text-xl text-gray-800 ml-10 py-8 px-10" style={{listStyle : 'disc'}}>
+                    <ul key={index} className="text-xl text-gray-800 ml-10 p-4" style={{listStyle : 'disc'}}>
                           <li>{item.input}</li>
                     </ul>                
                   )  

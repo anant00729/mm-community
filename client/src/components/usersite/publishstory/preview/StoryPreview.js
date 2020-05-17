@@ -36,7 +36,7 @@ const StoryPreview = ({singleStory, setAlert, posterImage , title , user}) => {
       return ( 
         <div className="px-2">
         <div className="md:w-2/3 mx-auto">
-          <h1 className="text-4xl font-sen font-bold word-wrapper">
+          <h1 className="text-4xl font-sen font-bold word-wrapper mt-4">
             {title}
           </h1>
           <div className="flex">
@@ -45,7 +45,7 @@ const StoryPreview = ({singleStory, setAlert, posterImage , title , user}) => {
               className="w-14 h-14 rounded-full cursor-pointer"
               src={`${profile_image}`} 
               alt="profile_image"/>
-              <p className="self-center ml-4">{`${name} published a story Apr 17`}</p>
+              <p className="self-center ml-4">{`${name}'s story`}</p>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ const StoryPreview = ({singleStory, setAlert, posterImage , title , user}) => {
                     )  
                   case POINT:
                     return (
-                      <ul key={index} className="text-xl text-gray-800 ml-10 py-8 px-10" style={{listStyle : 'disc'}}>
+                      <ul key={index} className="text-xl text-gray-800 ml-10 p-4" style={{listStyle : 'disc'}}>
                             <li className="word-wrapper">{item.input}</li>
                       </ul>                
                     )  
