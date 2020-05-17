@@ -28,18 +28,18 @@ export default function StoryTopPanel({setTitle , addStoryCell, removeStoryCell,
           <i className="fa fa-eye self-center"></i>
           <span className="ml-2 font-semibold">Preview</span>
         </button>
-        <button
+        {/* <button
         onClick={() => onTabItemChange(2)}
         className={`px-4 h-10 hover:bg-gray-200 ${tabIndex == 2 ? 'app-font-color border-b-2 app-border-bottom font-extrabold font-sen' : ''}`} 
         >
           <i className="fa fa-info self-center"></i>
           <span className="ml-2 font-semibold">Help</span>
-        </button>
+        </button> */}
 
         <button 
         onClick={() => 
           addStoryCell({defaultValue : {id : uuidv4() , selectType : 'default', input: '' }, defaultIndex : singleStory.length})}
-        className="ml-auto px-4 h-10 hover:bg-gray-200">
+        className="sm:ml-auto px-4 h-10 hover:bg-gray-200">
           <i className="fa fa-plus self-center"></i>
           <span className="ml-2 font-semibold">Add</span>
         </button>

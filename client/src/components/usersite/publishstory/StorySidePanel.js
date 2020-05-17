@@ -142,10 +142,10 @@ function StorySidePanel({
     <>
     {/* Publish Section */}
     <div className="border-b border-gray-300 p-8">
-      <div className="flex">
+      {/* <div className="flex">
         <i className="fa fa-check self-center"></i>
         <p className="ml-1 text-black">Draft Saved</p>
-      </div>
+      </div> */}
       <button 
       onClick={() => publishStory()}
       className="mt-2 app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out cursor-pointer">

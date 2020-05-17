@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from "react-router-dom";
 import {setAlert} from '../../../../actions/alert'
+import openBox from '../../../../app_images/shipping-and-delivery.svg'
 import {
   IMAGE_BASE_URL,
   PARAGRAPH,
@@ -49,9 +50,11 @@ const StoryPreview = ({singleStory, setAlert, posterImage , title , user}) => {
           </div>
         </div>
         <div className="md:w-2/3 mx-auto">
+          {posterImage.image && 
           <img className="post-cover bg-cover bg-center mx-auto" 
           src={`${IMAGE_BASE_URL}${posterImage.image}`}
           />
+          }
         </div>
         
         <div className="flex -mx-2 justify-center mt-4">
@@ -99,7 +102,14 @@ const StoryPreview = ({singleStory, setAlert, posterImage , title , user}) => {
       )
 
     }else {
-      return <div className="mt-8 text-center w-full">Add elements to preview your story</div>
+      return <div className="flex flex-col mt-20">
+              <img 
+              className="w-12 h-12 self-center"
+              src={openBox} alt="open_box"/>
+              <p className="mt-2 text-center">
+              <span>Add elements to preview your story.</span>
+              </p>
+            </div>
     }
 }
 

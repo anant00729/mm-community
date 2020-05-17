@@ -15,6 +15,7 @@ import StoryTopPanel from './StoryTopPanel';
 import StoryTopBar from './StoryTopBar';
 import StoryPreview from './preview/StoryPreview';
 import {callInsertStory, uploadImage, clearStoryContent} from '../../../actions/story'
+import openBox from '../../../app_images/shipping-and-delivery.svg'
 
 
 
@@ -143,9 +144,20 @@ const PublishStory = ({
 
   let tabLayout = {}
 
+  console.log('storyListJSX.length :>> ', storyListJSX.length);
+
   switch(tabIndex){
     case 0:
-      tabLayout = <ul>{storyListJSX}</ul>
+      tabLayout = <ul>{storyListJSX.length !== 0 ? storyListJSX : (
+        <div className="flex flex-col mt-20">
+          <img 
+          className="w-12 h-12 self-center"
+          src={openBox} alt="open_box"/>
+          <p className="mt-2 text-center">
+          <span>Add elements to your story.</span>
+          </p>
+        </div>
+      ) }</ul>
       break;
     case 1:
     case 2:  
