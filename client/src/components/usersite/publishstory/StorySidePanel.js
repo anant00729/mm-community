@@ -15,8 +15,6 @@ function StorySidePanel({
   publishStory, 
   tagArray, 
   setTagArray,
-  bannerImg, 
-  setBannerImg,
   publishDate, 
   setPublishDate,
   dateVisible, 
@@ -24,7 +22,9 @@ function StorySidePanel({
   setAlert,
   uploadImageBanner,
   removeBannerImage,
-  posterImage
+  posterImage,
+  isPublishBtnEnabled,
+  setPublishBtnEnabled
 }) {
   let [coverImageVisible, setCoverImageVisible] = useState(0);
   const [tagVisible, isTagImageVisible] = useState(false);
@@ -70,9 +70,10 @@ function StorySidePanel({
     })
   }
 
-  let lagsArrayJSX = tagArray.map((tag, index) => {
+  let tagsArrayJSX = tagArray.map((tag, index) => {
     return (
       <li 
+      key={index}
       onClick={() => onRemoveTag(index)}
       className="mt-1 bg-blue-200 text-gray-800 py-1 px-2 rounded-full text-sm border border-gray-200 flex">
       <span
@@ -138,6 +139,9 @@ function StorySidePanel({
       )
   }
 
+
+  console.log('isPublishBtnEnabled :>> ', isPublishBtnEnabled);
+
   
   return (
     <>
@@ -148,8 +152,18 @@ function StorySidePanel({
         <p className="ml-1 text-black">Draft Saved</p>
       </div> */}
       <button 
+      disabled={!isPublishBtnEnabled}
       onClick={() => publishStory()}
-      className="mt-2 app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out cursor-pointer">
+      className={`mt-2 
+      hover:text-white 
+      rounded text-white 
+      py-2 px-4 
+      focus:outline-none 
+      hover:shadow-md 
+      shadow transition duration-500 ease-in-out 
+      cursor-pointer
+      app-color
+      `}>
         Publish Story
       </button>
     </div>
@@ -207,7 +221,7 @@ function StorySidePanel({
               type="text"/>
             </form>
             <ul className="flex flex-wrap mt-1">
-              {lagsArrayJSX}
+              {tagsArrayJSX}
             </ul>
 
           </div>

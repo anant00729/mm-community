@@ -32,6 +32,7 @@ const PublishStory = ({
   const [tabIndex , setTabIndex] = useState(0)
   const [tagArray, setTagArray] = useState([]);
   let [bannerImg , setBannerImg] = useState('')
+  let [isPublishBtnEnabled , setPublishBtnEnabled] = useState(true)
   const STORY_IMAGE = 'story_image'
 
   const [publishDate, setPublishDate] = useState(new Date());
@@ -82,9 +83,6 @@ const PublishStory = ({
   //   "token" : "sUmkabQpBSho5DNGI8mZYPp2maG7S"
   // }
 
-  
-  
-
   if(title.length === 0){
     setAlert('Please enter title of your story' , 'red')
   }
@@ -110,6 +108,7 @@ const PublishStory = ({
       story_status : 0,
       token
     }
+    setPublishBtnEnabled(false)
     callInsertStory(publishStoryObj, history)
   }
  }
@@ -196,6 +195,8 @@ const PublishStory = ({
           <div className="md:w-1/3 lg:w-1/4 w-full text-gray-600">
             <div className="border-l border-gray-300">
               <StorySidePanel
+              isPublishBtnEnabled={isPublishBtnEnabled}
+              setPublishBtnEnabled={setPublishBtnEnabled}
               inBetween={inBetween}
               onAddOrRemoveAt={onAddOrRemoveAt}
               setInBetween={setInBetween}

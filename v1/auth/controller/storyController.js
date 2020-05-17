@@ -131,9 +131,10 @@ exports.getUserStories = async (req, res) => {
  * @access public
  */
 exports.updateStoryStatusByStoryId = async (req, res) => {
-  const storyId = req.body.storyId || 0;
+  const storyId = req.body.story_id || 0;
+  let story_status = req.body.story_status || -1;
   let story = new Story();
-  let publishedStoryByAdmin = await story.updateStoryStatusByStoryId(storyId);
+  let publishedStoryByAdmin = await story.updateStoryStatusByStoryId(storyId, story_status);
   res.json(publishedStoryByAdmin);
 };
 

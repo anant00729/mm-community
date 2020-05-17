@@ -88,7 +88,11 @@ button:focus {
   background-color : #2962ff;
 }
 
-.app-color:hover{
+.app-color:disabled{
+  background-color : #507fff;
+}
+
+.app-color:hover:enabled{
   background-color :#265bed;
 }
 
@@ -423,5 +427,9 @@ button:focus {
 }
 
 .word-wrapper {
+  word-break: break-word;
+}
+
+p {
   word-break: break-word;
 }

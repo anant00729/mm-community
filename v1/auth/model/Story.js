@@ -181,11 +181,10 @@ class Story {
   }
 
   
-  async updateStoryStatusByStoryId(storyId) {
-    let q1 = `UPDATE public.story SET story_status=1 WHERE id=(:storyId)`;
-
+  async updateStoryStatusByStoryId(storyId, story_status) {
+    let q1 = `UPDATE public.story SET story_status= (:story_status) WHERE id=(:storyId)`;
     try {
-      await db.query(q1, { replacements: { storyId } });
+      await db.query(q1, { replacements: { storyId, story_status } });
 
       return { status: true, message: "Story updated" };
     } catch (err) {

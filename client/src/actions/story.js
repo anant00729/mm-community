@@ -93,7 +93,7 @@ export const callInsertStory = (obj, history) => async dispatch => {
         type: PUBLISH_STORY,
         payload: res_d
       });
-      dispatch(setAlert('Story Published', 'green'))
+      dispatch(setAlert('Story submitted for review.', 'green'))
       history.push(`${HOME_FEED_ROUTE}${MY_STORIES}`)
     }else {
       dispatch(setAlert(res_d.message, 'red'))

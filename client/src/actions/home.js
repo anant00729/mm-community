@@ -4,6 +4,7 @@ import {
   CLEAR_ALL_HOME_STORIES
  } from './types';
 import { setAlert } from './alert'
+import {HOME_FEED_ROUTE, PUBLISH_REQUEST, PUBLISHED} from '../../src/components/utils/constants'
 
 
 // getAllMembers
@@ -65,4 +66,29 @@ export const getAdminStories = (token = '-1', story_status = 0) => async dispatc
     dispatch(setAlert(err.message , 'red'))
   }
 };
+
+
+export const approveRequest = (token,story_id, story_status = 1, history) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const body = JSON.stringify({ token, story_status, story_id });
+    const res = await axios.post('/v1/story/updateStoryStatusByStoryId', body , config);
+    const res_d = res.data
+
+    if(res_d.status){
+      dispatch(setAlert('Story approved!!', 'green'))
+      history.push(`${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PUBLISHED}`)
+    }else {
+      dispatch(setAlert(res_d.message, 'red'))
+    }
+  } catch (err) {
+    dispatch(setAlert(err.message , 'red'))
+  }    
+}
+
+
 

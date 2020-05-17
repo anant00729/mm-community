@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {getUserStories, getAdminStories} from '../../../../actions/home'
+import {getUserStories, getAdminStories, approveRequest} from '../../../../actions/home'
 import { IMAGE_BASE_URL } from '../../../utils/constants';
 import { Link , withRouter} from 'react-router-dom';
 import {SHOW_STORY,
@@ -20,7 +20,10 @@ function HomeUserStoryItem({
   getUserStories, 
   token, 
   homeUserStoryList, 
-  location}) {
+  location,
+  history,
+  approveRequest
+}) {
 
   let _p = location.pathname 
   let approveBtnJSX = null
@@ -63,15 +66,16 @@ function HomeUserStoryItem({
         let { title , profile_image , cover_image , id, name, story_status } = story
         if(para){
           if(para.input.length > 310){
-            para.input = `${para.input.substring(1, 300)}...`;
+            para.input = `${para.input.substring(0, 300)}...`;
           }
         }
 
 
 
-        const dispalyStoryStatus = (story_status) => {
+        const dispalyStoryStatus = (story) => {
           if(_p === `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PENDING}`){
             return <button 
+            onClick={() => approveRequest(token,story.id, 1 ,history)}
             className="ml-auto px-4 py-2 
             bg-gray-100 
             hover:bg-gray-200 
@@ -80,7 +84,7 @@ function HomeUserStoryItem({
             text-sm
             ">APPROVE</button>
           }else if(_p === `${HOME_FEED_ROUTE}${MY_STORIES}`){
-            console.log('dispalyStoryStatus :>> ', story_status);
+            console.log('dispalyStoryStatus :>> ', story);
             return <p 
             className={
               `ml-auto 
@@ -90,8 +94,8 @@ function HomeUserStoryItem({
               rounded
               my-auto
               text-sm
-              ${story_status === -1 ? 'text-red-500' : 'text-green-500'}`
-            }>{story_status === -1 ? 'UNDER REVEIW' : 'PUBLISHED'}</p>
+              ${story.story_status === -1 ? 'text-red-500' : 'text-green-500'}`
+            }>{story.story_status === -1 ? 'UNDER REVEIW' : 'PUBLISHED'}</p>
           }
           return null
         }
@@ -112,7 +116,7 @@ function HomeUserStoryItem({
                   alt="profile_image"/>
                   <p className="self-center ml-3 text-sm font-semibold md:text-base">{name}'s blog</p>
                 </Link>
-                  {dispalyStoryStatus(story_status)}
+                  {dispalyStoryStatus(story)}
                 </div>  
               
               
@@ -156,7 +160,7 @@ const mapStateToProps = state => ({
 });
 
 const allActions = {
-  getUserStories, getAdminStories
+  getUserStories, getAdminStories, approveRequest
 }
 
 export default connect(mapStateToProps, allActions)(withRouter(HomeUserStoryItem));
