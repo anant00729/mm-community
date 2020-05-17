@@ -279,7 +279,7 @@ button:focus {
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
   visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 450px;
+  min-width: 290px;
    /* Set a default minimum width */
   /* margin: 0 auto; */
    /* Divide value of min-width by 2 */

@@ -16,7 +16,7 @@ const Alert = ({ alerts }) => {
           <span className={`flex rounded-full bg-${alert.alertType}-600 uppercase px-2 py-1 text-xs font-bold mr-3`}>
               {alert.alertType == 'red' ? 'Error' : 'Success'}
           </span>
-          <span className="font-semibold mr-2 text-left flex-auto">{alert.msg}</span>
+          <span className="font-semibold mr-2 text-left flex-auto text-sm md:text-md">{alert.msg}</span>
         </div>
       </div>
       </div>

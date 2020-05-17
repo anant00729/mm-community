@@ -138,16 +138,15 @@ import { withRouter } from "react-router-dom";
                     console.log('Discussion')
                   }} 
                   className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Discussion</button> */}
-                  <button 
-                  onClick={() => {
-                    console.log('Members')
-                  }} 
-                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</button>
-                  <button 
-                  onClick={() => {
-                    console.log('About')
-                  }} 
-                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</button>
+                  <div className="flex flex-col">
+                  <Link 
+                  to={ALL_MEMBERS_ROUTE}
+                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">Members</Link>
+                  <Link 
+                  to={ABOUT_ROUTE}
+                  className="px-2 md:px-4 py-2 hover:bg-gray-200 cursor-pointer tracking-wide w-full text-left">About</Link>
+                  </div>
+                  
               </div>
               </div>
               <div className="hidden md:visible md:flex md:flex-wrap">
