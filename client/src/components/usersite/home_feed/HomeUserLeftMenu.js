@@ -11,6 +11,10 @@ import {
 import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import {HOME_FEED_ROUTE , DAILY_FEEDS, MY_STORIES , PUBLISH_REQUEST} from '../../utils/constants'
+import home from '../../../app_images/home.svg'
+import userStory from '../../../app_images/user_story.svg'
+import review from '../../../app_images/review.svg'
+import newImage from '../../../app_images/new.svg'
 
 
 
@@ -21,19 +25,22 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, location}) {
     code : `${HOME_FEED_ROUTE}${DAILY_FEEDS}`,
     value : 'Daily Feeds',
     visible : 'all',
-    selected : false
+    selected : false,
+    logo : home
   },
   {
     code : `${HOME_FEED_ROUTE}${MY_STORIES}`,
     value : 'My Stories',
     visible : 'all',
-    selected : false
+    selected : false,
+    logo : userStory
   },
   {
     code : `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}`,
     value : 'Publish Request',
     visible : 'all',
-    selected : true
+    selected : true,
+    logo : review
     }
   ]
 
@@ -51,7 +58,9 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, location}) {
       key={index}
       className={`px-4 py-3 flex cursor-pointer ${isSelected ? 'app-font-color border-r-2 border-blue-500' : 'text-gray-800'}`}
       >
-        <i className="fa fa-home self-center text-xl"></i>
+        <img 
+        className="w-6 h-6"
+        src={menu.logo} alt="menu_logo"/>
         <p className="self-center ml-4 text-md">{menu.value}</p>
     </Link>
     )
@@ -73,7 +82,9 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, location}) {
         <div 
         className={`bg-white rounded ${menuHidden ? 'hidden' : ''}`}>
           <Link to={CREATE_STORY_ROUTE} className="px-4 py-3 flex cursor-pointer border-b border-gray-200">
-            <i className="fa fa-home self-center text-xl"></i>
+            <img 
+            className="w-6 h-6"
+            src={newImage} alt="menu_logo"/>
             <p className="self-center ml-4 text-md">New story</p>
           </Link>
           {/* <Link to={CREATE_STORY_ROUTE} className="px-4 py-3 flex cursor-pointer border-b border-gray-200">

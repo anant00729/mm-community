@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "532f4337fdcbf428d0662060b05aa582",
+    "revision": "99b0b6fe9ed329992d0e6a7e5c9de219",
     "url": "/index.html"
   },
   {
-    "revision": "f73731ad60e3733e3ed8",
+    "revision": "e14c5d4ff2032f22e6f7",
     "url": "/static/css/2.6b43a75d.chunk.css"
   },
   {
-    "revision": "0db2c09220fb854c30c6",
+    "revision": "5b3a551a32b8e6b789d5",
     "url": "/static/css/main.f35525fe.chunk.css"
   },
   {
-    "revision": "f73731ad60e3733e3ed8",
-    "url": "/static/js/2.ddec036c.chunk.js"
+    "revision": "e14c5d4ff2032f22e6f7",
+    "url": "/static/js/2.d2ce9e83.chunk.js"
   },
   {
     "revision": "d2966845b94a3318bf32eecc7af8015d",
-    "url": "/static/js/2.ddec036c.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.d2ce9e83.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0db2c09220fb854c30c6",
-    "url": "/static/js/main.76fa2e21.chunk.js"
+    "revision": "5b3a551a32b8e6b789d5",
+    "url": "/static/js/main.b0c68e2e.chunk.js"
   },
   {
     "revision": "d1b989a47c9d5bf95f21",
@@ -48,6 +48,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/google.02d31de0.svg"
   },
   {
+    "revision": "21d9889022a0be4b10bfd5173b1ed409",
+    "url": "/static/media/home.21d98890.svg"
+  },
+  {
     "revision": "38d38fb926e594489ead1f870a1b23d5",
     "url": "/static/media/main-home-i1.38d38fb9.png"
   },
@@ -68,11 +72,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/members-img-1.004b16cd.png"
   },
   {
+    "revision": "0f13d27a227cbb421daeecf9b05faef0",
+    "url": "/static/media/new.0f13d27a.svg"
+  },
+  {
     "revision": "5a5979e767cdd71de313858f6a35e5d9",
     "url": "/static/media/page-not-found-img.5a5979e7.png"
   },
   {
+    "revision": "2114c945d68fa381d5387ae9a3d9a34d",
+    "url": "/static/media/review.2114c945.svg"
+  },
+  {
     "revision": "c41f6908a60ff346d5162c0f13db92f2",
     "url": "/static/media/shipping-and-delivery.c41f6908.svg"
+  },
+  {
+    "revision": "b075381714630c358e79b3bde1d9b466",
+    "url": "/static/media/user_story.b0753817.svg"
   }
 ]);

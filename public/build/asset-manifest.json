@@ -1,37 +1,41 @@
 {
   "files": {
     "main.css": "/static/css/main.f35525fe.chunk.css",
-    "main.js": "/static/js/main.76fa2e21.chunk.js",
-    "main.js.map": "/static/js/main.76fa2e21.chunk.js.map",
+    "main.js": "/static/js/main.b0c68e2e.chunk.js",
+    "main.js.map": "/static/js/main.b0c68e2e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.742940f8.js",
     "runtime-main.js.map": "/static/js/runtime-main.742940f8.js.map",
     "static/css/2.6b43a75d.chunk.css": "/static/css/2.6b43a75d.chunk.css",
-    "static/js/2.ddec036c.chunk.js": "/static/js/2.ddec036c.chunk.js",
-    "static/js/2.ddec036c.chunk.js.map": "/static/js/2.ddec036c.chunk.js.map",
+    "static/js/2.d2ce9e83.chunk.js": "/static/js/2.d2ce9e83.chunk.js",
+    "static/js/2.d2ce9e83.chunk.js.map": "/static/js/2.d2ce9e83.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.5ad143ea440a9f91aeccccac7f021838.js": "/precache-manifest.5ad143ea440a9f91aeccccac7f021838.js",
+    "precache-manifest.25e0e12e26d650e73d1aa9d803b84d5f.js": "/precache-manifest.25e0e12e26d650e73d1aa9d803b84d5f.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.6b43a75d.chunk.css.map": "/static/css/2.6b43a75d.chunk.css.map",
     "static/css/main.f35525fe.chunk.css.map": "/static/css/main.f35525fe.chunk.css.map",
-    "static/js/2.ddec036c.chunk.js.LICENSE.txt": "/static/js/2.ddec036c.chunk.js.LICENSE.txt",
+    "static/js/2.d2ce9e83.chunk.js.LICENSE.txt": "/static/js/2.d2ce9e83.chunk.js.LICENSE.txt",
     "static/media/about-img-1.png": "/static/media/about-img-1.8144ca07.png",
     "static/media/close.svg": "/static/media/close.abfda85e.svg",
     "static/media/close_black.svg": "/static/media/close_black.bbad8f02.svg",
     "static/media/facebook.svg": "/static/media/facebook.dce7d1dd.svg",
     "static/media/google.svg": "/static/media/google.02d31de0.svg",
+    "static/media/home.svg": "/static/media/home.21d98890.svg",
     "static/media/main-home-i1.png": "/static/media/main-home-i1.38d38fb9.png",
     "static/media/main-home-i2.png": "/static/media/main-home-i2.e71c8d3e.png",
     "static/media/main-home-img.png": "/static/media/main-home-img.a94a571e.png",
     "static/media/main-login-img.png": "/static/media/main-login-img.f0d86ee8.png",
     "static/media/members-img-1.png": "/static/media/members-img-1.004b16cd.png",
+    "static/media/new.svg": "/static/media/new.0f13d27a.svg",
     "static/media/page-not-found-img.png": "/static/media/page-not-found-img.5a5979e7.png",
-    "static/media/shipping-and-delivery.svg": "/static/media/shipping-and-delivery.c41f6908.svg"
+    "static/media/review.svg": "/static/media/review.2114c945.svg",
+    "static/media/shipping-and-delivery.svg": "/static/media/shipping-and-delivery.c41f6908.svg",
+    "static/media/user_story.svg": "/static/media/user_story.b0753817.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.742940f8.js",
     "static/css/2.6b43a75d.chunk.css",
-    "static/js/2.ddec036c.chunk.js",
+    "static/js/2.d2ce9e83.chunk.js",
     "static/css/main.f35525fe.chunk.css",
-    "static/js/main.76fa2e21.chunk.js"
+    "static/js/main.b0c68e2e.chunk.js"
   ]
 }

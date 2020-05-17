@@ -39,7 +39,7 @@ import { withRouter } from "react-router-dom";
     let profile_image = user.profile_image
     sideLoginPanel = (   
     <div className="ml-auto flex">
-      <div className="self-center pl-4 pr-6 hover:bg-gray-200 cursor-pointer py-2 ml-2">
+      <div className="invisible self-center pl-4 pr-6 hover:bg-gray-200 cursor-pointer py-2 ml-2">
         <i className="fa fa-bell text-xl ml-2 app-font-color"></i>  
       </div>
 
