@@ -20,7 +20,7 @@ export default function StoryTopBar({isProfileVisible, profileVisible, onLogoutC
           onClick={() => isProfileVisible(profileVisible => !profileVisible)} 
           className="relative">
             <img 
-              className="w-full h-full rounded-full border-white border-2 shadow-lg ml-2 cursor-pointer"
+              className="w-full h-full rounded-full border-white border-2 shadow-lg ml-2 cursor-pointer object-fit"
               src={profileImage} 
               alt="profile_image"/>
             <div 

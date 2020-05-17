@@ -21,7 +21,7 @@ function MemberItem({getAllMembers, homeMemberList, type}) {
         <div key={index} className="md:w-1/3 w-1/2 px-2 mt-4">
           <div className="rounded bg-white text-center py-6">
             <img 
-                className="w-20 h-20 rounded-full mx-auto"
+                className="w-20 h-20 rounded-full mx-auto object-fit"
                 src={_m.profile_image} 
                 alt="profile_image"/>
             <p className="font-sen text-md font-bold mt-4">{_m.name}</p>

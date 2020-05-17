@@ -33,7 +33,7 @@ function StoryItem({type, popularStoryList, getAllStories}) {
               <Link className="cursor-pointer" to={`${SHOW_STORY}/${id}`}>
                 <div className="flex">
                   <img 
-                  className="w-12 h-12 rounded-full border-gray-200 border-2"
+                  className="w-12 h-12 rounded-full border-gray-200 border-2 object-contain"
                   src={profile_image}
                   alt="profile_image"/>
                   <p className="self-center ml-3 text-sm font-semibold md:text-base">{story.name}'s blog</p>

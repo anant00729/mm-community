@@ -47,7 +47,7 @@ import { withRouter } from "react-router-dom";
       onClick={() => isProfileVisible(profileVisible => !profileVisible)} 
       className="md:w-12 md:h-12 w-10 h-10 self-center relative ml-2">
         <img 
-        className="w-full h-full rounded-full border-white border-2 shadow-lg cursor-pointer"
+        className="w-full h-full rounded-full border-white border-2 shadow-lg cursor-pointer object-contain"
         src={profile_image} 
         alt="profile_image"/>
         <div 

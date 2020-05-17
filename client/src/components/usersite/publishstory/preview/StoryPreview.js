@@ -42,7 +42,7 @@ const StoryPreview = ({singleStory, setAlert, posterImage , title , user}) => {
           <div className="flex">
             <div className="w-full flex flex-wrap py-4">
               <img 
-              className="w-14 h-14 rounded-full cursor-pointer"
+              className="w-14 h-14 rounded-full cursor-pointer object-contain"
               src={`${profile_image}`} 
               alt="profile_image"/>
               <p className="self-center ml-4">{`${name}'s story`}</p>
