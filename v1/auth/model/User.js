@@ -178,7 +178,7 @@ class User {
   }
 
   async findAll(){
-    let q1 = `SELECT * from public."user" WHERE id = '66'`
+    let q1 = `SELECT * from public."user" WHERE id = '84'`
     //WHERE id = '80' OR id = '83'
      
     try {

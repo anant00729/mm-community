@@ -22,8 +22,9 @@ exports.login = async (req,res) => {
     let userSessionResulte = await userSession.createUserSession(emailStatus.data.id)
     emailStatus.data.id = undefined
     userSessionResulte.user = emailStatus.data
-    res.json(userSessionResulte)
-    
+    setTimeout(()=> {
+      res.json(userSessionResulte)    
+    }, 2000)
 }
 
 /* 

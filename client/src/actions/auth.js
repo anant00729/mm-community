@@ -4,7 +4,8 @@ import { setAlert } from './alert'
 
 
 // login User
-export const login = (email, password) => async dispatch => {
+export const login = (email, password, loginCallback) => async dispatch => {
+  loginCallback(true)
   try {
     const config = {
       headers: {
@@ -16,15 +17,18 @@ export const login = (email, password) => async dispatch => {
     const res_d = res.data
 
     if(res_d.status){
+      loginCallback(false)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res_d
       });
       //dispatch(setAlert(res_d.data, 'green'))
     }else {
+      loginCallback(false)
       dispatch(setAlert(res_d.message, 'red'))
     }
   } catch (err) {
+    loginCallback(false)
     dispatch(setAlert(err.message))
   }
 };

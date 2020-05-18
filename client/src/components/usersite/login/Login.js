@@ -15,6 +15,7 @@ import { withRouter } from "react-router-dom";
 export const Login = ({login, isAuthenticated, setAlert}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoginBtnEnabled, setLoginBtnEnabled] = useState(true)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -29,7 +30,7 @@ export const Login = ({login, isAuthenticated, setAlert}) => {
       setAlert(`Please enter password` , 'red')
     }
     else {
-      login(email,password)
+      login(email,password, (loading) => setLoginBtnEnabled(!loading))
     }
   }
 
@@ -51,6 +52,7 @@ export const Login = ({login, isAuthenticated, setAlert}) => {
         <p className="mt-1 font-sen text-gray-700 text-xl w-full font-semibold">Log in via email</p>
         <p className="mt-1 text-gray-500 text italic">(Securely login through email and password)</p>
         <form 
+        
         onSubmit={onSubmit}
         className="mt-4 w-full">
           <input 
@@ -64,6 +66,7 @@ export const Login = ({login, isAuthenticated, setAlert}) => {
             placeholder="Enter your password"
             type="password"/>
           <input 
+          disabled={!isLoginBtnEnabled}
           className="mt-4 w-full text-white app-color py-2 px-8 focus:outline-none rounded text-base cursor-pointer"
           type="submit"/>
         </form>
