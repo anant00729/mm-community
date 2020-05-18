@@ -1,11 +1,11 @@
 import React , { useState, useEffect, useReducer } from 'react'
 
-import { Link , Redirect} from 'react-router-dom'
+import { Link , Redirect, withRouter } from 'react-router-dom'
+import { Prompt } from 'react-router'
 import {HOME_ROUTE, LOGIN_ROUTE} from '../../utils/constants';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import {logout} from '../../../actions/auth'
-import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { setAlert } from '../../../actions/alert';
 import {addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell} from '../../../actions/story'
@@ -37,6 +37,8 @@ const PublishStory = ({
 
   const [publishDate, setPublishDate] = useState(new Date());
   const [dateVisible, isDateVisible] = useState(false);
+  const [isNotPublished, setNotPublished] = useState(true);
+  
   
   useEffect(() => {
     const rows = Math.floor(title.length / 55) + 1
@@ -109,6 +111,7 @@ const PublishStory = ({
       token
     }
     setPublishBtnEnabled(false)
+    setNotPublished(false)
     callInsertStory(publishStoryObj, history)
   }
  }
@@ -169,6 +172,10 @@ const PublishStory = ({
 
   return (
     <div>
+      <Prompt
+      when={isNotPublished}
+      message='You have unsaved changes, are you sure you want to leave?'
+      />
       <div className="flex md:px-20 px-8 py-4 bg-gray-100 border boder-b-1">
         <StoryTopBar
         isProfileVisible={isProfileVisible} 
