@@ -19,7 +19,7 @@ const Stories = () => {
             <div className="bg-white rounded p-4 mt-4">
               <p className="font-sen text-black text-xl md:text-2xl font-bold">Popular Stories</p> 
               <p className="text-gray-700 mb-4">Learnt something new recently? Write about it on Hi-Story and showcase your knowledge.</p>
-              <Link to={CREATE_STORY_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out">
+              <Link to={`${CREATE_STORY_ROUTE}/0`}to={CREATE_STORY_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out">
                 New Story
               </Link>
             </div>

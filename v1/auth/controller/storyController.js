@@ -38,7 +38,7 @@ exports.addStory = async (req, res) => {
   let storyStatus = await story.addStory(
     title,
     content,
-    cover_image.image,
+    cover_image.image,        
     visit_count,
     read_time,
     created_at,

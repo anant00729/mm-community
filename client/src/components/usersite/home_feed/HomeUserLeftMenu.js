@@ -81,7 +81,7 @@ function HomeUserLeftMenu({setMenuHidden , menuHidden, user, location}) {
         </button>
         <div 
         className={`bg-white rounded ${menuHidden ? 'hidden' : ''}`}>
-          <Link to={CREATE_STORY_ROUTE} className="px-4 py-3 flex cursor-pointer border-b border-gray-200">
+          <Link to={`${CREATE_STORY_ROUTE}/0`} className="px-4 py-3 flex cursor-pointer border-b border-gray-200">
             <img 
             className="w-6 h-6"
             src={newImage} alt="menu_logo"/>

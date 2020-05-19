@@ -50,7 +50,7 @@ const Discussion = () => {
             <div className="bg-white rounded p-4 mt-4">
               <p className="font-sen text-black text-xl md:text-2xl font-bold">Discussions</p> 
               <p className="text-gray-700 mb-4">Participate in the discussions and build your developer profile on Hi-Story. You can also ask questions anonymously, if you are too shy.</p>
-              <Link to={CREATE_STORY_ROUTE} className="app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out">
+              <Link to={`${CREATE_STORY_ROUTE}/0`} className="app-color hover:text-white rounded text-white py-2 px-4 focus:outline-none hover:shadow-md shadow transition duration-500 ease-in-out">
                 New discussion
               </Link>
             </div>

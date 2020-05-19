@@ -164,7 +164,7 @@ import { withRouter } from "react-router-dom";
                 to={ABOUT_ROUTE}>About</Link>
               </div>
             </div>
-            <Link to={CREATE_STORY_ROUTE}
+            <Link to={`${CREATE_STORY_ROUTE}/0`}
              className="ml-auto text-gray-700 px-4 my-auto font-bold py-2 hover:bg-gray-200 cursor-pointer app-font-color flex">
               <i className="fa fa-plus-circle self-center text-xl"></i>
               <span className="ml-2">New Post</span>  

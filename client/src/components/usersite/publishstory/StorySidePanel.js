@@ -139,9 +139,6 @@ function StorySidePanel({
       )
   }
 
-
-  console.log('isPublishBtnEnabled :>> ', isPublishBtnEnabled);
-
   
   return (
     <>

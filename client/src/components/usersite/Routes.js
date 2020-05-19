@@ -56,7 +56,7 @@ const Routes = props => {
           <Route exact path={ALL_MEMBERS_ROUTE} component={Members} />
           <Route exact path={ALL_STORIES_ROUTE} component={Stories} />
           <Route exact path={ALL_DISCUSSIONS} component={Discussion} />
-          <Route exact path={CREATE_STORY_ROUTE} component={PublishStory} />
+          <Route exact path={`${CREATE_STORY_ROUTE}/:storyId`} component={PublishStory} />
           <Route path={HOME_FEED_ROUTE} component={HomeFeed} />
           <Route exact path={`${SHOW_STORY}/:id`} component={ShowStory}/>
           <Route exact path={`/test`} component={Test}/>

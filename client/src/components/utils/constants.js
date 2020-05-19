@@ -45,5 +45,8 @@ export const TEACHER = 'teacher'
 export const OPEN = 'OPEN'
 export const CLOSED = 'CLOSED'
 
+export const UPDATE = 'UPDATE'
+export const CREATE = 'CREATE'
+
 
 

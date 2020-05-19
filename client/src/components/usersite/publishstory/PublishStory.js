@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import {logout} from '../../../actions/auth'
 import { v4 as uuidv4 } from 'uuid';
 import { setAlert } from '../../../actions/alert';
-import {addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell} from '../../../actions/story'
+import {addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, getStoryById} from '../../../actions/story'
 import StoryTemplateCell from './StoryTemplateCell';
 import StorySidePanel from './StorySidePanel';
 import StoryTopPanel from './StoryTopPanel';
@@ -22,7 +22,7 @@ import openBox from '../../../app_images/shipping-and-delivery.svg'
 const PublishStory = ({
   setAlert, isAuthenticated , history , logout, token, callInsertStory,
   addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, inputChannelCell, singleStory, 
-  uploadImage, posterImage, user, clearStoryContent
+  uploadImage, posterImage, user, clearStoryContent, match, getStoryById
 }) => {
   
   const [title, setTitle] = useState('')
@@ -38,6 +38,9 @@ const PublishStory = ({
   const [publishDate, setPublishDate] = useState(new Date());
   const [dateVisible, isDateVisible] = useState(false);
   const [isNotPublished, setNotPublished] = useState(true);
+
+  
+  //console.log('PublishStory :>> ', match.params.storyId);
   
   
   useEffect(() => {
@@ -47,6 +50,9 @@ const PublishStory = ({
 
   useEffect(() => {
     clearStoryContent()
+    if(match.params.storyId != 0){
+      getStoryById(match.params.id);
+    }
   }, []) 
 
 
@@ -63,8 +69,6 @@ const PublishStory = ({
       uploadImage(e.target.files[0], STORY_IMAGE, index)
     }
   }
-
-  console.log('posterImage :>> ', posterImage);
 
  const publishStory = () => {
 
@@ -147,8 +151,6 @@ const PublishStory = ({
   }
 
   let tabLayout = {}
-
-  console.log('storyListJSX.length :>> ', storyListJSX.length);
 
   switch(tabIndex){
     case 0:
@@ -236,6 +238,7 @@ PublishStory.propTypes = {
 
 const mapStateToProps = state => ({
   logout: PropTypes.func.isRequired,
+  getStoryById: PropTypes.func.isRequired,
   callInsertStory: PropTypes.func.isRequired,
   clearStoryContent : PropTypes.func.isRequired,
   isAuthenticated: state.auth.isAuthenticated,
@@ -248,7 +251,7 @@ const mapStateToProps = state => ({
 const allActions = {
   addStoryCell, removeImageContent, removeStoryCell, updateDropDownCell, 
   inputChannelCell, logout, setAlert, callInsertStory, uploadImage, 
-  clearStoryContent
+  clearStoryContent, getStoryById
 }
 
 export default connect(mapStateToProps, allActions)(withRouter(PublishStory));

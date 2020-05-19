@@ -221,24 +221,15 @@ export const getStoryById = (storyId) => async dispatch => {
     const res_d = res.data
 
     if(res_d.status){
-      dispatch({
-        type: GET_STORY_BY_ID,
-        payload: res_d
-      });
+      dispatch({type: GET_STORY_BY_ID,payload: res_d});
       //dispatch(setAlert(JSON.stringify(res_d.data), 'green'))
     }else {
-      dispatch({
-        type: GET_STORY_BY_ID,
-        payload: res_d
-      });
+      dispatch({type: GET_STORY_BY_ID,payload: res_d});
       //dispatch(setAlert(res_d.message, 'red'))
     }
   } catch (err) {
     err.status = false
-    dispatch({
-      type: GET_STORY_BY_ID,
-      payload: err
-    });
+    dispatch({type: GET_STORY_BY_ID,payload: err});
     //dispatch(setAlert(err.message, 'red'))
   }
 }

@@ -11,7 +11,8 @@ import {SHOW_STORY,
    PENDING,
    PUBLISHED,
    DAILY_FEEDS,
-   MY_STORIES
+   MY_STORIES,
+   CREATE_STORY_ROUTE
   } from '../../../utils/constants'
 
 
@@ -28,7 +29,6 @@ function HomeUserStoryItem({
 
   let _p = location.pathname 
   let approveBtnJSX = null
-  
   
   useEffect(() => {
     let story_status = 0
@@ -53,10 +53,6 @@ function HomeUserStoryItem({
     }
     window.scrollTo(0, 0)
   }, [])
-  
- 
-
-  console.log('homeUserStoryList :>> ', homeUserStoryList);
 
   if(homeUserStoryList === null){
     // Show loading
@@ -86,6 +82,7 @@ function HomeUserStoryItem({
         }
 
 
+        let _to = `${SHOW_STORY}/${id}`
 
         const dispalyStoryStatus = (story) => {
           if(_p === `${HOME_FEED_ROUTE}${PUBLISH_REQUEST}${PENDING}`){
@@ -99,7 +96,10 @@ function HomeUserStoryItem({
             text-sm
             ">APPROVE</button>
           }else if(_p === `${HOME_FEED_ROUTE}${MY_STORIES}`){
-            console.log('dispalyStoryStatus :>> ', story);
+
+            if (story.story_status === -1){
+              _to = `${CREATE_STORY_ROUTE}/${id}`
+            }
             return <p 
             className={
               `ml-auto 
@@ -121,10 +121,8 @@ function HomeUserStoryItem({
           <div 
             key={index}
             className="bg-white rounded mt-4 p-4">
-              
-              
                 <div className="flex">
-                <Link className="cursor-pointer flex" to={`${SHOW_STORY}/${id}`}>
+                <Link className="cursor-pointer flex" to={_to}>
                   <img 
                   className="w-12 h-12 rounded-full border-gray-200 border-2 object-contain"
                   src={profile_image}
@@ -138,7 +136,7 @@ function HomeUserStoryItem({
               <div className="md:flex mt-4">
 
                 <div className="md:w-3/4 w-full mr-4">
-                <Link to={`${SHOW_STORY}/${id}`} className="cursor-pointer">
+                <Link to={_to} className="cursor-pointer">
                   <p className="font-sen text-black font-bold md:text-2xl text-xl">
                     {title}
                   </p>
