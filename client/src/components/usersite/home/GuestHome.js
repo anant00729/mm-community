@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import mainHomeImg from '../../../app_images/main-home-img.png'
+import mainHomeImg from '../../../app_images/main-home-img.jpeg'
 import imageOne from '../../../app_images/main-home-i1.png'
 import imageTwo from '../../../app_images/main-home-i2.png'
 import imageThree from '../../../app_images/main-home-i3.png'

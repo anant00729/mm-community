@@ -222,4 +222,12 @@ SELECT id, title, content, cover_image, like_count, visit_count, read_time, crea
 	FROM public.story WHERE story_status = (:story_status);
 	
 	
-	
+INSERT INTO public."user"(
+	name, email, type, profile_image, year, class_student, dob, gender, password, created_at, updated_at, social_user_type, user_active)
+	VALUES ('Ayan Khan', 'ayangk0140@gmail.com', 'student', 'https://api.adorable.io/avatars/ayangk0140@gmail.com', 
+      '2020-21', '12', '03/15/2004', 'male', '342445', '05/18/2020', '05/18/2020', 'WEB', '1');	
+
+
+
+
+      . 	15/03/2004.	Male. 	

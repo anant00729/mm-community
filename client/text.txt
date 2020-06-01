@@ -363,3 +363,111 @@ UPDATE public."user"
 	SET type='student'
 ;
 
+{
+  "statusCode": 200,
+  "message": "Successfully fetched restaurant details with menu head and menu items",
+  "result": {
+    "restaurantDetails": {
+      "name": "Souk",
+      "hotel_name": "Taj Hotel GW",
+      "theme": "Chinese Restaurant",
+      "cost_for_two": "Rs. 5000 for two",
+      "img_url": [
+        {
+          "thumbnail": "https://....png",
+          "profile": "https://....png",
+          "large": "https://....png"
+        }
+      ],
+      "description": "This is a very good restaurant",
+      "list_of_menu_head": []
+    },
+    "menuCategory" : [
+      "name" : "soup",
+      "category_id" : 1,
+      "menuItems": [
+      {
+        "name": "Italian Pizza",
+        "restaurant_name": "Souk",
+        "food_type": 1,
+        "item_ref_id": "63c89754-286d-488b-91c7-a32b32f1e02c",
+        "recommended": true,
+        "allergens": true,
+        "condiments": [
+          "condiment1",
+          "condiment2",
+          "condiment3"
+        ],
+        "spice_level": "2",
+        "chef_special": true,
+        "vegan": true,
+        "kosher": true,
+        "gluten_free": true,
+        "portion": "3",
+        "ingredients": [
+          "ingredient1",
+          "ingredient2",
+          "ingredient3"
+        ],
+        "price": "2000.00",
+        "jain_dish": true,
+        "halal_dish": true,
+        "lunch": true,
+        "breakfast": false,
+        "dinner": false,
+        "heat_index": "3",
+        "tax": [
+          {
+            "title": "GST",
+            "description": "Goods & Sevrice Tax",
+            "active": "true",
+            "applicableon": "totalprice",
+            "value": "5%"
+          }
+        ]
+      },
+      {
+        "name": "Italian Pizza",
+        "restaurant_name": "Souk",
+        "food_type": 1,
+        "item_ref_id": "63c89754-286d-488b-91c7-a32b32f1e02c",
+        "recommended": true,
+        "allergens": true,
+        "condiments": [
+          "condiment1",
+          "condiment2",
+          "condiment3"
+        ],
+        "spice_level": "2",
+        "chef_special": true,
+        "vegan": true,
+        "kosher": true,
+        "gluten_free": true,
+        "portion": "3",
+        "ingredients": [
+          "ingredient1",
+          "ingredient2",
+          "ingredient3"
+        ],
+        "price": "2000.00",
+        "jain_dish": true,
+        "halal_dish": true,
+        "lunch": true,
+        "breakfast": false,
+        "dinner": false,
+        "heat_index": "3",
+        "tax": [
+          {
+            "title": "GST",
+            "description": "Goods & Sevrice Tax",
+            "active": "true",
+            "applicableon": "totalprice",
+            "value": "5%"
+          }
+        ]
+      }
+      ]
+    ]
+    
+  }
+}
