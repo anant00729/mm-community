@@ -77,8 +77,9 @@ export const clearStoryContent = () => async dispatch => {
 
 
 
-export const callInsertStory = (obj, history) => async dispatch => {
+export const callInsertStory = (obj, history, callInsertStoryCB) => async dispatch => {
   try {
+    callInsertStoryCB(true)
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -89,6 +90,7 @@ export const callInsertStory = (obj, history) => async dispatch => {
     const res_d = res.data
 
     if(res_d.status){
+      callInsertStoryCB(false)
       dispatch({
         type: PUBLISH_STORY,
         payload: res_d
@@ -96,9 +98,11 @@ export const callInsertStory = (obj, history) => async dispatch => {
       dispatch(setAlert('Story submitted for review.', 'green'))
       history.push(`${HOME_FEED_ROUTE}${MY_STORIES}`)
     }else {
+      callInsertStoryCB(false)
       dispatch(setAlert(res_d.message, 'red'))
     }
   } catch (err) {
+    callInsertStoryCB(false)
     dispatch(setAlert(err.message, 'red'))
   }
 };

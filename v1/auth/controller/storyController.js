@@ -47,7 +47,7 @@ exports.addStory = async (req, res) => {
     story_status,
     like_count
   );
-  res.json(storyStatus);
+  res.json(storyStatus)
 };
 
 /*

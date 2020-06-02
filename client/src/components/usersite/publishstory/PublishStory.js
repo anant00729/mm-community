@@ -114,9 +114,10 @@ const PublishStory = ({
       story_status : 0,
       token
     }
-    setPublishBtnEnabled(false)
-    setNotPublished(false)
-    callInsertStory(publishStoryObj, history)
+    callInsertStory(publishStoryObj, history, (loading) => {
+      setNotPublished(loading)
+      setPublishBtnEnabled(!loading)
+    })
   }
  }
   
